@@ -6,6 +6,7 @@ local config = {}
 
 function config.zephyr()
   vim.cmd('colorscheme zephyr')
+  vim.cmd('highlight Normal guibg=NONE guifg=NONE')
 end
 
 function config.galaxyline()
