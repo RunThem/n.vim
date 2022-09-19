@@ -5,7 +5,9 @@
 local config = {}
 
 -- config server in this function
-function config.nvim_lsp() end
+function config.nvim_lsp()
+  require('modules.completion.lspconfig')
+end
 
 function config.nvim_cmp()
   local cmp = require('cmp')
@@ -13,8 +15,38 @@ function config.nvim_cmp()
   cmp.setup({
     preselect = cmp.PreselectMode.Item,
     window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    },
+    formatting = {
+      -- fields = { 'abbr', 'kind', 'menu' },
+      fields = { 'abbr' },
+    },
+    mapping = cmp.mapping.preset.insert({
+      -- ['<Tab>'] = cmp.mapping.select_next_item(),
+      ['<Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end),
+      ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+      ['<CR>'] = cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = false
+      })
+    }),
+    snippet = {
+      expand = function(args)
+        require('luasnip').lsp_expand(args.body)
+      end,
+    },
+    sources = {
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' },
+      { name = 'path' },
+      { name = 'buffer' },
     },
   })
 end
