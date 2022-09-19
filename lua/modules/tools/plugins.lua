@@ -19,3 +19,5 @@ plugin({
 plugin({ 'dwrdx/mywords.nvim' })
 
 plugin({ 'b3nj5m1n/kommentary', config = conf.kommentary })
+
+plugin({ 'folke/todo-comments.nvim', config = conf.todo_comments })
