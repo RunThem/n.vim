@@ -26,3 +26,5 @@ plugin({
 })
 
 plugin({ 'L3MON4D3/LuaSnip', event = 'InsertEnter', config = conf.lua_snip })
+
+plugin({ 'onsails/lspkind-nvim', event = 'BufReadPre', config = conf.lspkind })

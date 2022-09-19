@@ -11,6 +11,7 @@ end
 
 function config.nvim_cmp()
   local cmp = require('cmp')
+  local lspkind = require('lspkind')
 
   cmp.setup({
     preselect = cmp.PreselectMode.Item,
@@ -20,21 +21,20 @@ function config.nvim_cmp()
     },
     formatting = {
       -- fields = { 'abbr', 'kind', 'menu' },
-      fields = { 'abbr' },
+      format = lspkind.cmp_format({
+        mode = 'symbol', -- show only symbol annotations
+        maxwidth = 50,
+        before = function(_, vim_item)
+          return vim_item
+        end
+      })
     },
     mapping = cmp.mapping.preset.insert({
-      -- ['<Tab>'] = cmp.mapping.select_next_item(),
-      ['<Tab>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        else
-          fallback()
-        end
-      end),
+      ['<Tab>'] = cmp.mapping.select_next_item(),
       ['<S-Tab>'] = cmp.mapping.select_prev_item(),
       ['<CR>'] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Replace,
-        select = false
+        select = true
       })
     }),
     snippet = {
@@ -70,6 +70,40 @@ function config.lua_snip()
   require('luasnip.loaders.from_vscode').lazy_load()
   require('luasnip.loaders.from_vscode').lazy_load({
     paths = { './snippets/' },
+  })
+end
+
+function config.lspkind()
+  require('lspkind').init({
+    mode = 'symbol_text',
+    preset = 'codicons',
+    symbol_map = {
+      Text = "",
+      Method = "",
+      Function = "",
+      Constructor = "",
+      Field = "ﰠ",
+      Variable = "",
+      Class = "ﴯ",
+      Interface = "",
+      Module = "",
+      Property = "ﰠ",
+      Unit = "塞",
+      Value = "",
+      Enum = "",
+      Keyword = "",
+      Snippet = "",
+      Color = "",
+      File = "",
+      Reference = "",
+      Folder = "",
+      EnumMember = "",
+      Constant = "",
+      Struct = "פּ",
+      Event = "",
+      Operator = "",
+      TypeParameter = ""
+    }
   })
 end
 
