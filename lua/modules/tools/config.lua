@@ -32,4 +32,11 @@ function config.telescope()
   require('telescope').load_extension('fzy_native')
 end
 
+function config.kommentary()
+  local kommentary = require('kommentary.config')
+
+  kommentary.use_extended_mappings()
+  kommentary.configure_language('default', { prefer_multi_line_comments = true })
+end
+
 return config
