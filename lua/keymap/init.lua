@@ -26,4 +26,7 @@ nmap({
   { '<Leader>b', cmd('Telescope buffers'), opts(noremap, silent) },
   { '<Leader>fa', cmd('Telescope live_grep'), opts(noremap, silent) },
   { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
+  -- mywords
+  { '<Leader>m', cmd('lua require(\'mywords\').hl_toggle()'), opts(noremap, silent) },
+  { '<Leader>c', cmd('lua require(\'mywords\').uhl_all()'), opts(noremap, silent) },
 })

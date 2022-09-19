@@ -15,3 +15,5 @@ plugin({
     { 'nvim-telescope/telescope-fzy-native.nvim', opt = true },
   },
 })
+
+plugin({ 'dwrdx/mywords.nvim' })
