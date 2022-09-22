@@ -83,4 +83,51 @@ function config.todo_comments()
   }
 end
 
+function config.autopairs()
+  local npairs = require('nvim-autopairs')
+  local Rule = require('nvim-autopairs.rule')
+
+  npairs.setup({ disable_filetype = { 'TelescopePrompt' } })
+
+  npairs.add_rules({
+    Rule(' ', ' '):with_pair(function(opts)
+      local pair = opts.line:sub(opts.col - 1, opts.col)
+      return vim.tbl_contains({ '{}' }, pair)
+    end), Rule('{ ', ' }'):with_pair(function()
+      return false
+    end):with_move(function(opts)
+      return opts.prev_char:match('.%}') ~= nil
+    end):use_key('}')
+  })
+end
+
+function config.pretty_fold()
+  require('pretty-fold').setup({
+    sections = {
+       left = {
+          'content',
+       },
+       right = {
+          ' ', 'number_of_folded_lines', ' ',
+          function(config) return config.fill_char:rep(3) end
+       }
+    },
+    fill_char = '•',
+    remove_fold_markers = true,
+    keep_indentation = true,
+    process_comment_signs = 'spaces',
+    comment_signs = {},
+    stop_words = {
+       '@brief%s*', -- (for C++) Remove '@brief' and all spaces after.
+    },
+    add_close_pattern = true, -- true, 'last_line' or false
+    matchup_patterns = {
+       {  '{', '}' },
+       { '%(', ')' }, -- % to escape lua pattern char
+       { '%[', ']' }, -- % to escape lua pattern char
+    },
+    ft_ignore = { 'neorg' },
+  })
+end
+
 return config
