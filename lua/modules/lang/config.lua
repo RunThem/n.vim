@@ -4,7 +4,7 @@ function config.nvim_treesitter()
   vim.api.nvim_command('set foldmethod=expr')
   vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')
   require('nvim-treesitter.configs').setup({
-    ensure_installed = { 'c' },
+    ensure_installed = { 'c', 'zig', 'rust' },
     ignore_install = { 'phpdoc' },
     highlight = {
       enable = true,
