@@ -46,7 +46,7 @@ function config.nvim_cmp()
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
       { name = 'path' },
-      { name = 'buffer' },
+      --[[ { name = 'buffer' }, ]]
     },
   })
 end
