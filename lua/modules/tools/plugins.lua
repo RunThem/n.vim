@@ -21,3 +21,7 @@ plugin({ 'dwrdx/mywords.nvim' })
 plugin({ 'b3nj5m1n/kommentary', config = conf.kommentary })
 
 plugin({ 'folke/todo-comments.nvim', config = conf.todo_comments })
+
+plugin({ 'windwp/nvim-autopairs', config = conf.autopairs })
+
+plugin({ 'anuvyklack/pretty-fold.nvim', config = conf.pretty_fold })
