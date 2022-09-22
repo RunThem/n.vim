@@ -46,8 +46,13 @@ imap({
   -- insert mode
   { '<C-h>', '<Bs>', opts(noremap) },
   { '<C-e>', '<End>', opts(noremap) },
-  { '**', '/*  */<Esc>2hi' },
-  { ';;', '<Esc>A;' }
+  { '**', '/*  */<Esc>2hi', opts(noremap) },
+  { ';;', '<Esc>A;', opts(noremap) },
+
+  { '<C-h>', '<Left>', opts(noremap) },
+  { '<C-l>', '<Right>', opts(noremap) },
+  { '<C-j>', '<Down>', opts(noremap) },
+  { '<C-k>', '<Up>', opts(noremap) },
 })
 
 -- commandline remap
