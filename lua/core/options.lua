@@ -12,6 +12,7 @@ vim.opt.fileformats = 'unix,mac,dos'
 vim.opt.magic = true
 vim.opt.virtualedit = 'block'
 vim.opt.encoding = 'utf-8'
+vim.opt.fileencodings = 'utf-8,euc-cn,gb2312,gb18030,gbk,ucs-bom,cp936,latin1'
 vim.opt.viewoptions = 'folds,cursor,curdir,slash,unix'
 vim.opt.sessionoptions = 'curdir,help,tabpages,winsize'
 vim.opt.clipboard = 'unnamedplus'
@@ -116,3 +117,5 @@ if vim.loop.os_uname().sysname == 'Darwin' then
   vim.g.python_host_prog = '/usr/bin/python'
   vim.g.python3_host_prog = '/usr/local/bin/python3'
 end
+
+vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
