@@ -25,3 +25,7 @@ plugin({ 'folke/todo-comments.nvim', config = conf.todo_comments })
 plugin({ 'windwp/nvim-autopairs', config = conf.autopairs })
 
 plugin({ 'anuvyklack/pretty-fold.nvim', config = conf.pretty_fold })
+
+plugin({ 'williamboman/mason.nvim', config = conf.mason })
+
+plugin({ 'mhartington/formatter.nvim', config = conf.formatter })
