@@ -42,45 +42,48 @@ end
 function config.todo_comments()
   local todo = require('todo-comments')
 
-  todo.setup {
+  todo.setup({
     signs = true, -- show icons in the signs column
     keywords = {
       FIX = {
         icon = ' ',
         color = 'error',
-        alt = { 'FIXME', 'BUG', 'FIXIT', 'FIX', 'ISSUE' }
+        alt = { 'FIXME', 'BUG', 'FIXIT', 'FIX', 'ISSUE' },
       },
       TODO = { icon = ' ', color = 'info' },
       HACK = { icon = ' ', color = 'warning' },
       WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX' } },
       PERF = { icon = ' ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
-      NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } }
+      NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
     },
     highlight = {
       before = 'fg',
       keyword = 'fg',
       after = 'fg',
       pattern = [[.*<(KEYWORDS)\s*:]],
-      comments_only = false
+      comments_only = false,
     },
     colors = {
       error = { 'LspDiagnosticsDefaultError', 'ErrorMsg', '#DC2626' },
       warning = { 'LspDiagnosticsDefaultWarning', 'WarningMsg', '#FBBF24' },
       info = { 'LspDiagnosticsDefaultInformation', '#0DB0D7' },
       hint = { 'LspDiagnosticsDefaultHint', '#10B981' },
-      default = { 'Identifier', '#7C3AED' }
+      default = { 'Identifier', '#7C3AED' },
     },
     search = {
       command = 'fzf',
       args = {
-        '--color=never', '--no-heading', '--with-filename', '--line-number',
-        '--column'
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
       },
       -- regex that will be used to match keywords.
       -- don't replace the (KEYWORDS) placeholder
-      pattern = [[\b(KEYWORDS):]] -- ripgrep regex
-    }
-  }
+      pattern = [[\b(KEYWORDS):]], -- ripgrep regex
+    },
+  })
 end
 
 function config.autopairs()
@@ -93,11 +96,15 @@ function config.autopairs()
     Rule(' ', ' '):with_pair(function(opts)
       local pair = opts.line:sub(opts.col - 1, opts.col)
       return vim.tbl_contains({ '{}' }, pair)
-    end), Rule('{ ', ' }'):with_pair(function()
-      return false
-    end):with_move(function(opts)
-      return opts.prev_char:match('.%}') ~= nil
-    end):use_key('}')
+    end),
+    Rule('{ ', ' }')
+      :with_pair(function()
+        return false
+      end)
+      :with_move(function(opts)
+        return opts.prev_char:match('.%}') ~= nil
+      end)
+      :use_key('}'),
   })
 
   local status, cmp = pcall(require, 'cmp')
@@ -117,9 +124,13 @@ function config.pretty_fold()
         'content',
       },
       right = {
-        ' ', 'number_of_folded_lines', ' ',
-        function(config) return config.fill_char:rep(3) end
-      }
+        ' ',
+        'number_of_folded_lines',
+        ' ',
+        function(config)
+          return config.fill_char:rep(3)
+        end,
+      },
     },
     fill_char = '•',
     remove_fold_markers = true,
@@ -127,15 +138,15 @@ function config.pretty_fold()
     process_comment_signs = 'spaces',
     comment_signs = {},
     stop_words = {
-      '@brief%s*' -- (for C++) Remove '@brief' and all spaces after.
+      '@brief%s*', -- (for C++) Remove '@brief' and all spaces after.
     },
     add_close_pattern = true, -- true, 'last_line' or false
     matchup_patterns = {
-      {  '{', '}' },
+      { '{', '}' },
       { '%(', ')' }, -- % to escape lua pattern char
       { '%[', ']' }, -- % to escape lua pattern char
     },
-    ft_ignore = { 'neorg' }
+    ft_ignore = { 'neorg' },
   })
 end
 
@@ -143,48 +154,52 @@ function config.mason()
   require('mason').setup({
     ui = {
       check_outdated_packages_on_open = true,
-      border = "none",
+      border = 'none',
       icons = {
-        package_installed = "◍",
-        package_pending = "◍",
-        package_uninstalled = "◍"
+        package_installed = '◍',
+        package_pending = '◍',
+        package_uninstalled = '◍',
       },
       keymaps = {
         -- Keymap to expand a package
-        toggle_package_expand = "<CR>",
+        toggle_package_expand = '<CR>',
         -- Keymap to install the package under the current cursor position
-        install_package = "i",
+        install_package = 'i',
         -- Keymap to reinstall/update the package under the current cursor position
-        update_package = "u",
+        update_package = 'u',
         -- Keymap to check for new version for the package under the current cursor position
-        check_package_version = "c",
+        check_package_version = 'c',
         -- Keymap to update all installed packages
-        update_all_packages = "U",
+        update_all_packages = 'U',
         -- Keymap to check which installed packages are outdated
-        check_outdated_packages = "C",
+        check_outdated_packages = 'C',
         -- Keymap to uninstall a package
-        uninstall_package = "X",
+        uninstall_package = 'X',
         -- Keymap to cancel a package installation
-        cancel_installation = "<C-c>",
+        cancel_installation = '<C-c>',
         -- Keymap to apply language filter
-        apply_language_filter = "<C-f>"
-      }
+        apply_language_filter = '<C-f>',
+      },
     },
     pip = { install_args = {} },
     log_level = vim.log.levels.INFO,
     max_concurrent_installers = 4,
     github = {
-      download_url_template = "https://github.com/%s/releases/download/%s/%s"
-    }
+      download_url_template = 'https://github.com/%s/releases/download/%s/%s',
+    },
   })
 end
 
 function config.formatter()
   local conf = function(exe, args, stdin)
-    return { exe = exe, args = args, stdin = stdin }
+    return {
+      function()
+        return { exe = exe, args = args, stdin = stdin }
+      end,
+    }
   end
 
-  require('formatter').setup {
+  require('formatter').setup({
     filetype = {
       -- c = {
       --   function()
@@ -196,9 +211,9 @@ function config.formatter()
       sh = conf('shfmt', { '-i' }, false),
       go = conf('gofmt', { '-w' }, false),
       rust = conf('rustfmt', {}, true),
-      lua = conf('lua-format', { '-i', '-c', '~/.config/nvim/style.toml' }, true)
-    }
-  }
+      lua = conf('stylua', { '--search-parent-directories' }, false),
+    },
+  })
 end
 
 return config
