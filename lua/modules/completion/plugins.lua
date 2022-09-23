@@ -22,9 +22,8 @@ plugin({
     { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
     { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
     { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
+    { 'onsails/lspkind-nvim', config = conf.lspkind },
   },
 })
 
 plugin({ 'L3MON4D3/LuaSnip', event = 'InsertEnter', config = conf.lua_snip })
-
-plugin({ 'onsails/lspkind-nvim', event = 'BufReadPre', config = conf.lspkind })

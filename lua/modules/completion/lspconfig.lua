@@ -97,13 +97,13 @@ lspconfig.sumneko_lua.setup({
 
 lspconfig.clangd.setup({
   on_attach = on_attach,
-  -- cmd = {
-  --   'clangd',
-  --   '--background-index',
-  --   '--suggest-missing-includes',
-  --   '--clang-tidy',
-  --   '--header-insertion=iwyu',
-  -- },
+  cmd = {
+    'clangd',
+    '--background-index',
+    '--suggest-missing-includes',
+    '--clang-tidy',
+    '--header-insertion=iwyu',
+  },
 })
 
 lspconfig.rust_analyzer.setup({

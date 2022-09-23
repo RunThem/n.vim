@@ -18,16 +18,22 @@ function config.nvim_cmp()
     window = {
       -- completion = cmp.config.window.bordered(),
       -- documentation = cmp.config.window.bordered(),
+      completion = {
+        winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+        col_offset = -2,
+        side_padding = 0,
+      },
     },
     formatting = {
-      -- fields = { 'abbr', 'kind', 'menu' },
-      format = lspkind.cmp_format({
-        mode = 'symbol', -- show only symbol annotations
-        maxwidth = 50,
-        before = function(_, vim_item)
-          return vim_item
-        end
-      })
+      fields = { 'kind', 'abbr', 'menu' },
+      format = function(entry, vim_item)
+        local kind = lspkind.cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item)
+        local strings = vim.split(kind.kind, '%s', { trimempty = true })
+        kind.kind = ' ' .. strings[1] .. ''
+        -- kind.menu = '    (' .. strings[2] .. ')'
+
+        return kind
+      end,
     },
     mapping = cmp.mapping.preset.insert({
       ['<Tab>'] = cmp.mapping.select_next_item(),
@@ -46,7 +52,7 @@ function config.nvim_cmp()
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
       { name = 'path' },
-      --[[ { name = 'buffer' }, ]]
+      { name = 'buffer' },
     },
   })
 end
@@ -66,44 +72,11 @@ function config.lua_snip()
       },
     },
   })
+
   require('luasnip.loaders.from_lua').lazy_load({ paths = vim.fn.stdpath('config') .. '/snippets' })
   require('luasnip.loaders.from_vscode').lazy_load()
   require('luasnip.loaders.from_vscode').lazy_load({
     paths = { './snippets/' },
-  })
-end
-
-function config.lspkind()
-  require('lspkind').init({
-    mode = 'symbol_text',
-    preset = 'codicons',
-    symbol_map = {
-      Text = "",
-      Method = "",
-      Function = "",
-      Constructor = "",
-      Field = "ﰠ",
-      Variable = "",
-      Class = "ﴯ",
-      Interface = "",
-      Module = "",
-      Property = "ﰠ",
-      Unit = "塞",
-      Value = "",
-      Enum = "",
-      Keyword = "",
-      Snippet = "",
-      Color = "",
-      File = "",
-      Reference = "",
-      Folder = "",
-      EnumMember = "",
-      Constant = "",
-      Struct = "פּ",
-      Event = "",
-      Operator = "",
-      TypeParameter = ""
-    }
   })
 end
 
