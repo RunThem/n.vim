@@ -1,7 +1,6 @@
 -- author: glepnr https://github.com/glepnir
 -- date: 2022-07-02
 -- License: MIT
-
 local plugin = require('core.pack').register_plugin
 local conf = require('modules.completion.config')
 
@@ -23,7 +22,6 @@ plugin({
     { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
     { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
     { 'onsails/lspkind-nvim', config = conf.lspkind },
+    { 'L3MON4D3/LuaSnip', config = conf.lua_snip },
   },
 })
-
-plugin({ 'L3MON4D3/LuaSnip', event = 'InsertEnter', config = conf.lua_snip })

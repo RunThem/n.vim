@@ -1,7 +1,6 @@
 -- author: glepnr https://github.com/glepnir
 -- date: 2022-07-02
 -- License: MIT
-
 local config = {}
 
 -- config server in this function
@@ -12,6 +11,7 @@ end
 function config.nvim_cmp()
   local cmp = require('cmp')
   local lspkind = require('lspkind')
+  local luasnip = require('luasnip')
 
   cmp.setup({
     preselect = cmp.PreselectMode.Item,
@@ -36,12 +36,26 @@ function config.nvim_cmp()
       end,
     },
     mapping = cmp.mapping.preset.insert({
-      ['<Tab>'] = cmp.mapping.select_next_item(),
-      ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-      ['<CR>'] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true
-      })
+      ['<Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.jumpable(1) then
+          luasnip.jump(1)
+        else
+          fallback()
+        end
+      end, { 'i', 's' }),
+      ['<S-Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.mapping.select_prev_item()
+        elseif luasnip.jump(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { 'i', 's' }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<C-e>'] = cmp.mapping.abort(),
     }),
     snippet = {
       expand = function(args)
