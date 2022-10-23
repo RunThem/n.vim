@@ -1,32 +1,60 @@
 -- author: glepnr https://github.com/glepnir
 -- date: 2022-07-02
 -- License: MIT
--- recommend plugins key defines in this file
+
+require('keymap.remap')
+local keymap = require('core.keymap')
+local nmap, imap, xmap = keymap.nmap, keymap.imap, keymap.xmap
+local silent, noremap = keymap.silent, keymap.noremap
+local expr, remap = keymap.expr, keymap.remap
+local opts = keymap.new_opts
+local cmd = keymap.cmd
 
 require('keymap.config')
-local key = require('core.keymap')
-local nmap = key.nmap
-local silent, noremap = key.silent, key.noremap
-local opts = key.new_opts
-local cmd = key.cmd
 
--- usage of plugins
+imap({
+  { '<Tab>', _G.smart_tab, opts(expr, remap) },
+  { '<S-Tab>', _G.smart_shift_tab, opts(expr, remap) },
+})
+
+-- nvimtree
+nmap({ '<Leader>e', cmd('NvimTreeToggle'), opts(noremap, silent) })
+
+-- Telescope
 nmap({
-  -- packer
-  { '<Leader>pu', cmd('PackerUpdate'), opts(noremap, silent) },
-  { '<Leader>pi', cmd('PackerInstall'), opts(noremap, silent) },
-  { '<Leader>pc', cmd('PackerCompile'), opts(noremap, silent) },
-  -- dashboard
-  { '<Leader>n', cmd('DashboardNewFile'), opts(noremap, silent) },
-  { '<Leader>ss', cmd('SessionSave'), opts(noremap, silent) },
-  { '<Leader>sl', cmd('SessionLoad'), opts(noremap, silent) },
-  -- nvimtree
-  { '<Leader>e', cmd('NvimTreeToggle'), opts(noremap, silent) },
-  -- Telescope
-  { '<Leader>b', cmd('Telescope buffers'), opts(noremap, silent) },
-  { '<Leader>fa', cmd('Telescope live_grep'), opts(noremap, silent) },
-  { '<Leader>ff', cmd('Telescope find_files'), opts(noremap, silent) },
-  -- mywords
-  { '<Leader>m', cmd('lua require(\'mywords\').hl_toggle()'), opts(noremap, silent) },
-  { '<Leader>c', cmd('lua require(\'mywords\').uhl_all()'), opts(noremap, silent) },
+  { '<Leader>fb', cmd('Telescope buffers'), opts(noremap, silent) },
+  { '<Leader>fs', cmd('Telescope live_grep'), opts(noremap, silent) },
+  { '<Leader>ff', cmd('Telescope find_files find_command=rg,--ignore,--hidden,--files'), opts(noremap, silent) },
+})
+
+-- mywords
+nmap({
+  { '<Leader>m', cmd("lua require('mywords').hl_toggle()"), opts(noremap, silent) },
+  { '<Leader>c', cmd("lua require('mywords').uhl_all()"), opts(noremap, silent) },
+})
+
+-- lspsaga
+nmap({
+  { '[e', cmd('Lspsaga diagnostic_jump_next') },
+  { ']e', cmd('Lspsaga diagnostic_jump_prev') },
+  { '[c', cmd('Lspsaga show_cursor_diagnostics') },
+  { 'K', cmd('Lspsaga hover_doc') },
+  { 'ga', cmd('Lspsaga code_action') },
+  { 'gd', cmd('Lspsaga peek_definition') },
+  { 'gs', cmd('Lspsaga signature_help') },
+  { 'gr', cmd('Lspsaga rename') },
+  { 'gh', cmd('Lspsaga lsp_finder') },
+  { '<Leader>o', cmd('LSoutlineToggle') },
+  { '<Leader>g', cmd('Lspsaga open_floaterm lazygit') },
+})
+
+-- coman
+nmap({ 'gcc', cmd('ComComment') })
+xmap({ 'gcc', ':ComComment<Cr>' })
+nmap({ 'gcj', cmd('ComAnnotation') })
+
+-- hop
+nmap({
+  { 'f', cmd('HopChar1CurrentLine') },
+  { 'F', cmd('HopWord') },
 })

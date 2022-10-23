@@ -19,15 +19,13 @@ function config.nvim_bufferline()
       modified_icon = '✥',
       buffer_close_icon = '',
       always_show_bufferline = false,
+      offsets = {
+        filetype = 'NvimTree',
+        text = 'File Explorer',
+        highlight = 'Directory',
+        text_align = 'left',
+      },
     },
-  })
-end
-
-function config.nvim_tree()
-  require('nvim-tree').setup({
-    disable_netrw = false,
-    hijack_cursor = true,
-    hijack_netrw = true,
   })
 end
 

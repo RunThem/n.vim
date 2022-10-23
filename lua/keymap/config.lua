@@ -3,57 +3,30 @@
 -- License: MIT
 -- recommend some vim mode key defines in this file
 
-local keymap = require('core.keymap')
-local nmap, imap, cmap, xmap = keymap.nmap, keymap.imap, keymap.cmap, keymap.xmap
-local silent, noremap = keymap.silent, keymap.noremap
-local opts = keymap.new_opts
-local cmd = keymap.cmd
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+end
 
--- Use space as leader key
-vim.g.mapleader = ' '
+--- move to prev/next item in completion menuone
+_G.smart_tab = function()
+  local cmp = require('cmp')
 
--- leaderkey
-nmap({ ' ', '', opts(noremap) })
-xmap({ ' ', '', opts(noremap) })
+  if cmp.visible() then
+    return '<C-n>'
+  elseif has_words_before() then
+    return '<Tab>'
+  else
+    return '<Tab>'
+  end
+end
 
--- usage example
-nmap({
-  -- noremal remap
-  -- close buffer
-  { '<C-x>k', cmd('bdelete'), opts(noremap, silent) },
-  -- save
-  { '<C-s>', cmd('write'), opts(noremap) },
-  -- yank
-  { 'Y', 'y$', opts(noremap) },
-  -- buffer jump
-  { ']b', cmd('bn'), opts(noremap) },
-  { '[b', cmd('bp'), opts(noremap) },
-  -- remove trailing white space
-  { '<Leader>t', cmd('TrimTrailingWhitespace'), opts(noremap) },
-  -- window jump
-  { '<C-h>', '3b', opts(noremap) },
-  { '<C-l>', '3w', opts(noremap) },
-  { '<C-j>', '5j', opts(noremap) },
-  { '<C-k>', '5k', opts(noremap) },
+_G.smart_shift_tab = function()
+  local cmp = require('cmp')
 
-  { 'H', '0', opts(noremap) },
-  { 'L', '$', opts(noremap) },
-  { 'J', '', opts(noremap) },
-  { 'K', '', opts(noremap) },
-})
-
-imap({
-  -- insert mode
-  { '<C-h>', '<Bs>', opts(noremap) },
-  { '<C-e>', '<End>', opts(noremap) },
-  { '**', '/*  */<Esc>2hi', opts(noremap) },
-  { ';;', '<Esc>A;', opts(noremap) },
-
-  { '<C-h>', '<Left>', opts(noremap) },
-  { '<C-l>', '<Right>', opts(noremap) },
-  { '<C-j>', '<Down>', opts(noremap) },
-  { '<C-k>', '<Up>', opts(noremap) },
-})
-
--- commandline remap
-cmap({ '<C-b>', '<Left>', opts(noremap) })
+  if cmp.visible() then
+    return '<C-p>'
+  else
+    return '<S-Tab>'
+  end
+end
