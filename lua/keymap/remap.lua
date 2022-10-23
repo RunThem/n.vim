@@ -5,7 +5,7 @@
 local keymap = require('core.keymap')
 local nmap, imap, cmap, tmap = keymap.nmap, keymap.imap, keymap.cmap, keymap.tmap
 local silent, noremap = keymap.silent, keymap.noremap
-local expr= keymap.expr
+local expr = keymap.expr
 local opts = keymap.new_opts
 local cmd = keymap.cmd
 

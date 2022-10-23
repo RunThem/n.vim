@@ -57,4 +57,5 @@ nmap({ 'gcj', cmd('ComAnnotation') })
 nmap({
   { 'f', cmd('HopChar1CurrentLine') },
   { 'F', cmd('HopWord') },
+  { 'L', cmd('HopLine') },
 })
