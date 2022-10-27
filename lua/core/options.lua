@@ -94,4 +94,4 @@ end
 
 -- vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
 
-vim.cmd('set guicursor=n:ver1')
+vim.cmd('set guicursor=a:ver1')
