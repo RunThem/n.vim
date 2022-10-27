@@ -93,3 +93,5 @@ if vim.loop.os_uname().sysname == 'Darwin' then
 end
 
 -- vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
+
+vim.cmd('set guicursor=n:ver1')

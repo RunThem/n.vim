@@ -29,11 +29,6 @@ vim.diagnostic.config({
   },
 })
 
-lspconfig.zls.setup({
-  capabilities = capabilities,
-  cmd = { 'zls' },
-})
-
 lspconfig.gopls.setup({
   cmd = { 'gopls', '--remote=auto' },
   capabilities = capabilities,
