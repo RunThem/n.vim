@@ -19,3 +19,5 @@ plugin({ 'williamboman/mason.nvim', config = conf.mason })
 plugin({ 'glepnir/coman.nvim', after = 'nvim-treesitter' })
 
 plugin({ 'h-hg/fcitx.nvim' })
+
+plugin({ 'nathom/filetype.nvim' })
