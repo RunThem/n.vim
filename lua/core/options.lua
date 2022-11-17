@@ -5,6 +5,10 @@
 local opt = vim.opt
 local cache_dir = require('core.helper').get_cache_path()
 
+opt.fileencodings = 'utf-8,euc-cn,gb2312,gb18030,gbk,ucs-bom,cp936,latin1'
+opt.viewoptions = 'folds,cursor,curdir,slash,unix'
+opt.sessionoptions = 'curdir,help,tabpages,winsize'
+
 opt.termguicolors = true
 opt.hidden = true
 opt.magic = true
@@ -91,7 +95,5 @@ if vim.loop.os_uname().sysname == 'Darwin' then
   vim.g.python_host_prog = '/usr/bin/python'
   vim.g.python3_host_prog = '/usr/local/bin/python3'
 end
-
--- vim.cmd([[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]])
 
 vim.cmd('set guicursor=a:ver1')
