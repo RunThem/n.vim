@@ -32,7 +32,6 @@ function config.nvim_cmp()
         local kind = lspkind.cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item)
         local strings = vim.split(kind.kind, '%s', { trimempty = true })
         kind.kind = ' ' .. strings[1] .. ''
-        -- kind.menu = '    (' .. strings[2] .. ')'
 
         return kind
       end,
@@ -43,27 +42,19 @@ function config.nvim_cmp()
     }),
     snippet = {
       expand = function(args)
-        require('luasnip').lsp_expand(args.body)
+        require('snippy').expand_snippet(args.body)
       end,
     },
     sources = {
       { name = 'nvim_lsp' },
       { name = 'path' },
-      { name = 'luasnip' },
+      { name = 'snippy' },
     },
   })
 end
 
-function config.lua_snip()
-  local ls = require('luasnip')
-  ls.config.set_config({
-    history = false,
-    updateevents = 'TextChanged,TextChangedI',
-  })
-  require('luasnip.loaders.from_vscode').lazy_load()
-  require('luasnip.loaders.from_vscode').lazy_load({
-    paths = { './snippets/' },
-  })
+function config.snippy()
+  require('snippy').setup({})
 end
 
 return config

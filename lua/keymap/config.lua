@@ -11,9 +11,12 @@ end
 --- move to prev/next item in completion menuone
 _G.smart_tab = function()
   local cmp = require('cmp')
+  local _, snippy = pcall(require, 'snippy')
 
   if cmp.visible() then
     return '<C-n>'
+  elseif snippy.can_expand_or_advance() then
+    return '<Plug>(snippy-expand-or-advance)'
   elseif has_words_before() then
     return '<Tab>'
   else
@@ -23,9 +26,12 @@ end
 
 _G.smart_shift_tab = function()
   local cmp = require('cmp')
+  local _, snippy = pcall(require, 'snippy')
 
   if cmp.visible() then
     return '<C-p>'
+  elseif snippy.can_jump(-1) then
+    return '<Plug>(snippy-previous)'
   else
     return '<S-Tab>'
   end

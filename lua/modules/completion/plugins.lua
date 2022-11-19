@@ -25,8 +25,8 @@ plugin({
     { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-lspconfig' },
     { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
     { 'onsails/lspkind-nvim', config = conf.lspkind },
-    { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip' },
+    { 'dcampos/cmp-snippy', after = 'nvim-snippy' },
   },
 })
 
-plugin({ 'L3MON4D3/LuaSnip', event = 'InsertCharPre', config = conf.lua_snip })
+plugin({ 'dcampos/nvim-snippy', event = 'InsertCharPre', config = conf.snippy })
