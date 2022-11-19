@@ -28,9 +28,6 @@ nmap({
 
 -- insertmode remap
 imap({
-  { '**', '/*  */<Esc>2hi' },
-  { ';;', '<Esc>A;' },
-
   { '<C-h>', '<Left>' },
   { '<C-l>', '<Right>' },
   { '<C-j>', '<Down>' },
@@ -56,3 +53,11 @@ cmap({
 })
 
 tmap({ '<Esc>', [[<C-\><C-n>]] })
+
+local ft = vim.bo.filetype
+if ft == 'c' or ft == 'cpp' or ft == 'go' then
+  imap({
+    { '**', '/*  */<Esc>2hi', opts(expr) },
+    { ';;', '<Esc>A;', opts(expr) },
+  })
+end
