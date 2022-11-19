@@ -4,7 +4,8 @@
 
 local g, fn, api = vim.g, vim.fn, vim.api
 -- remove check is windows because I only use mac or linux
-local cache_dir = require('core.helper').get_cache_path()
+local help = require('core.helper')
+local cache_dir = help.get_cache_path()
 
 -- Create cache dir and subs dir
 local createdir = function()
@@ -28,6 +29,9 @@ local createdir = function()
 end
 
 createdir()
+
+_G.author = help.exec('git config user.name')
+_G.email = help.exec('git config user.email')
 
 -- disable_distribution_plugins
 g.loaded_gzip = 1

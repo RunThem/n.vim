@@ -28,4 +28,16 @@ function helper.get_cache_path()
   end
 end
 
+function helper.exec(cmd)
+  local result = assert(io.popen(cmd, 'r'))
+  if result == nil then
+    return
+  end
+
+  local out = result:read('*a')
+  result:close()
+
+  return string.sub(out, 0, string.len(out) - 1)
+end
+
 return helper
