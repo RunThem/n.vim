@@ -49,9 +49,12 @@ nmap({
 })
 
 -- coman
-nmap({ 'gcc', cmd('ComComment') })
+nmap({
+  { 'gcc', cmd('ComComment') },
+  { 'gcj', cmd('ComAnnotation') },
+})
+
 xmap({ 'gcc', ':ComComment<Cr>' })
-nmap({ 'gcj', cmd('ComAnnotation') })
 
 -- hop
 nmap({
