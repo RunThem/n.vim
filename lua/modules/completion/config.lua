@@ -49,6 +49,7 @@ function config.nvim_cmp()
     sources = {
       { name = 'nvim_lsp' },
       { name = 'path' },
+      { name = 'luasnip' },
     },
   })
 end

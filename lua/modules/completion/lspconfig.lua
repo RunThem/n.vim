@@ -1,12 +1,5 @@
 local lspconfig = require('lspconfig')
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-if not packer_plugins['cmp-nvim-lsp'].loaded then
-  vim.cmd([[packadd cmp-nvim-lsp]])
-end
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
 local signs = {
   Error = ' ',
   Warn = ' ',
@@ -29,56 +22,72 @@ vim.diagnostic.config({
   },
 })
 
-lspconfig.gopls.setup({
-  cmd = { 'gopls', '--remote=auto' },
-  capabilities = capabilities,
-  init_options = {
-    usePlaceholders = true,
-    completeUnimported = true,
+local lsp_servers = {
+  bashls = {},
+  gopls = {
+    cmd = { 'gopls', '--remote=auto' },
+    init_options = {
+      usePlaceholders = true,
+      completeUnimported = true,
+    },
   },
-})
-
-lspconfig.sumneko_lua.setup({
-  settings = {
-    Lua = {
-      diagnostics = {
+  sumneko_lua = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          enable = true,
+          globals = { 'vim', 'packer_plugins' },
+        },
+        runtime = { version = 'LuaJIT' },
+        workspace = {
+          library = vim.list_extend({ [vim.fn.expand('$VIMRUNTIME/lua')] = true }, {}),
+        },
+      },
+    },
+  },
+  clangd = {
+    cmd = {
+      'clangd',
+      '--background-index',
+      '--suggest-missing-includes',
+      '--clang-tidy',
+      '--header-insertion=iwyu',
+    },
+  },
+  rust_analyzer = {
+    settings = {
+      imports = {
+        granularity = {
+          group = 'module',
+        },
+        prefix = 'self',
+      },
+      cargo = {
+        buildScripts = {
+          enable = true,
+        },
+      },
+      procMacro = {
         enable = true,
-        globals = { 'vim', 'packer_plugins' },
-      },
-      runtime = { version = 'LuaJIT' },
-      workspace = {
-        library = vim.list_extend({ [vim.fn.expand('$VIMRUNTIME/lua')] = true }, {}),
       },
     },
   },
-})
+}
 
-lspconfig.clangd.setup({
-  cmd = {
-    'clangd',
-    '--background-index',
-    '--suggest-missing-includes',
-    '--clang-tidy',
-    '--header-insertion=iwyu',
-  },
-})
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+if not packer_plugins['cmp-nvim-lsp'].loaded then
+  vim.cmd([[packadd cmp-nvim-lsp]])
+end
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-lspconfig.rust_analyzer.setup({
+local opts = {
   capabilities = capabilities,
-  settings = {
-    imports = {
-      granularity = {
-        group = 'module',
-      },
-      prefix = 'self',
-    },
-    cargo = {
-      buildScripts = {
-        enable = true,
-      },
-    },
-    procMacro = {
-      enable = true,
-    },
+  flags = {
+    debounce_text_changes = 150,
   },
-})
+}
+
+for lsp, _ in pairs(lsp_servers) do
+  local extended_opts = vim.tbl_deep_extend('force', opts, lsp_servers[lsp] or {})
+  lspconfig[lsp].setup(extended_opts)
+end
