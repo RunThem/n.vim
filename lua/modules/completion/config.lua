@@ -37,7 +37,7 @@ function config.nvim_cmp()
       end,
     },
     mapping = cmp.mapping.preset.insert({
-      ['<C-e>'] = cmp.config.disable,
+      ['<C-e>'] = cmp.mapping.abort(),
       ['<Cr>'] = cmp.mapping.confirm({ select = true }),
     }),
     snippet = {
