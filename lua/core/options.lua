@@ -13,6 +13,7 @@ opt.termguicolors = true
 opt.hidden = true
 opt.magic = true
 opt.virtualedit = 'block'
+opt.guicursor = 'a:ver1'
 opt.clipboard = 'unnamedplus'
 opt.wildignorecase = true
 opt.swapfile = false
@@ -95,5 +96,3 @@ if vim.loop.os_uname().sysname == 'Darwin' then
   vim.g.python_host_prog = '/usr/bin/python'
   vim.g.python3_host_prog = '/usr/local/bin/python3'
 end
-
-vim.cmd('set guicursor=a:ver1')
