@@ -17,6 +17,8 @@ _G.smart_tab = function()
     return '<C-n>'
   elseif snippy.can_expand_or_advance() then
     return '<Plug>(snippy-expand-or-advance)'
+  elseif snippy.can_jump(1) then
+    return '<Plug>(snippy-next)'
   elseif has_words_before() then
     return '<Tab>'
   else
