@@ -36,9 +36,10 @@ function config.telescope()
   if not packer_plugins['plenary.nvim'].loaded then
     vim.cmd([[packadd plenary.nvim]])
     vim.cmd([[packadd telescope-fzy-native.nvim]])
-    vim.cmd([[packadd telescope-file-browser.nvim]])
   end
-  require('telescope').setup({
+  local telescope = require('telescope')
+
+  telescope.setup({
     defaults = {
       layout_config = {
         horizontal = { prompt_position = 'top', results_width = 0.6 },
@@ -49,6 +50,10 @@ function config.telescope()
       grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
       qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
     },
+    pickers = {
+      find_files = { theme = 'dropdown' },
+      live_grep = { theme = 'dropdown' },
+    },
     extensions = {
       fzy_native = {
         override_generic_sorter = false,
@@ -56,7 +61,8 @@ function config.telescope()
       },
     },
   })
-  require('telescope').load_extension('fzy_native')
+
+  telescope.load_extension('fzy_native')
 end
 
 function config.todo_comments()

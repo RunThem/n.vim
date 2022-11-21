@@ -27,9 +27,12 @@ nmap({ '<Leader>e', cmd('NvimTreeToggle'), opts(noremap, silent) })
 
 -- Telescope
 nmap({
-  { '<Leader>fb', cmd('Telescope buffers'), opts(noremap, silent) },
-  { '<Leader>fs', cmd('Telescope live_grep'), opts(noremap, silent) },
-  { '<Leader>ff', cmd('Telescope find_files find_command=rg,--ignore,--hidden,--files'), opts(noremap, silent) },
+  { '<Leader>fa', cmd('Telescope live_grep'), opts(noremap, silent) },
+  {
+    '<Leader>ff',
+    cmd('Telescope find_files find_command=rg,--ignore,--hidden,--files'),
+    opts(noremap, silent),
+  },
 })
 
 -- mywords
