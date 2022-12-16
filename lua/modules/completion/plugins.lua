@@ -24,7 +24,7 @@ plugin({
   requires = {
     { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-lspconfig' },
     { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-    { 'onsails/lspkind-nvim', config = conf.lspkind },
+    { 'onsails/lspkind-nvim' },
     { 'dcampos/cmp-snippy', after = 'nvim-snippy' },
   },
 })

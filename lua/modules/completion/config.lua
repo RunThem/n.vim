@@ -31,7 +31,7 @@ function config.nvim_cmp()
       format = function(entry, vim_item)
         local kind = lspkind.cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item)
         local strings = vim.split(kind.kind, '%s', { trimempty = true })
-        kind.kind = ' ' .. strings[1] .. ''
+        kind.kind = ' ' .. strings[1]
 
         return kind
       end,
