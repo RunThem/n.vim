@@ -118,4 +118,12 @@ function config.hop()
   })
 end
 
+function config.toggleterm()
+  require('toggleterm').setup({
+    highlights = {
+      FloatBorder = { guibg = '' },
+    },
+  })
+end
+
 return config

@@ -30,3 +30,7 @@ plugin({ 'folke/todo-comments.nvim', config = conf.todo_comments })
 plugin({ 'windwp/nvim-autopairs', event = 'InsertEnter', config = conf.autopairs })
 
 plugin({ 'phaazon/hop.nvim', event = 'BufRead', config = conf.hop })
+
+plugin({ 'akinsho/toggleterm.nvim', config = conf.toggleterm })
+
+plugin({ 'nvim-treesitter/playground', after = 'nvim-treesitter' })

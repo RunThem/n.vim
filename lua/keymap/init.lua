@@ -4,7 +4,7 @@
 
 require('keymap.remap')
 local keymap = require('core.keymap')
-local nmap, imap, xmap, smap = keymap.nmap, keymap.imap, keymap.xmap, keymap.smap
+local nmap, imap, xmap, smap, tmap = keymap.nmap, keymap.imap, keymap.xmap, keymap.smap, keymap.tmap
 local silent, noremap = keymap.silent, keymap.noremap
 local expr, remap = keymap.expr, keymap.remap
 local opts = keymap.new_opts
@@ -59,7 +59,6 @@ nmap({
   { 'gr', cmd('Lspsaga rename') },
   { 'gh', cmd('Lspsaga lsp_finder') },
   { '<Leader>o', cmd('LSoutlineToggle') },
-  { '<Leader>g', cmd('Lspsaga open_floaterm lazygit') },
 })
 
 -- coman
@@ -76,3 +75,7 @@ nmap({
   { 'F', cmd('HopWord') },
   { 'L', cmd('HopLine') },
 })
+
+-- toggleterm
+nmap({ '<Leader>t', cmd('ToggleTerm') })
+tmap({ '<Leader>t', cmd('ToggleTerm') })
