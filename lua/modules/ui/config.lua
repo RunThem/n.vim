@@ -6,12 +6,36 @@ local config = {}
 
 function config.zephyr()
   vim.cmd('colorscheme zephyr')
-  vim.cmd('highlight Normal guibg=NONE guifg=NONE')
-  vim.cmd('highlight LineNr guibg=NONE guifg=#61afaf gui=italic')
-  vim.cmd('highlight CursorLineNr guibg=NONE guifg=#e95678')
-  vim.cmd('highlight SignColumn guibg=NONE')
-  vim.cmd('highlight VertSplit guibg=NONE guifg=#c98afa')
-  vim.cmd('highlight Comment gui=italic')
+
+  local groups = {
+    'Normal',
+    'NormalNC',
+    'Constant',
+    'Special',
+    'Identifier',
+    'Statement',
+    'PreProc',
+    'Type',
+    'Underlined',
+    'Function',
+    'Conditional',
+    'Operator',
+    'Structure',
+    'NonText',
+    'SignColumn',
+    'EndOfBuffer',
+  }
+
+  for _, group in ipairs(groups) do
+    vim.cmd(string.format('highlight %s guibg=NONE guifg=NONE', group))
+  end
+
+  vim.cmd('highlight LineNr                guibg=NONE guifg=#61afaf')
+  vim.cmd('highlight CursorLineNr          guibg=NONE guifg=#e95678')
+  vim.cmd('highlight VertSplit             guibg=NONE guifg=#c98afa')
+  vim.cmd('highlight Comment               guibg=NONE guifg=#6a8ad9')
+  vim.cmd('highlight TelescopeNormal       guibg=NONE guifg=#61afaf')
+  vim.cmd('highlight ToggleTerm1Normal     guibg=NONE guifg=#61afaf')
 end
 
 function config.galaxyline()
