@@ -24,6 +24,7 @@ vim.diagnostic.config({
 
 local lsp_servers = {
   bashls = {},
+  zls = {},
   gopls = {
     cmd = { 'gopls', '--remote=auto' },
     init_options = {
