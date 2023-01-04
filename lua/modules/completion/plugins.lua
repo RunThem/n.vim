@@ -1,32 +1,40 @@
 -- author: glepnr https://github.com/glepnir
--- date: 2022-07-02
+-- date: 2023-01-04
 -- License: MIT
 
-local plugin = require('core.pack').register_plugin
+local package = require('core.pack').package
 local conf = require('modules.completion.config')
 
-plugin({
+package({
   'neovim/nvim-lspconfig',
   ft = { 'lua', 'rust', 'c', 'cpp', 'go', 'zig', 'sh' },
   config = conf.nvim_lsp,
-})
-
-plugin({
-  'glepnir/lspsaga.nvim',
-  branch = 'main',
-  config = conf.lspsaga,
-})
-
-plugin({
-  'hrsh7th/nvim-cmp',
-  event = 'InsertEnter',
-  config = conf.nvim_cmp,
-  requires = {
-    { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-lspconfig' },
-    { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
-    { 'onsails/lspkind-nvim' },
-    { 'dcampos/cmp-snippy', after = 'nvim-snippy' },
+  dependencies = {
+    {
+      'glepnir/lspsaga.nvim',
+      config = function()
+        require('lspsaga').init_lsp_saga({})
+      end,
+    },
   },
 })
 
-plugin({ 'dcampos/nvim-snippy', event = 'InsertCharPre', config = conf.snippy })
+package({
+  'hrsh7th/nvim-cmp',
+  event = 'InsertEnter',
+  config = conf.nvim_cmp,
+  dependencies = {
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
+    'dcampos/cmp-snippy',
+    'onsails/lspkind-nvim',
+  },
+})
+
+package({
+  'dcampos/nvim-snippy',
+  event = 'InsertCharPre',
+  config = function()
+    require('snippy').setup({})
+  end,
+})

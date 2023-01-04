@@ -1,5 +1,5 @@
 -- author: glepnr https://github.com/glepnir
--- date: 2022-07-02
+-- date: 2023-01-04
 -- License: MIT
 
 local config = {}
@@ -7,10 +7,6 @@ local config = {}
 -- config server in this function
 function config.nvim_lsp()
   require('modules.completion.lspconfig')
-end
-
-function config.lspsaga()
-  require('lspsaga').init_lsp_saga({})
 end
 
 function config.nvim_cmp()
@@ -51,10 +47,6 @@ function config.nvim_cmp()
       { name = 'snippy' },
     },
   })
-end
-
-function config.snippy()
-  require('snippy').setup({})
 end
 
 return config

@@ -1,23 +1,28 @@
 -- author: glepnr https://github.com/glepnir
--- date: 2022-07-02
+-- date: 2023-01-04
 -- License: MIT
 
-local plugin = require('core.pack').register_plugin
+local package = require('core.pack').package
 local conf = require('modules.tools.config')
 
-plugin({
+package({
   'kyazdani42/nvim-tree.lua',
   cmd = 'NvimTreeToggle',
   config = conf.nvim_tree,
   requires = 'kyazdani42/nvim-web-devicons',
 })
 
-plugin({ 'dwrdx/mywords.nvim' })
+package({
+  'williamboman/mason.nvim',
+  config = function()
+    require('mason').setup({})
+  end,
+})
 
-plugin({ 'williamboman/mason.nvim', config = conf.mason })
+package({ 'dwrdx/mywords.nvim' })
 
-plugin({ 'glepnir/coman.nvim', after = 'nvim-treesitter' })
+package({ 'glepnir/coman.nvim' })
 
-plugin({ 'h-hg/fcitx.nvim' })
+package({ 'h-hg/fcitx.nvim' })
 
-plugin({ 'nathom/filetype.nvim' })
+package({ 'nathom/filetype.nvim' })

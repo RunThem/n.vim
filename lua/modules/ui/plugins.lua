@@ -1,17 +1,16 @@
 -- author: glepnr https://github.com/glepnir
--- date: 2022-07-02
+-- date: 2023-01-04
 -- License: MIT
 
-local plugin = require('core.pack').register_plugin
+local package = require('core.pack').package
 local conf = require('modules.ui.config')
 
-plugin({ 'glepnir/zephyr-nvim', config = conf.zephyr })
+package({ 'glepnir/zephyr-nvim', config = conf.zephyr })
 
-plugin({
+package({
   'glepnir/galaxyline.nvim',
-  branch = 'main',
   config = conf.galaxyline,
-  requires = 'kyazdani42/nvim-web-devicons',
+  dependencies = { 'kyazdani42/nvim-web-devicons' },
 })
 
-plugin({ 'akinsho/nvim-bufferline.lua', config = conf.nvim_bufferline, requires = 'kyazdani42/nvim-web-devicons' })
+package({ 'akinsho/nvim-bufferline.lua', config = conf.nvim_bufferline, dependencies = 'kyazdani42/nvim-web-devicons' })

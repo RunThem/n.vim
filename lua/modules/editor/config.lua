@@ -33,10 +33,6 @@ function config.nvim_treesitter()
 end
 
 function config.telescope()
-  if not packer_plugins['plenary.nvim'].loaded then
-    vim.cmd([[packadd plenary.nvim]])
-    vim.cmd([[packadd telescope-fzy-native.nvim]])
-  end
   local telescope = require('telescope')
 
   telescope.setup({
@@ -54,15 +50,7 @@ function config.telescope()
       find_files = { theme = 'dropdown' },
       live_grep = { theme = 'dropdown' },
     },
-    extensions = {
-      fzy_native = {
-        override_generic_sorter = false,
-        override_file_sorter = true,
-      },
-    },
   })
-
-  telescope.load_extension('fzy_native')
 end
 
 function config.todo_comments()
@@ -109,21 +97,6 @@ function config.autopairs()
   cmp = require('cmp')
   local pairs = require('nvim-autopairs.completion.cmp')
   cmp.event:on('confirm_done', pairs.on_confirm_done({ map_char = { tex = '' } }))
-end
-
-function config.hop()
-  local hop = require('hop')
-  hop.setup({
-    keys = 'etovxqpdygfblzhckisuran',
-  })
-end
-
-function config.toggleterm()
-  require('toggleterm').setup({
-    highlights = {
-      FloatBorder = { guibg = '' },
-    },
-  })
 end
 
 return config

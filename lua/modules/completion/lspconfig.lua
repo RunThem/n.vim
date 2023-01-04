@@ -76,19 +76,9 @@ local lsp_servers = {
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-if not packer_plugins['cmp-nvim-lsp'].loaded then
-  vim.cmd([[packadd cmp-nvim-lsp]])
-end
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-local opts = {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
 for lsp, _ in pairs(lsp_servers) do
-  local extended_opts = vim.tbl_deep_extend('force', opts, lsp_servers[lsp] or {})
+  local extended_opts = vim.tbl_deep_extend('force', { capabilities = capabilities }, lsp_servers[lsp])
   lspconfig[lsp].setup(extended_opts)
 end

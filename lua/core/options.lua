@@ -1,9 +1,9 @@
 -- author: glepnr https://github.com/glepnir
--- date: 2022-07-02
+-- date: 2023-01-04
 -- License: MIT
 
 local opt = vim.opt
-local cache_dir = require('core.helper').get_cache_path()
+local cache_dir = vim.env.HOME .. '/.cache/nvim/'
 
 opt.fileencodings = 'utf-8,euc-cn,gb2312,gb18030,gbk,ucs-bom,cp936,latin1'
 opt.viewoptions = 'folds,cursor,curdir,slash,unix'
@@ -49,7 +49,7 @@ opt.showtabline = 0
 opt.winwidth = 30
 opt.pumheight = 15
 opt.showcmd = false
-opt.cmdheight = 0
+opt.cmdheight = 1
 opt.laststatus = 3
 opt.list = true
 -- opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'

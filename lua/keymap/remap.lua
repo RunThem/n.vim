@@ -1,5 +1,5 @@
 -- author: glepnr https://github.com/glepnir
--- date: 2022-07-02
+-- date: 2023-01-04
 -- License: MIT
 
 local keymap = require('core.keymap')
@@ -42,6 +42,29 @@ imap({
     end,
     opts(expr),
   },
+
+  {
+    '**',
+    function()
+      local ft = vim.bo.filetype
+      if ft == 'c' or ft == 'cpp' or ft == 'go' then
+        return '/*  */<Esc>2hi'
+      end
+      return '**'
+    end,
+    opts(expr),
+  },
+  {
+    ';;',
+    function()
+      local ft = vim.bo.filetype
+      if ft == 'c' or ft == 'cpp' then
+        return '<Esc>A;'
+      end
+      return ';;'
+    end,
+    opts(expr),
+  },
 })
 
 -- commandline remap
@@ -52,12 +75,5 @@ cmap({
   { '<C-e>', '<End>' },
 })
 
+-- terminal remap
 tmap({ '<Esc>', [[<C-\><C-n>]] })
-
-local ft = vim.bo.filetype
-if ft == 'c' or ft == 'cpp' or ft == 'go' then
-  imap({
-    { '**', '/*  */<Esc>2hi', opts(expr) },
-    { ';;', '<Esc>A;', opts(expr) },
-  })
-end

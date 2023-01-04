@@ -1,36 +1,45 @@
 -- author: glepnr https://github.com/glepnir
--- date: 2022-07-02
+-- date: 2023-01-04
 -- License: MIT
 
-local plugin = require('core.pack').register_plugin
+local package = require('core.pack').package
 local conf = require('modules.editor.config')
 
-plugin({
+package({
   'nvim-telescope/telescope.nvim',
   cmd = 'Telescope',
   config = conf.telescope,
-  requires = {
-    { 'nvim-lua/plenary.nvim', opt = true },
-    { 'nvim-telescope/telescope-fzy-native.nvim', opt = true },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
   },
 })
 
-plugin({
+package({
   'nvim-treesitter/nvim-treesitter',
   event = 'BufRead',
   run = ':TSUpdate',
   after = 'telescope.nvim',
   config = conf.nvim_treesitter,
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+  },
 })
 
-plugin({ 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' })
+package({
+  'phaazon/hop.nvim',
+  event = 'BufRead',
+  config = function()
+    require('hop').setup({})
+  end,
+})
 
-plugin({ 'folke/todo-comments.nvim', config = conf.todo_comments })
+package({
+  'akinsho/toggleterm.nvim',
+  config = function()
+    require('toggleterm').setup({})
+  end,
+})
 
-plugin({ 'windwp/nvim-autopairs', event = 'InsertEnter', config = conf.autopairs })
+package({ 'folke/todo-comments.nvim', config = conf.todo_comments })
 
-plugin({ 'phaazon/hop.nvim', event = 'BufRead', config = conf.hop })
-
-plugin({ 'akinsho/toggleterm.nvim', config = conf.toggleterm })
-
-plugin({ 'nvim-treesitter/playground', after = 'nvim-treesitter' })
+package({ 'windwp/nvim-autopairs', event = 'InsertEnter', config = conf.autopairs })
