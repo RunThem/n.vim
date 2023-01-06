@@ -22,15 +22,6 @@ smap({
   { '<S-Tab>', _G.smart_shift_tab, opts(expr, remap) },
 })
 
--- packer
-nmap({
-  { '<Leader>pu', cmd('PackerSync') },
-  { '<Leader>pc', cmd('PackerCompile') },
-})
-
--- nvimtree
-nmap({ '<Leader>e', cmd('NvimTreeToggle'), opts(noremap, silent) })
-
 -- Telescope
 nmap({
   { '<Leader>fa', cmd('Telescope live_grep'), opts(noremap, silent) },
