@@ -58,7 +58,7 @@ imap({
     ';;',
     function()
       local ft = vim.bo.filetype
-      if ft == 'c' or ft == 'cpp' then
+      if ft == 'c' or ft == 'cpp' or ft == 'rust' then
         return '<Esc>A;'
       end
       return ';;'

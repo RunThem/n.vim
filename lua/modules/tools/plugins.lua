@@ -11,10 +11,4 @@ package({
   end,
 })
 
-package({ 'dwrdx/mywords.nvim' })
-
-package({ 'glepnir/coman.nvim' })
-
 package({ 'h-hg/fcitx.nvim' })
-
-package({ 'nathom/filetype.nvim' })

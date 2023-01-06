@@ -37,8 +37,6 @@ package({
   end,
 })
 
-package({ 'folke/todo-comments.nvim', config = conf.todo_comments })
-
 package({
   'm4xshen/autoclose.nvim',
   event = 'InsertEnter',
@@ -46,3 +44,11 @@ package({
     require('autoclose').setup({})
   end,
 })
+
+package({ 'folke/todo-comments.nvim', event = 'BufRead', config = conf.todo_comments })
+
+package({ 'dwrdx/mywords.nvim' })
+
+package({ 'glepnir/coman.nvim' })
+
+package({ 'nathom/filetype.nvim' })
