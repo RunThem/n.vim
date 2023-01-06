@@ -4,7 +4,7 @@
 
 local config = {}
 
-function config.nvim_treesitter()
+function config.treesitter()
   vim.api.nvim_command('set foldmethod=expr')
   vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')
 
@@ -17,18 +17,6 @@ function config.nvim_treesitter()
     ensure_installed = 'all',
     auto_install = true,
     highlight = { enable = true },
-    textobjects = {
-      select = {
-        enable = true,
-        keymaps = {
-          ['if'] = '@function.outer', -- function() {...}
-          ['ic'] = '@conditional.inner', -- if() {...}
-          ['il'] = '@loop.inner', -- for() {...}
-          ['ip'] = '@parameter.inner', -- , var,
-          ['im'] = '@comment.outer', -- /*  */
-        },
-      },
-    },
   })
 end
 

@@ -19,10 +19,7 @@ package({
   event = 'BufRead',
   run = ':TSUpdate',
   after = 'telescope.nvim',
-  config = conf.nvim_treesitter,
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-  },
+  config = conf.treesitter,
 })
 
 package({
