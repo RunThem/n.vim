@@ -1,4 +1,4 @@
-local api, lsp = vim.api, vim.lsp
+local api = vim.api
 local my_group = vim.api.nvim_create_augroup('GlepnirGroup', {})
 
 api.nvim_create_autocmd({ 'BufWritePre' }, {

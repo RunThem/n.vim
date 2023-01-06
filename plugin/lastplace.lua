@@ -2,9 +2,8 @@ local fn = vim.fn
 local api = vim.api
 
 local lp = {
-  ['ignore_bt'] = { 'quickfix', 'nofile', 'help' },
-  ['ignore_ft'] = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
-  ['open_folds'] = 1,
+  ['bt'] = { 'quickfix', 'nofile', 'help' },
+  ['ft'] = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
 }
 
 local set_cursor_position = function()
@@ -33,7 +32,7 @@ local lastplace_buf = function()
     return api.nvim_buf_get_option(0, type)
   end
 
-  if vim.tbl_contains(lp.ignore_bt, get_opt('buftype')) or vim.tbl_contains(lp.ignore_ft, get_opt('filetype')) then
+  if vim.tbl_contains(lp.bt, get_opt('buftype')) or vim.tbl_contains(lp.ft, get_opt('filetype')) then
     return
   end
 
