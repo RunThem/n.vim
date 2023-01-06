@@ -18,6 +18,7 @@ local function get_format_cmd()
 end
 
 api.nvim_create_user_command('FormatCode', function()
+  vim.cmd('w')
   vim.cmd('!' .. get_format_cmd())
 end, {})
 
