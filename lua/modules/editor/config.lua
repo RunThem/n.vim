@@ -56,35 +56,4 @@ function config.todo_comments()
   })
 end
 
-function config.autopairs()
-  local npairs = require('nvim-autopairs')
-  local Rule = require('nvim-autopairs.rule')
-
-  npairs.setup({ disable_filetype = { 'TelescopePrompt' } })
-
-  npairs.add_rules({
-    Rule(' ', ' '):with_pair(function(opts)
-      local pair = opts.line:sub(opts.col - 1, opts.col)
-      return vim.tbl_contains({ '{}' }, pair)
-    end),
-    Rule('{ ', ' }')
-      :with_pair(function()
-        return false
-      end)
-      :with_move(function(opts)
-        return opts.prev_char:match('.%}') ~= nil
-      end)
-      :use_key('}'),
-  })
-
-  local status, cmp = pcall(require, 'cmp')
-  if not status then
-    vim.cmd([[packadd nvim-cmp]])
-  end
-
-  cmp = require('cmp')
-  local pairs = require('nvim-autopairs.completion.cmp')
-  cmp.event:on('confirm_done', pairs.on_confirm_done({ map_char = { tex = '' } }))
-end
-
 return config

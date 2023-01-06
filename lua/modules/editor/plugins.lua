@@ -39,4 +39,10 @@ package({
 
 package({ 'folke/todo-comments.nvim', config = conf.todo_comments })
 
-package({ 'windwp/nvim-autopairs', event = 'InsertEnter', config = conf.autopairs })
+package({
+  'm4xshen/autoclose.nvim',
+  event = 'InsertEnter',
+  config = function()
+    require('autoclose').setup({})
+  end,
+})
