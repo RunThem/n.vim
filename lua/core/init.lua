@@ -38,7 +38,3 @@ require('core.pack'):boot_strap()
 require('core.options')
 
 require('keymap')
-
-require('internal.event')
-require('internal.formatter')
-require('internal.lastplace')
