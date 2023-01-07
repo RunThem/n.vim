@@ -22,41 +22,14 @@ function util.get_data_path()
   return data
 end
 
-function util.info(tbl)
-  local cache = {}
-  local function sub_print_r(tbl_r, indent)
-    local tbl_s = tostring(tbl_r)
-    if cache[tbl_s] then
-      print(indent .. '*' .. tbl_s)
-    else
-      cache[tbl_s] = true
-      if type(tbl_r) == 'table' then
-        for pos, val in pairs(tbl_r) do
-          if type(val) == 'table' then
-            print(indent .. '[' .. pos .. '] => ' .. tostring(val) .. ' {')
-            sub_print_r(val, indent .. string.rep(' ', string.len(pos) + 8))
-            print(indent .. string.rep(' ', string.len(pos) + 6) .. '}')
-          elseif type(val) == 'string' then
-            print(indent .. '[' .. pos .. '] => "' .. val .. '"')
-          else
-            print(indent .. '[' .. pos .. '] => ' .. tostring(val))
-          end
-        end
-      else
-        print(indent .. tbl_s)
-      end
-    end
-  end
-
-  if type(tbl) == 'table' then
-    print(tostring(tbl) .. ' {')
-    sub_print_r(tbl, '  ')
-    print('}')
+function util.info(b)
+  if type(b) == 'table' then
+    print(vim.inspect(b))
+  elseif type(b) == 'string' then
+    print("'" .. b .. "'")
   else
-    sub_print_r(tbl, '  ')
+    print(tostring(b))
   end
-
-  print()
 end
 
 return util
