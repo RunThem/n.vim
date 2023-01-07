@@ -3,6 +3,7 @@
 -- License: MIT
 
 local package = require('core.pack').package
+local setup = require('core.pack').setup
 local conf = require('modules.completion.config')
 
 package({
@@ -34,7 +35,5 @@ package({
 package({
   'dcampos/nvim-snippy',
   event = 'InsertCharPre',
-  config = function()
-    require('snippy').setup({})
-  end,
+  config = setup('snippy'),
 })

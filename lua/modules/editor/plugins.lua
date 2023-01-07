@@ -3,6 +3,7 @@
 -- License: MIT
 
 local package = require('core.pack').package
+local setup = require('core.pack').setup
 local conf = require('modules.editor.config')
 
 package({
@@ -25,24 +26,18 @@ package({
 package({
   'phaazon/hop.nvim',
   event = 'BufRead',
-  config = function()
-    require('hop').setup({})
-  end,
+  config = setup('hop'),
 })
 
 package({
   'akinsho/toggleterm.nvim',
-  config = function()
-    require('toggleterm').setup({})
-  end,
+  config = setup('toggleterm'),
 })
 
 package({
   'm4xshen/autoclose.nvim',
   event = 'InsertEnter',
-  config = function()
-    require('autoclose').setup({})
-  end,
+  config = setup('autoclose'),
 })
 
 package({ 'folke/todo-comments.nvim', event = 'BufRead', config = conf.todo_comments })

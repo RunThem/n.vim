@@ -3,12 +3,11 @@
 -- License: MIT
 
 local package = require('core.pack').package
+local setup = require('core.pack').setup
 
 package({
   'williamboman/mason.nvim',
-  config = function()
-    require('mason').setup({})
-  end,
+  config = setup('mason'),
 })
 
 package({ 'h-hg/fcitx.nvim' })
