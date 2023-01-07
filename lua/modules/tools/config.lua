@@ -4,4 +4,10 @@
 
 local config = {}
 
+function config.delaytrain()
+  require('delaytrain').setup({
+    grace_period = 3,
+  })
+end
+
 return config
