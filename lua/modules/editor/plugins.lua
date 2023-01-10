@@ -45,5 +45,3 @@ package({ 'folke/todo-comments.nvim', event = 'BufRead', config = conf.todo_comm
 package({ 'dwrdx/mywords.nvim' })
 
 package({ 'glepnir/coman.nvim' })
-
-package({ 'nathom/filetype.nvim' })
