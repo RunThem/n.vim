@@ -6,7 +6,7 @@ local config = {}
 
 function config.delaytrain()
   require('delaytrain').setup({
-    grace_period = 3,
+    grace_period = 5,
   })
 end
 
