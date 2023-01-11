@@ -79,6 +79,7 @@ opt.textwidth = 100
 opt.colorcolumn = '100'
 opt.conceallevel = 2
 opt.concealcursor = 'niv'
+opt.fillchars:append({ eob = ' ' })
 
 if vim.loop.os_uname().sysname == 'Darwin' then
   vim.g.clipboard = {
