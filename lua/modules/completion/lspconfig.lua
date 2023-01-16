@@ -46,15 +46,16 @@ local lsp_servers = {
       },
     },
   },
-  clangd = {
-    cmd = {
-      'clangd',
-      '--background-index',
-      '--suggest-missing-includes',
-      '--clang-tidy',
-      '--header-insertion=iwyu',
-    },
-  },
+  -- clangd = {
+  --   cmd = {
+  --     'clangd',
+  --     '--background-index',
+  --     '--suggest-missing-includes',
+  --     '--clang-tidy',
+  --     '--header-insertion=iwyu',
+  --   },
+  -- },
+  ccls = {},
   rust_analyzer = {
     settings = {
       imports = {
