@@ -11,4 +11,9 @@ package({
   config = setup('mason'),
 })
 
+package({
+  'brenoprata10/nvim-highlight-colors',
+  config = setup('nvim-highlight-colors'),
+})
+
 package({ 'h-hg/fcitx.nvim' })
