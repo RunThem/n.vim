@@ -36,7 +36,7 @@ local lsp_servers = {
     settings = {
       Lua = {
         diagnostics = {
-          enable = true,
+          enable = false,
           globals = { 'vim', 'packer_plugins' },
         },
         runtime = { version = 'LuaJIT' },
