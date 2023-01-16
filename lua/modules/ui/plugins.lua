@@ -5,7 +5,10 @@
 local package = require('core.pack').package
 local conf = require('modules.ui.config')
 
-package({ 'glepnir/zephyr-nvim', config = conf.zephyr })
+package({
+  'glepnir/zephyr-nvim',
+  config = conf.zephyr,
+})
 
 package({
   'glepnir/galaxyline.nvim',
@@ -13,4 +16,8 @@ package({
   dependencies = { 'kyazdani42/nvim-web-devicons' },
 })
 
-package({ 'akinsho/nvim-bufferline.lua', config = conf.nvim_bufferline, dependencies = 'kyazdani42/nvim-web-devicons' })
+package({
+  'akinsho/nvim-bufferline.lua',
+  config = conf.nvim_bufferline,
+  dependencies = 'kyazdani42/nvim-web-devicons',
+})

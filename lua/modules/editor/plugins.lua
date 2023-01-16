@@ -24,6 +24,12 @@ package({
 })
 
 package({
+  'folke/todo-comments.nvim',
+  event = 'BufRead',
+  config = conf.todo_comments,
+})
+
+package({
   'phaazon/hop.nvim',
   event = 'BufRead',
   config = setup('hop'),
@@ -39,8 +45,6 @@ package({
   event = 'InsertEnter',
   config = setup('autoclose'),
 })
-
-package({ 'folke/todo-comments.nvim', event = 'BufRead', config = conf.todo_comments })
 
 package({ 'dwrdx/mywords.nvim' })
 
