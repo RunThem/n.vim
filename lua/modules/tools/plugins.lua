@@ -11,9 +11,4 @@ package({
   config = setup('mason'),
 })
 
-package({
-  'ja-ford/delaytrain.nvim',
-  config = conf.delaytrain,
-})
-
 package({ 'h-hg/fcitx.nvim' })
