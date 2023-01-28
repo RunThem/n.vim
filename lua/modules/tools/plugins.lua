@@ -8,6 +8,7 @@ local conf = require('modules.tools.config')
 
 package({
   'williamboman/mason.nvim',
+  cmd = 'Mason',
   config = setup('mason'),
 })
 

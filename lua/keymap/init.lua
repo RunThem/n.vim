@@ -40,16 +40,12 @@ nmap({
 
 -- lspsaga
 nmap({
-  { '[e', cmd('Lspsaga diagnostic_jump_next') },
-  { ']e', cmd('Lspsaga diagnostic_jump_prev') },
-  { '[c', cmd('Lspsaga show_cursor_diagnostics') },
   { 'K', cmd('Lspsaga hover_doc') },
   { 'ga', cmd('Lspsaga code_action') },
   { 'gd', cmd('Lspsaga peek_definition') },
-  { 'gs', cmd('Lspsaga signature_help') },
+  { 'gD', cmd('Lspsaga goto_definition') },
   { 'gr', cmd('Lspsaga rename') },
   { 'gh', cmd('Lspsaga lsp_finder') },
-  { '<Leader>o', cmd('LSoutlineToggle') },
 })
 
 -- coman
@@ -68,5 +64,5 @@ nmap({
 })
 
 -- toggleterm
-nmap({ '<Leader>t', cmd('ToggleTerm') })
-tmap({ '<Leader>t', cmd('ToggleTerm') })
+nmap({ '==', cmd('ToggleTerm') })
+tmap({ '==', cmd('ToggleTerm') })
