@@ -13,6 +13,10 @@ function config.nvim_cmp()
   local cmp = require('cmp')
   local lspkind = require('lspkind')
 
+  lspkind.init({
+    symbol_map = { TypeParameter = ' ' },
+  })
+
   cmp.setup({
     preselect = cmp.PreselectMode.Item,
     window = {
