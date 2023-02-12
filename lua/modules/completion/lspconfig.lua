@@ -32,7 +32,7 @@ local lsp_servers = {
       completeUnimported = true,
     },
   },
-  sumneko_lua = {
+  lua_ls = {
     settings = {
       Lua = {
         diagnostics = {
