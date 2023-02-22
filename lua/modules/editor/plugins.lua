@@ -17,6 +17,7 @@ package({
 
 package({
   'nvim-treesitter/nvim-treesitter',
+  ft = { 'lua', 'rust', 'c', 'cpp', 'go', 'sh' },
   event = 'BufRead',
   run = ':TSUpdate',
   after = 'telescope.nvim',
