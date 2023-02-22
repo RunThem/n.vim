@@ -12,8 +12,12 @@ package({
   config = conf.nvim_lsp,
   dependencies = {
     {
-      'glepnir/lspsaga.nvim',
-      config = setup('lspsaga'),
+      -- 'glepnir/lspsaga.nvim',
+      -- config = setup('lspsaga'),
+
+      'RunThem/LspUI.nvim',
+      -- dir = '/home/iccy/Code/i_lua/LspUI.nvim',
+      config = setup('LspUI'),
     },
   },
 })

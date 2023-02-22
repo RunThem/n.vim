@@ -39,13 +39,23 @@ nmap({
 })
 
 -- lspsaga
+-- nmap({
+--   { 'K', cmd('Lspsaga hover_doc') },
+--   { 'ga', cmd('Lspsaga code_action') },
+--   { 'gd', cmd('Lspsaga peek_definition') },
+--   { 'gD', cmd('Lspsaga goto_definition') },
+--   { 'gr', cmd('Lspsaga rename') },
+--   { 'gh', cmd('Lspsaga lsp_finder') },
+-- })
+
+-- LspUI
 nmap({
-  { 'K', cmd('Lspsaga hover_doc') },
-  { 'ga', cmd('Lspsaga code_action') },
-  { 'gd', cmd('Lspsaga peek_definition') },
-  { 'gD', cmd('Lspsaga goto_definition') },
-  { 'gr', cmd('Lspsaga rename') },
-  { 'gh', cmd('Lspsaga lsp_finder') },
+  { 'K', cmd('LspUI hover'), opts(noremap, silent) },
+  { 'gr', cmd('LspUI rename'), opts(noremap, silent) },
+  { 'gd', cmd('LspUI peek_definition'), opts(noremap, silent) },
+  { 'gt', cmd('LspUI type_peek_definition'), opts(noremap, silent) },
+  { 'ga', cmd('LspUI code_action'), opts(noremap, silent) },
+  { 'gn', cmd('LspUI diagnostic next'), opts(noremap, silent) },
 })
 
 -- coman
