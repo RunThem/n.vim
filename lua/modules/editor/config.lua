@@ -55,4 +55,31 @@ function config.todo_comments()
   })
 end
 
+function config.easyformat()
+  require('easyformat').setup({
+    fmt_on_save = true,
+    c = {
+      cmd = 'clang-format',
+      args = { '-style=file', vim.api.nvim_buf_get_name(0) },
+      find = '.clang-format',
+      stdin = false,
+      lsp = false,
+    },
+    cpp = {
+      cmd = 'clang-format',
+      args = { '-style=file', vim.api.nvim_buf_get_name(0) },
+      find = '.clang-format',
+      stdin = false,
+      lsp = false,
+    },
+    lua = {
+      cmd = 'stylua',
+      find = '.stylua.toml',
+      args = { '--search-parent-directories', '-' },
+      stdin = true,
+      lsp = false,
+    },
+  })
+end
+
 return config

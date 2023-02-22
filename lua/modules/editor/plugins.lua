@@ -47,6 +47,12 @@ package({
   config = setup('autoclose'),
 })
 
+package({
+  'glepnir/easyformat.nvim',
+  ft = { 'c', 'cpp', 'rust', 'lua', 'go' },
+  config = conf.easyformat,
+})
+
 package({ 'dwrdx/mywords.nvim' })
 
 package({ 'glepnir/coman.nvim' })
