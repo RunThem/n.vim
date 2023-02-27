@@ -30,6 +30,7 @@ package({
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'dcampos/cmp-snippy',
+    'RunThem/cmp-xmake',
     'onsails/lspkind-nvim',
   },
 })
