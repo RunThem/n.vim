@@ -83,3 +83,7 @@ for lsp, _ in pairs(lsp_servers) do
   local extended_opts = vim.tbl_deep_extend('force', { capabilities = capabilities }, lsp_servers[lsp])
   lspconfig[lsp].setup(extended_opts)
 end
+
+vim.diagnostic.config({
+  virtual_text = false,
+})
