@@ -37,7 +37,15 @@ function config.telescope()
       find_files = { theme = 'dropdown' },
       live_grep = { theme = 'dropdown' },
     },
+    extensions = {
+      fzy_native = {
+        override_generic_sorter = false,
+        override_file_sorter = true,
+      },
+    },
   })
+
+  telescope.load_extension('fzy_native')
 end
 
 function config.todo_comments()

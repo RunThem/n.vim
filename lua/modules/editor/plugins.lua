@@ -11,6 +11,7 @@ package({
   config = conf.telescope,
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope-fzy-native.nvim',
   },
 })
 
@@ -28,6 +29,13 @@ package({
 })
 
 package({
+  'glepnir/easyformat.nvim',
+  ft = { 'c', 'cpp', 'rust', 'lua', 'go' },
+  event = 'VeryLazy',
+  config = conf.easyformat,
+})
+
+package({
   'phaazon/hop.nvim',
   event = 'VeryLazy',
   config = function()
@@ -38,6 +46,9 @@ package({
 package({
   'NvChad/nvterm',
   event = 'VeryLazy',
+  config = function()
+    require('nvterm').setup({})
+  end,
 })
 
 package({
@@ -49,18 +60,14 @@ package({
 })
 
 package({
-  'glepnir/easyformat.nvim',
-  ft = { 'c', 'cpp', 'rust', 'lua', 'go' },
+  'glepnir/coman.nvim',
   event = 'VeryLazy',
-  config = conf.easyformat,
+  config = function()
+    require('autoclose').setup({})
+  end,
 })
 
 package({
   'dwrdx/mywords.nvim',
-  event = 'VeryLazy',
-})
-
-package({
-  'glepnir/coman.nvim',
   event = 'VeryLazy',
 })
