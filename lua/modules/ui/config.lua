@@ -10,6 +10,8 @@ function config.zephyr()
   local groups = {
     'Normal',
     'NormalNC',
+    'NormalFloat',
+    'FloatBorder',
     'Constant',
     'Special',
     'Identifier',
