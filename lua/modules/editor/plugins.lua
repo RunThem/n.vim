@@ -3,7 +3,6 @@
 -- License: MIT
 
 local package = require('core.pack').package
-local setup = require('core.pack').setup
 local conf = require('modules.editor.config')
 
 package({
@@ -33,18 +32,15 @@ package({
 package({
   'phaazon/hop.nvim',
   event = 'BufRead',
-  config = setup('hop'),
 })
 
 package({
   'NvChad/nvterm',
-  config = setup('nvterm'),
 })
 
 package({
   'm4xshen/autoclose.nvim',
   event = 'InsertEnter',
-  config = setup('autoclose'),
 })
 
 package({

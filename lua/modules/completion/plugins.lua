@@ -3,7 +3,6 @@
 -- License: MIT
 
 local package = require('core.pack').package
-local setup = require('core.pack').setup
 local conf = require('modules.completion.config')
 
 package({
@@ -17,7 +16,6 @@ package({
 
       'RunThem/LspUI.nvim',
       -- dir = '/home/iccy/Code/i_lua/LspUI.nvim',
-      config = setup('LspUI'),
     },
   },
 })
@@ -38,5 +36,4 @@ package({
 package({
   'dcampos/nvim-snippy',
   event = 'InsertCharPre',
-  config = setup('snippy'),
 })

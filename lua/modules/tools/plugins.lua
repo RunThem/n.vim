@@ -9,12 +9,10 @@ local conf = require('modules.tools.config')
 package({
   'williamboman/mason.nvim',
   cmd = 'Mason',
-  config = setup('mason'),
 })
 
 package({
   'brenoprata10/nvim-highlight-colors',
-  config = setup('nvim-highlight-colors'),
 })
 
 package({ 'h-hg/fcitx.nvim' })
