@@ -13,6 +13,11 @@ package({
 
 package({
   'brenoprata10/nvim-highlight-colors',
+  event = 'VeryLazy',
 })
 
-package({ 'h-hg/fcitx.nvim' })
+if vim.loop.os_uname().sysname == 'Linux' then
+  package({
+    'h-hg/fcitx.nvim',
+  })
+end

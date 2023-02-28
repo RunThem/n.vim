@@ -17,38 +17,50 @@ package({
 package({
   'nvim-treesitter/nvim-treesitter',
   ft = { 'lua', 'rust', 'c', 'cpp', 'go' },
-  event = 'BufRead',
-  run = ':TSUpdate',
-  after = 'telescope.nvim',
+  event = 'VeryLazy',
   config = conf.treesitter,
 })
 
 package({
   'folke/todo-comments.nvim',
-  event = 'BufRead',
+  event = 'VeryLazy',
   config = conf.todo_comments,
 })
 
 package({
   'phaazon/hop.nvim',
-  event = 'BufRead',
+  event = 'VeryLazy',
+  config = function()
+    require('hop').setup({})
+  end,
 })
 
 package({
   'NvChad/nvterm',
+  event = 'VeryLazy',
 })
 
 package({
   'm4xshen/autoclose.nvim',
-  event = 'InsertEnter',
+  event = 'VeryLazy',
+  config = function()
+    require('autoclose').setup({})
+  end,
 })
 
 package({
   'glepnir/easyformat.nvim',
   ft = { 'c', 'cpp', 'rust', 'lua', 'go' },
+  event = 'VeryLazy',
   config = conf.easyformat,
 })
 
-package({ 'dwrdx/mywords.nvim' })
+package({
+  'dwrdx/mywords.nvim',
+  event = 'VeryLazy',
+})
 
-package({ 'glepnir/coman.nvim' })
+package({
+  'glepnir/coman.nvim',
+  event = 'VeryLazy',
+})
