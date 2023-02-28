@@ -37,8 +37,8 @@ package({
 })
 
 package({
-  'akinsho/toggleterm.nvim',
-  config = setup('toggleterm'),
+  'NvChad/nvterm',
+  config = setup('nvterm'),
 })
 
 package({
