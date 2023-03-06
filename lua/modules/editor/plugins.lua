@@ -4,6 +4,7 @@
 
 local package = require('core.pack').package
 local conf = require('modules.editor.config')
+local setup = require('core.pack').setup
 
 package({
   'nvim-telescope/telescope.nvim',
@@ -38,33 +39,25 @@ package({
 package({
   'phaazon/hop.nvim',
   event = 'VeryLazy',
-  config = function()
-    require('hop').setup({})
-  end,
+  config = setup('hop'),
 })
 
 package({
   'NvChad/nvterm',
   event = 'VeryLazy',
-  config = function()
-    require('nvterm').setup({})
-  end,
+  config = setup('nvterm'),
 })
 
 package({
   'm4xshen/autoclose.nvim',
   event = 'VeryLazy',
-  config = function()
-    require('autoclose').setup({})
-  end,
+  config = setup('autoclose'),
 })
 
 package({
   'glepnir/coman.nvim',
   event = 'VeryLazy',
-  config = function()
-    require('autoclose').setup({})
-  end,
+  config = setup('autoclose'),
 })
 
 package({

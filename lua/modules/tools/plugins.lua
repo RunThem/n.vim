@@ -5,6 +5,7 @@
 local package = require('core.pack').package
 local setup = require('core.pack').setup
 local conf = require('modules.tools.config')
+local setup = require('core.pack').setup
 
 package({
   'williamboman/mason.nvim',
@@ -13,9 +14,7 @@ package({
 
 package({
   'brenoprata10/nvim-highlight-colors',
-  config = function()
-    require('nvim-highlight-colors').setup({})
-  end,
+  config = setup('nvim-highlight-colors'),
 })
 
 if vim.loop.os_uname().sysname == 'Linux' then

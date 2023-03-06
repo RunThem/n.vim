@@ -4,6 +4,7 @@
 
 local package = require('core.pack').package
 local conf = require('modules.completion.config')
+local setup = require('core.pack').setup
 
 package({
   'neovim/nvim-lspconfig',
@@ -15,6 +16,7 @@ package({
       -- config = setup('lspsaga'),
 
       'RunThem/LspUI.nvim',
+      config = setup('LspUI'),
       -- dir = '/home/iccy/Code/i_lua/LspUI.nvim',
     },
   },
