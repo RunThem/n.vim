@@ -76,3 +76,7 @@ nmap({
 -- nvterm
 nmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')") })
 tmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')") })
+
+-- Trans
+nmap({ 'mm', cmd('Translate'), opts(noremap, silent) })
+xmap({ 'mm', cmd('Translate'), opts(noremap, silent) })

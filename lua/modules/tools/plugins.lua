@@ -17,6 +17,24 @@ package({
   config = setup('nvim-highlight-colors'),
 })
 
+package({
+  'JuanZoran/Trans.nvim',
+  config = function()
+    require('Trans').setup({
+      hover = {
+        animation = {
+          open = 'fold',
+          close = 'fold',
+          interval = 1,
+        },
+      },
+    })
+  end,
+  dependencies = {
+    'kkharji/sqlite.lua',
+  },
+})
+
 if vim.loop.os_uname().sysname == 'Linux' then
   package({
     'h-hg/fcitx.nvim',
