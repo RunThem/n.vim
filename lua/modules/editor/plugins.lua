@@ -37,12 +37,6 @@ package({
 })
 
 package({
-  'phaazon/hop.nvim',
-  event = 'VeryLazy',
-  config = setup('hop'),
-})
-
-package({
   'NvChad/nvterm',
   event = 'VeryLazy',
   config = setup('nvterm'),
