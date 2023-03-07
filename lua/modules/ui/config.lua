@@ -33,7 +33,8 @@ function config.zephyr()
   end
 
   vim.cmd('highlight LineNr                 guibg=NONE guifg=#61afaf')
-  vim.cmd('highlight CursorLineNr           guibg=NONE guifg=#e95678')
+  -- vim.cmd('highlight CursorLineNr           guibg=NONE guifg=#e95678')
+  vim.cmd('highlight CursorLineNr           guibg=NONE guifg=#f8ab17')
   vim.cmd('highlight VertSplit              guibg=NONE guifg=#c98afa')
   vim.cmd('highlight Comment                guibg=NONE guifg=#6a8ad9')
   vim.cmd('highlight TelescopeNormal        guibg=NONE guifg=#61afaf')
