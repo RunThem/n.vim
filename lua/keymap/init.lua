@@ -66,13 +66,6 @@ nmap({
 
 xmap({ 'gcc', ':ComComment<Cr>' })
 
--- hop
-nmap({
-  { 'f', cmd('HopChar1CurrentLine') },
-  { 'F', cmd('HopWord') },
-  { 'L', cmd('HopLine') },
-})
-
 -- nvterm
 nmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')") })
 tmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')") })
