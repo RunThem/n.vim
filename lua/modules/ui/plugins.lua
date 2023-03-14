@@ -6,8 +6,9 @@ local package = require('core.pack').package
 local conf = require('modules.ui.config')
 
 package({
-  'glepnir/zephyr-nvim',
-  config = conf.zephyr,
+  -- 'glepnir/zephyr-nvim',
+  'glepnir/porcelain.nvim',
+  config = conf.porcelain,
 })
 
 package({

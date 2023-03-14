@@ -76,11 +76,16 @@ local lsp_servers = {
   },
 }
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+local all_conf = {
+  capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  on_attach = function(client, _)
+    vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
+}
 
 for lsp, _ in pairs(lsp_servers) do
-  local extended_opts = vim.tbl_deep_extend('force', { capabilities = capabilities }, lsp_servers[lsp])
+  local extended_opts = vim.tbl_deep_extend('force', all_conf, lsp_servers[lsp])
   lspconfig[lsp].setup(extended_opts)
 end
 

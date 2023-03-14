@@ -4,8 +4,8 @@
 
 local config = {}
 
-function config.zephyr()
-  vim.cmd('colorscheme zephyr')
+function config.porcelain()
+  vim.cmd('colorscheme porcelain')
 
   local groups = {
     'Normal',
