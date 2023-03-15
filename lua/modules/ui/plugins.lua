@@ -4,6 +4,7 @@
 
 local package = require('core.pack').package
 local conf = require('modules.ui.config')
+local setup = require('core.pack').setup
 
 package({
   -- 'glepnir/zephyr-nvim',
@@ -21,4 +22,10 @@ package({
   'akinsho/nvim-bufferline.lua',
   config = conf.nvim_bufferline,
   dependencies = 'kyazdani42/nvim-web-devicons',
+})
+
+package({
+  'glepnir/flybuf.nvim',
+  cmd = 'FlyBuf',
+  config = setup('flybuf'),
 })

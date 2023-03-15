@@ -73,3 +73,6 @@ tmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')") })
 -- Trans
 nmap({ 'mm', cmd('Translate'), opts(noremap, silent) })
 xmap({ 'mm', cmd('Translate'), opts(noremap, silent) })
+
+-- flybuf
+nmap({ 'gb', cmd('FlyBuf'), opts(noremap, silent) })
