@@ -52,7 +52,7 @@ package({
 
 package({
   'nvim-treesitter/nvim-treesitter',
-  ft = { 'lua', 'rust', 'c', 'cpp', 'go' },
+  ft = { 'lua', 'rust', 'c', 'cpp', 'go', 'lisp' },
   event = 'VeryLazy',
   config = conf.treesitter,
 })
