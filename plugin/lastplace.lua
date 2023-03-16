@@ -47,10 +47,10 @@ api.nvim_create_augroup('lastplace', { clear = true })
 
 api.nvim_create_autocmd('BufWinEnter', {
   callback = lastplace_buf,
-  group = 'lastplace'
+  group = 'lastplace',
 })
 
 api.nvim_create_autocmd('FileType', {
   callback = lastplace_buf,
-  group = 'lastplace'
+  group = 'lastplace',
 })
