@@ -1,7 +1,7 @@
 ## Preprocessor
 # #include <...>
 snippet inc
-	#include <${1:stdio}.h>
+	#include <${1:stdio.h}>
 
 # #include "..."
 snippet Inc
@@ -50,57 +50,9 @@ snippet nocxx
 	} /* extern "C" */
 	#endif
 
-## Types
-# typedef
-snippet td
-	typedef ${1:int} ${2:MyCustomType};
-
-# struct
-snippet st
-	/*!
-   * \struct $1
-	 * \brief ${3:Brief struct description}
-	 *
-	 * ${4:Detailed description}
-	 */
-	struct ${1} {
-		${2:Data} /*!< ${4:Description} */
-	}${5: /* optional variable list */};
-
-# typedef struct
-snippet tds
-	/*!
-   * \struct $2
-	 * \brief ${5:Brief struct description}
-	 *
-	 * ${6:Detailed description}
-	 */
-	typedef struct ${2:_$1 }{
-		m_${3:Data} /*!< ${4:Description} */
-	} ${1:`vim_snippets#Filename('$1_t', 'name')`};
-
-snippet enum
-	/*!
-   * \enum $1
-	 *
-	 * ${2:Detailed description}
-	 */
-	enum ${1:name} { ${0} };
-
-# typedef enum
-snippet tde
-	/*!
-   * \enum $2
-	 *
-	 * ${4:Detailed description}
-	 */
-	typedef enum {
-		${1:Data} /*!< ${3:Description} */
-	} ${2:foo};
-
 ##
 # TODO section
 snippet todo
-	/*!
+	/**
    * TODO: ${1:Todo description here}
-	 */
+	 **/
