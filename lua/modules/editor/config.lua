@@ -115,7 +115,7 @@ end
 
 function config.easyformat()
   require('easyformat').setup({
-    fmt_on_save = true,
+    fmt_on_save = false,
     c = {
       cmd = 'clang-format',
       args = { '-style=file', vim.api.nvim_buf_get_name(0) },

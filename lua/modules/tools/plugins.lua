@@ -5,11 +5,11 @@
 local package = require('core.pack').package
 local setup = require('core.pack').setup
 local conf = require('modules.tools.config')
-local setup = require('core.pack').setup
 
 package({
   'williamboman/mason.nvim',
   cmd = 'Mason',
+  config = setup('mason'),
 })
 
 package({
