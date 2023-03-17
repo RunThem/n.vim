@@ -64,7 +64,7 @@ nmap({
   { 'gcj', cmd('ComAnnotation') },
 })
 
-xmap({ 'gcc', cmd('ComComment') })
+xmap({ 'gcc', ':ComComment<Cr>' })
 
 -- nvterm
 nmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')") })
