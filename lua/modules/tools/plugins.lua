@@ -59,7 +59,6 @@ package({
   config = setup('autoclose'),
 })
 
-
 if vim.loop.os_uname().sysname == 'Linux' then
   package({
     'h-hg/fcitx.nvim',
