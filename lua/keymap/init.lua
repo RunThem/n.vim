@@ -50,3 +50,23 @@ xmap({ 'mm', cmd('Translate'), opts(noremap, silent) })
 
 -- flybuf
 nmap({ 'gb', cmd('FlyBuf'), opts(noremap, silent) })
+
+-- fzy
+nmap({
+  {
+    '<Leader>ff',
+    function()
+      local fzy = require('fzy')
+      fzy.execute('fd', fzy.sinks.edit_file)
+    end,
+    opts(noremap, silent),
+  },
+  {
+    '<Leader>fa',
+    function()
+      local fzy = require('fzy')
+      fzy.execute('rg --no-heading --trim -nH .', fzy.sinks.edit_live_grep)
+    end,
+    opts(noremap, silent),
+  },
+})

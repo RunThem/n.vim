@@ -59,6 +59,12 @@ package({
   config = setup('autoclose'),
 })
 
+package({
+  'RunThem/fzy.nvim',
+  -- dir = '/home/iccy/Code/i_lua/fzy.nvim/',
+  event = 'VeryLazy',
+})
+
 if vim.loop.os_uname().sysname == 'Linux' then
   package({
     'h-hg/fcitx.nvim',
