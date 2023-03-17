@@ -31,13 +31,10 @@ package({
     'hrsh7th/cmp-path',
     'dcampos/cmp-snippy',
     'RunThem/cmp-xmake',
-    'onsails/lspkind-nvim',
-  },
-})
 
-package({
-  'dcampos/nvim-snippy',
-  event = 'InsertCharPre',
+    'onsails/lspkind-nvim',
+    'dcampos/nvim-snippy',
+  },
 })
 
 package({
