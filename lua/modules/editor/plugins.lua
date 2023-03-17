@@ -85,7 +85,6 @@ package({
 package({
   'glepnir/coman.nvim',
   event = 'VeryLazy',
-  config = setup('autoclose'),
 })
 
 package({
