@@ -69,5 +69,4 @@ function config.treesitter()
   })
 end
 
-
 return config

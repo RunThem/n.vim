@@ -11,8 +11,6 @@ local cmd = keymap.cmd
 
 -- noremap remap
 nmap({
-  { '<C-x>k', cmd('bdelete'), opts(noremap, silent) },
-  { '<C-s>', cmd('write'), opts(noremap) },
   { ']b', cmd('bn'), opts(noremap) },
   { '[b', cmd('bp'), opts(noremap) },
   -- window jump
@@ -32,8 +30,6 @@ imap({
   { '<C-l>', '<Right>' },
   { '<C-j>', '<Down>' },
   { '<C-k>', '<Up>' },
-
-  { '<C-s>', '<Esc>:w<Cr>' },
 
   {
     '<C-e>',
