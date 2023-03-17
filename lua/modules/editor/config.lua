@@ -6,7 +6,7 @@ local config = {}
 
 -- config server in this function
 function config.nvim_lsp()
-  require('modules.completion.lspconfig')
+  require('modules.editor.lspconfig')
 end
 
 function config.nvim_cmp()
