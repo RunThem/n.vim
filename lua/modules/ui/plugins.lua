@@ -26,6 +26,5 @@ package({
 
 package({
   'glepnir/flybuf.nvim',
-  cmd = 'FlyBuf',
   config = setup('flybuf'),
 })

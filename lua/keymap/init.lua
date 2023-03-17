@@ -22,26 +22,6 @@ smap({
   { '<S-Tab>', _G.smart_shift_tab, opts(expr, remap) },
 })
 
--- Telescope
-nmap({
-  { '<Leader>fa', cmd('Telescope live_grep'), opts(noremap, silent) },
-  {
-    '<Leader>ff',
-    cmd('Telescope find_files find_command=rg,--ignore,--hidden,--files'),
-    opts(noremap, silent),
-  },
-})
-
--- lspsaga
--- nmap({
---   { 'K', cmd('Lspsaga hover_doc') },
---   { 'ga', cmd('Lspsaga code_action') },
---   { 'gd', cmd('Lspsaga peek_definition') },
---   { 'gD', cmd('Lspsaga goto_definition') },
---   { 'gr', cmd('Lspsaga rename') },
---   { 'gh', cmd('Lspsaga lsp_finder') },
--- })
-
 -- LspUI
 nmap({
   { 'K', cmd('LspUI hover'), opts(noremap, silent) },
@@ -54,15 +34,15 @@ nmap({
 
 -- coman
 nmap({
-  { 'gcc', cmd('ComComment') },
-  { 'gcj', cmd('ComAnnotation') },
+  { 'gcc', cmd('ComComment'), opts(noremap, silent) },
+  { 'gcj', cmd('ComAnnotation'), opts(noremap, silent) },
 })
 
-xmap({ 'gcc', ':ComComment<Cr>' })
+xmap({ 'gcc', ':ComComment<Cr>', opts(noremap, silent) })
 
 -- nvterm
-nmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')") })
-tmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')") })
+nmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')"), opts(noremap, silent) })
+tmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')"), opts(noremap, silent) })
 
 -- Trans
 nmap({ 'mm', cmd('Translate'), opts(noremap, silent) })

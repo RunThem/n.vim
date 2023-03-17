@@ -8,7 +8,6 @@ local conf = require('modules.tools.config')
 
 package({
   'williamboman/mason.nvim',
-  cmd = 'Mason',
   config = setup('mason'),
 })
 
@@ -32,16 +31,6 @@ package({
   end,
   dependencies = {
     'kkharji/sqlite.lua',
-  },
-})
-
-package({
-  'nvim-telescope/telescope.nvim',
-  cmd = 'Telescope',
-  config = conf.telescope,
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope-fzy-native.nvim',
   },
 })
 
