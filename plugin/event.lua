@@ -25,16 +25,6 @@ api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-api.nvim_create_autocmd({ 'WinEnter', 'BufEnter', 'InsertLeave' }, {
-  group = n_vim_group,
-  pattern = '*',
-  callback = function()
-    if vim.bo.filetype ~= 'dashboard' and not vim.opt_local.cursorline:get() then
-      vim.opt_local.cursorline = true
-    end
-  end,
-})
-
 -- disable default syntax in these file.
 -- when file is larged ,load regex syntax
 -- highlight will cause very slow
