@@ -32,12 +32,6 @@ nmap({
   },
 })
 
--- mywords
-nmap({
-  { '<Leader>m', cmd("lua require('mywords').hl_toggle()"), opts(noremap, silent) },
-  { '<Leader>c', cmd("lua require('mywords').uhl_all()"), opts(noremap, silent) },
-})
-
 -- lspsaga
 -- nmap({
 --   { 'K', cmd('Lspsaga hover_doc') },

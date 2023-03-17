@@ -48,8 +48,3 @@ package({
   'glepnir/coman.nvim',
   event = 'VeryLazy',
 })
-
-package({
-  'dwrdx/mywords.nvim',
-  event = 'VeryLazy',
-})
