@@ -2,7 +2,9 @@
 -- date: 2022-10-22
 -- License: MIT
 
-local config = {}
+local config = {
+  ft = { 'c', 'cpp', 'go', 'sh', 'lua', 'rust', 'zig', 'scheme', 'v' },
+}
 
 -- config server in this function
 function config.nvim_lsp()

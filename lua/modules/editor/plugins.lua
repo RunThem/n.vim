@@ -4,11 +4,12 @@
 
 local package = require('core.pack').package
 local conf = require('modules.editor.config')
+local ft = require('modules.editor.config').ft
 local setup = require('core.pack').setup
 
 package({
   'neovim/nvim-lspconfig',
-  ft = { 'lua', 'rust', 'c', 'cpp', 'go', 'zig', 'sh' },
+  ft = ft,
   config = conf.nvim_lsp,
   dependencies = {
     {
@@ -39,7 +40,7 @@ package({
 
 package({
   'nvim-treesitter/nvim-treesitter',
-  ft = { 'lua', 'rust', 'c', 'cpp', 'go', 'lisp' },
+  ft = ft,
   event = 'VeryLazy',
   config = conf.treesitter,
 })
