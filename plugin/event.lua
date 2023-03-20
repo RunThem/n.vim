@@ -9,7 +9,7 @@ api.nvim_create_autocmd({ 'BufWritePre' }, {
   end,
 })
 
-api.nvim_create_autocmd('BufRead', {
+api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   group = n_vim_group,
   pattern = '*.conf',
   callback = function()
@@ -17,7 +17,15 @@ api.nvim_create_autocmd('BufRead', {
   end,
 })
 
-api.nvim_create_autocmd('TextYankPost', {
+api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  group = n_vim_group,
+  pattern = '*.v',
+  callback = function()
+    api.nvim_buf_set_option(0, 'filetype', 'v')
+  end,
+})
+
+api.nvim_create_autocmd({ 'TextYankPost' }, {
   group = n_vim_group,
   pattern = '*',
   callback = function()
@@ -28,7 +36,7 @@ api.nvim_create_autocmd('TextYankPost', {
 -- disable default syntax in these file.
 -- when file is larged ,load regex syntax
 -- highlight will cause very slow
-api.nvim_create_autocmd('Filetype', {
+api.nvim_create_autocmd({ 'Filetype' }, {
   group = n_vim_group,
   pattern = '*.c,*.cpp,*.lua,*.go,*.rs,*.py,*.ts,*.tsx',
   callback = function()
