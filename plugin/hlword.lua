@@ -5,12 +5,14 @@ local fn = vim.fn
 local key = vim.keymap
 
 local colors = {
-  { color = '#13cbea', use = false },
-  { color = '#a4e57e', use = false },
-  { color = '#ffdb72', use = false },
   { color = '#ff7272', use = false },
-  { color = '#ffb3ff', use = false },
+  { color = '#80fee1', use = false },
+  { color = '#a4f225', use = false },
+  { color = '#13cbea', use = false },
+  { color = '#ffcb72', use = false },
+  { color = '#ff93ff', use = false },
   { color = '#9999ff', use = false },
+  { color = '#bcfdfe', use = false },
 }
 
 local maps = {
@@ -24,8 +26,23 @@ function M.unhl_word(i)
 end
 
 function M.unhl_all()
-  for i = 1, #maps do
-    M.unhl_word(i)
+  while #maps ~= 0 do
+    M.unhl_word(1)
+  end
+end
+
+function get_idx()
+  if #maps == #colors then
+    local idx = maps[1].idx
+    M.unhl_word(1)
+
+    return idx
+  else
+    for i = 1, #colors do
+      if colors[i].use == false then
+        return i
+      end
+    end
   end
 end
 
@@ -42,16 +59,7 @@ function M.hl_word()
     end
   end
 
-  if #maps == #colors then
-    M.unhl_word(1)
-  end
-
-  for i = 1, #colors do
-    if colors[i].use == false then
-      idx = i
-      break
-    end
-  end
+  idx = get_idx()
 
   cmd(string.format('highlight %s guibg=%s guifg=Black', hl_group, colors[idx].color))
 
