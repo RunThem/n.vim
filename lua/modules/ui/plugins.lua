@@ -14,16 +14,14 @@ package({
 
 package({
   'glepnir/galaxyline.nvim',
-  event = 'VeryLazy',
   config = conf.galaxyline,
   dependencies = { 'kyazdani42/nvim-web-devicons' },
 })
 
 package({
-  'akinsho/nvim-bufferline.lua',
-  event = 'VeryLazy',
-  config = conf.nvim_bufferline,
-  dependencies = 'kyazdani42/nvim-web-devicons',
+  'echasnovski/mini.tabline',
+  config = setup('mini.tabline'),
+  dependencies = { 'kyazdani42/nvim-web-devicons' },
 })
 
 package({
