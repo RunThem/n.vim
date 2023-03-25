@@ -12,7 +12,7 @@ local colors = {
   { color = '#ffcb72', use = false },
   { color = '#ff93ff', use = false },
   { color = '#9999ff', use = false },
-  { color = '#bcfdfe', use = false },
+  { color = '#6cfdfe', use = false },
 }
 
 local maps = {
