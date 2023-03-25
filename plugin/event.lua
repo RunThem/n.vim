@@ -33,6 +33,27 @@ api.nvim_create_autocmd({ 'TextYankPost' }, {
   end,
 })
 
+if vim.fn.executable('fcitx-remote') == 1 then
+  local state = ''
+
+  api.nvim_create_autocmd({ 'InsertLeave' }, {
+    group = n_vim_group,
+    callback = function()
+      state = io.popen('fcitx-remote'):read('*a')
+      os.execute('fcitx-remote -c')
+    end,
+  })
+
+  api.nvim_create_autocmd({ 'InsertEnter' }, {
+    group = n_vim_group,
+    callback = function()
+      if state == '2\n' then
+        os.execute('fcitx-remote -o')
+      end
+    end,
+  })
+end
+
 -- disable default syntax in these file.
 -- when file is larged ,load regex syntax
 -- highlight will cause very slow
