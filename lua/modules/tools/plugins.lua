@@ -43,7 +43,7 @@ package({
 package({
   'NvChad/nvterm',
   event = 'VeryLazy',
-  config = setup('nvterm'),
+  config = conf.nvterm,
 })
 
 package({
