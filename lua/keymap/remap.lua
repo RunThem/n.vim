@@ -51,6 +51,17 @@ imap({
     opts(expr),
   },
   {
+    '&*',
+    function()
+      local ft = vim.bo.filetype
+      if ft == 'c' or ft == 'cpp' then
+        return '/**\n\n*/<Esc>2hx<Up>a '
+      end
+      return '&*'
+    end,
+    opts(expr),
+  },
+  {
     ';;',
     function()
       local ft = vim.bo.filetype
