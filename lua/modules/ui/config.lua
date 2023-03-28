@@ -71,8 +71,4 @@ function config.porcelain()
   vim.cmd('highlight CmpItemKindTypeParameter guibg=NONE guifg=#58B5A8')
 end
 
-function config.galaxyline()
-  require('modules.ui.eviline')
-end
-
 return config

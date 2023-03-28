@@ -1,5 +1,5 @@
 -- author: glepnr https://github.com/glepnir
--- date: 2023-01-04
+-- date: 2023-03-28
 -- License: MIT
 
 local package = require('core.pack').package
@@ -13,12 +13,6 @@ package({
 })
 
 package({
-  'glepnir/galaxyline.nvim',
-  config = conf.galaxyline,
-  dependencies = { 'kyazdani42/nvim-web-devicons' },
-})
-
-package({
   'echasnovski/mini.tabline',
   config = setup('mini.tabline'),
   dependencies = { 'kyazdani42/nvim-web-devicons' },
@@ -28,4 +22,10 @@ package({
   'glepnir/flybuf.nvim',
   event = 'VeryLazy',
   config = setup('flybuf'),
+})
+
+package({
+  'glepnir/whiskyline.nvim',
+  config = setup('whiskyline'),
+  dependencies = { 'kyazdani42/nvim-web-devicons' },
 })
