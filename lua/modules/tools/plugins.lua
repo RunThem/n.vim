@@ -8,16 +8,19 @@ local conf = require('modules.tools.config')
 
 package({
   'williamboman/mason.nvim',
+  event = 'VeryLazy',
   config = setup('mason'),
 })
 
 package({
   'brenoprata10/nvim-highlight-colors',
+  event = 'VeryLazy',
   config = setup('nvim-highlight-colors'),
 })
 
 package({
   'JuanZoran/Trans.nvim',
+  event = 'VeryLazy',
   config = function()
     require('Trans').setup({
       hover = {
