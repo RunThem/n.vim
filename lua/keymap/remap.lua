@@ -22,6 +22,21 @@ nmap({
   { '<C-l>', '3w', opts(noremap) },
   { '<C-j>', '5j', opts(noremap) },
   { '<C-k>', '5k', opts(noremap) },
+
+  {
+    '0',
+    function()
+      local api = vim.api
+      local head = (api.nvim_get_current_line():find('[^%s]') or 1) - 1
+      local cursor = api.nvim_win_get_cursor(0)
+
+      if cursor[2] == head then
+        return '0'
+      end
+      return '^'
+    end,
+    opts(expr),
+  },
 })
 
 -- insertmode remap
