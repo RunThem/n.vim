@@ -19,6 +19,18 @@ function config.todo_comments()
   })
 end
 
+function config.trans()
+  require('Trans').setup({
+    hover = {
+      animation = {
+        open = 'fold',
+        close = 'fold',
+        interval = 1,
+      },
+    },
+  })
+end
+
 function config.easyformat()
   local configs = require('easyformat.config')
 

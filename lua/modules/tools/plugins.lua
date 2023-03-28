@@ -21,17 +21,7 @@ package({
 package({
   'JuanZoran/Trans.nvim',
   event = 'VeryLazy',
-  config = function()
-    require('Trans').setup({
-      hover = {
-        animation = {
-          open = 'fold',
-          close = 'fold',
-          interval = 1,
-        },
-      },
-    })
-  end,
+  config = conf.trans,
   dependencies = {
     'kkharji/sqlite.lua',
   },
