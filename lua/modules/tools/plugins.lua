@@ -14,7 +14,6 @@ package({
 
 package({
   'brenoprata10/nvim-highlight-colors',
-  event = 'VeryLazy',
   config = setup('nvim-highlight-colors'),
 })
 
