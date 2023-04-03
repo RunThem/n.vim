@@ -41,6 +41,7 @@ function config.easyformat()
   configs.use_default({
     'c',
     'cpp',
+    'go',
     'rust',
   })
 
