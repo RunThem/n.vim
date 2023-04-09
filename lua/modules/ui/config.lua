@@ -10,7 +10,6 @@ function config.porcelain()
   local groups = {
     'Normal',
     'NormalNC',
-    'NormalFloat',
     'FloatBorder',
     'Special',
     'Underlined',
