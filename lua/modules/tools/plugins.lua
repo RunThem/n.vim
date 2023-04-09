@@ -18,15 +18,6 @@ package({
 })
 
 package({
-  'JuanZoran/Trans.nvim',
-  event = 'VeryLazy',
-  config = conf.trans,
-  dependencies = {
-    'kkharji/sqlite.lua',
-  },
-})
-
-package({
   'folke/todo-comments.nvim',
   event = 'VeryLazy',
   config = conf.todo_comments,
