@@ -44,10 +44,6 @@ xmap({ 'gcc', ':ComComment<Cr>', opts(noremap, silent) })
 nmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')"), opts(noremap, silent) })
 tmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')"), opts(noremap, silent) })
 
--- Trans
-nmap({ 'mm', cmd('Translate'), opts(noremap, silent) })
-xmap({ 'mm', cmd('Translate'), opts(noremap, silent) })
-
 -- flybuf
 nmap({ 'gb', cmd('FlyBuf'), opts(noremap, silent) })
 
