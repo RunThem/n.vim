@@ -9,7 +9,6 @@ snippet func
 snippet for
 	for $1 do
 		$2
-
     ::continue::
 	end
 
@@ -25,6 +24,7 @@ snippet elif
 snippet while
 	while $1 do
 		$0
+    ::continue::
 	end
 
 snippet print
@@ -42,3 +42,6 @@ snippet mod
   $0
 
   return M
+
+snippet fmt
+  string.format('${1:%s}'$0)
