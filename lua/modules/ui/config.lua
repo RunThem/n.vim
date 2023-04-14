@@ -34,7 +34,6 @@ function config.porcelain()
   vim.cmd('highlight TelescopeNormal          guibg=NONE guifg=#61afaf')
   vim.cmd('highlight ToggleTerm1Normal        guibg=NONE guifg=#61afaf')
   vim.cmd('highlight TabLineSel               guibg=NONE guifg=#c98afa')
-  vim.cmd('highlight StatusLine               guibg=NONE guifg=#c98afa')
 
   vim.cmd('highlight CmpItemAbbrDeprecated    guibg=NONE guifg=NONE')
   vim.cmd('highlight CmpItemAbbrMatch         guibg=NONE guifg=NONE')
