@@ -49,16 +49,16 @@ local lsp_servers = {
       },
     },
   },
-  -- clangd = {
-  --   cmd = {
-  --     'clangd',
-  --     '--background-index',
-  --     '--suggest-missing-includes',
-  --     '--clang-tidy',
-  --     '--header-insertion=iwyu',
-  --   },
-  -- },
-  ccls = {},
+  clangd = {
+    cmd = {
+      'clangd',
+      '--background-index',
+      '--suggest-missing-includes',
+      '--clang-tidy',
+      '--header-insertion=iwyu',
+    },
+  },
+  -- ccls = {},
   rust_analyzer = {
     settings = {
       imports = {
@@ -83,7 +83,7 @@ local all_conf = {
   capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   on_attach = function(client, _)
     vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
-    client.server_capabilities.semanticTokensProvider = nil
+    -- client.server_capabilities.semanticTokensProvider = nil
   end,
 }
 

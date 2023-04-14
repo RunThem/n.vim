@@ -7,9 +7,9 @@ local conf = require('modules.ui.config')
 local setup = require('core.pack').setup
 
 package({
-  -- 'glepnir/zephyr-nvim',
-  'glepnir/porcelain.nvim',
-  config = conf.porcelain,
+  'glepnir/zephyr-nvim',
+  -- 'glepnir/porcelain.nvim',
+  config = conf.colorscheme,
 })
 
 package({
