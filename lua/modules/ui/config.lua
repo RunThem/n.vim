@@ -9,7 +9,7 @@ function config.colorscheme()
   vim.cmd('colorscheme zephyr')
 
   local groups = {
-    -- 'Normal',
+    'Normal',
     'NormalNC',
     'FloatBorder',
     'Special',
@@ -27,8 +27,6 @@ function config.colorscheme()
     vim.cmd(string.format('highlight clear %s', group))
     vim.cmd(string.format('highlight %s guibg=NONE guifg=NONE', group))
   end
-
-  vim.cmd('highlight Normal                   guibg=#000000')
 
   vim.cmd('highlight LineNr                   guibg=NONE guifg=#61afaf')
   vim.cmd('highlight CursorLineNr             guibg=NONE guifg=#f8ab17') -- #e95678
