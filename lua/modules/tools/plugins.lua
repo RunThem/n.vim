@@ -47,3 +47,9 @@ package({
   -- dir = '/home/iccy/Code/i_lua/fzy.nvim/',
   event = 'VeryLazy',
 })
+
+package({
+  'nvimdev/hlsearch.nvim',
+  event = 'BufRead',
+  config = setup('hlsearch'),
+})
