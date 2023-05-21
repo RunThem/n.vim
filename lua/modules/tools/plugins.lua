@@ -7,12 +7,6 @@ local setup = require('core.pack').setup
 local conf = require('modules.tools.config')
 
 package({
-  'williamboman/mason.nvim',
-  event = 'VeryLazy',
-  config = setup('mason'),
-})
-
-package({
   'brenoprata10/nvim-highlight-colors',
   config = setup('nvim-highlight-colors'),
 })
