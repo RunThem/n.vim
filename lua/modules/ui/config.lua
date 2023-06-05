@@ -10,6 +10,7 @@ function config.colorscheme()
 
   local groups = {
     'Normal',
+    'NormalFloat',
     'NormalNC',
     'FloatBorder',
     'Special',
