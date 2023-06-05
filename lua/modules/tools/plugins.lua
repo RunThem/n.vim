@@ -47,3 +47,10 @@ package({
   event = 'BufRead',
   config = setup('hlsearch'),
 })
+
+package({
+  'kdheepak/lazygit.nvim',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+  },
+})
