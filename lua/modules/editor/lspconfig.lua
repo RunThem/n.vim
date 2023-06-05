@@ -49,28 +49,28 @@ local lsp_servers = {
       },
     },
   },
-  -- clangd = {
-  --   cmd = {
-  --     'clangd',
-  --     '--background-index',
-  --     '--suggest-missing-includes',
-  --     '--clang-tidy',
-  --     '--header-insertion=iwyu',
-  --     '--compile-commands-dir=build',
-  --   },
-  -- },
-  ccls = {
-    cmd = { 'ccls' },
-    init_options = {
-      compilationDatabaseDirectory = 'build',
-      index = {
-        threads = 0,
-      },
-      clang = {
-        excludeArgs = { '-frounding-math' },
-      },
+  clangd = {
+    cmd = {
+      'clangd',
+      '--background-index',
+      '--suggest-missing-includes',
+      '--clang-tidy',
+      '--header-insertion=iwyu',
+      '--compile-commands-dir=build',
     },
   },
+  -- ccls = {
+  --   cmd = { 'ccls' },
+  --   init_options = {
+  --     compilationDatabaseDirectory = 'build',
+  --     index = {
+  --       threads = 0,
+  --     },
+  --     clang = {
+  --       excludeArgs = { '-frounding-math' },
+  --     },
+  --   },
+  -- },
   rust_analyzer = {
     settings = {
       imports = {
