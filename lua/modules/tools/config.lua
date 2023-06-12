@@ -53,4 +53,14 @@ function config.nvterm()
   })
 end
 
+function config.autoclose()
+  require('autoclose').setup({
+    options = {
+      disable_when_touch = true,
+      pair_spaces = true,
+      auto_indent = true,
+    },
+  })
+end
+
 return config

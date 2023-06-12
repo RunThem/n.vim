@@ -33,7 +33,7 @@ package({
 package({
   'm4xshen/autoclose.nvim',
   event = 'VeryLazy',
-  config = setup('autoclose'),
+  config = conf.autoclose,
 })
 
 package({
