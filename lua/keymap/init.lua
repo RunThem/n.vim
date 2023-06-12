@@ -22,15 +22,21 @@ smap({
   { '<S-Tab>', _G.smart_shift_tab, opts(expr, remap) },
 })
 
--- LspUI
+-- lspsaga
 nmap({
-  { 'K', cmd('LspUI hover'), opts(noremap, silent) },
-  { 'gr', cmd('LspUI rename'), opts(noremap, silent) },
-  { 'gd', cmd('LspUI peek_definition'), opts(noremap, silent) },
-  { 'gt', cmd('LspUI type_peek_definition'), opts(noremap, silent) },
-  { 'ga', cmd('LspUI code_action'), opts(noremap, silent) },
-  { 'gn', cmd('LspUI diagnostic next'), opts(noremap, silent) },
+  { 'K', cmd('Lspsaga hover_doc'), opts(noremap, silent) },
+  { 'gr', cmd('Lspsaga rename'), opts(noremap, silent) },
+  { 'gd', cmd('Lspsaga peek_definition'), opts(noremap, silent) },
+  { 'gD', cmd('Lspsaga goto_definition'), opts(noremap, silent) },
+  { 'gt', cmd('Lspsaga peek_type_definition'), opts(noremap, silent) },
+  { 'gT', cmd('Lspsaga goto_type_definition'), opts(noremap, silent) },
+  { 'ga', cmd('Lspsaga code_action'), opts(noremap, silent) },
+  { 'gn', cmd('Lspsaga diagnostic_jump_next'), opts(noremap, silent) },
 })
+
+-- lspsaga term
+nmap({ '==', cmd('Lspsaga term_toggle'), opts(noremap, silent) })
+tmap({ '==', cmd('Lspsaga term_toggle'), opts(noremap, silent) })
 
 -- coman
 nmap({
@@ -39,10 +45,6 @@ nmap({
 })
 
 xmap({ 'gcc', ':ComComment<Cr>', opts(noremap, silent) })
-
--- nvterm
-nmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')"), opts(noremap, silent) })
-tmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')"), opts(noremap, silent) })
 
 -- flybuf
 nmap({ 'gb', cmd('FlyBuf'), opts(noremap, silent) })

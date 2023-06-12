@@ -11,13 +11,13 @@ package({
   'neovim/nvim-lspconfig',
   ft = ft,
   config = conf.nvim_lsp,
-  dependencies = {
-    {
-      'RunThem/LspUI.nvim',
-      config = setup('LspUI'),
-      -- dir = '/home/iccy/Code/i_lua/LspUI.nvim',
-    },
-  },
+})
+
+package({
+  'glepnir/lspsaga.nvim',
+  event = 'BufRead',
+  dev = false,
+  config = conf.lspsaga,
 })
 
 package({

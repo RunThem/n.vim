@@ -20,12 +20,6 @@ package({
 })
 
 package({
-  'NvChad/nvterm',
-  event = 'VeryLazy',
-  config = conf.nvterm,
-})
-
-package({
   'm4xshen/autoclose.nvim',
   event = 'VeryLazy',
   config = conf.autoclose,
