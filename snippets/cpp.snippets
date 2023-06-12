@@ -31,12 +31,7 @@ snippet #if
 
 # header include guard
 snippet once
-	#ifndef ${1:`!lua string.upper(string.gsub(vim.fn.expand('%'), '%.', '_'))`}
-	#define $1
-
-	${0}
-
-	#endif /* !$1 */
+  #pragma once
 
 # Disable C++ name mangling in C headers
 snippet nocxx

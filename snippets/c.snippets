@@ -29,32 +29,6 @@ snippet def
 	#define ${1}
 
 ## Control Statements
-# if
-snippet if
-	if (${1:true}) {
-		${0:${VISUAL}}
-	}
-
-# if ... else
-snippet ife
-	if (${1:true}) {
-		${2:${VISUAL}}
-	} else {
-		${0}
-	}
-
-# else
-snippet el
-	else {
-		${0:${VISUAL}}
-	}
-
-# else if
-snippet elif
-	else if (${1:true}) {
-		${0:${VISUAL}}
-	}
-
 # switch
 snippet switch
 	switch (${1:/* variable */}) {
@@ -64,23 +38,15 @@ snippet switch
 
 # case
 snippet case
-	case ${1:/* variable case */}:
+	case ${1:/* variable case */}: {
 		${2}
-  breal;
+    break;
+  }
 
 snippet ret
 	return ${0};
 
-snippet ex
-	exit($0);
-
 ## Loops
-# for
-snippet for
-	for (${1}) {
-		${0}
-	}
-
 # while
 snippet wh
 	while (${1}) {
@@ -105,61 +71,14 @@ snippet fund
 	${1:void} ${2:function_name}(${3});
 
 ## Input/Output
-# printf
-snippet pr
-	printf("${1:%s}\n"${2});
-
-# fprintf (again, this isn't as nice as TextMate's version, but it works)
-snippet fpr
-	fprintf(${1:stderr}, "${2:%s}\n"${3});
-
 snippet prd
-	printf("${1:} = %d\n", ${1});
+	inf("${1:} = %d\n", ${1});
 
 snippet prf
-	printf("${1:} = %f\n", ${1});
+	inf("${1:} = %f\n", ${1});
 
 snippet prx
-	printf("${1:} = %${2}\n", ${1});
-
-## Assertions
-snippet as
-	assert(${1});
-
-snippet asl
-	assert(${1:ptr} != NULL);
-
-## Dynamic Allocation
-snippet mlc
-	${1:ptr} = (${2:type}*) malloc(sizeof(${2}));
-
-snippet clc
-	${1:ptr} = (${2:type}*) calloc(${3:size}, sizeof(${2}));
-
-snippet zlc
-  ${1:ptr} = (${2:type}*) calloc(1, sizeof(${2}));
-
-snippet rlc
-	${1:ptr} = realloc(${1}, ${2:size} * sizeof(${3:type}));
-
-snippet mlcd
-	${1:type} ${2:ptr} = (${1}*) malloc(sizeof(${1}));
-
-snippet clcd
-	${1:type} ${2:ptr} = (${1}*) calloc(${3:size}, sizeof(${1}));
-
-snippet zlcd
-  ${1:type} ${2:ptr} = (${1}*) calloc(1, sizeof(${1}));
-
-snippet fre
-	free(${1:ptr});
-
-##
-# TODO section
-snippet todo
-	/**
-   * TODO: ${1:Todo description here}
-	 **/
+	inf("${1:} = %${2}\n", ${1});
 	 
 ## Miscellaneous
 # This is kind of convenient
