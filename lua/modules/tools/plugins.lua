@@ -7,11 +7,6 @@ local setup = require('core.pack').setup
 local conf = require('modules.tools.config')
 
 package({
-  'brenoprata10/nvim-highlight-colors',
-  config = setup('nvim-highlight-colors'),
-})
-
-package({
   'folke/todo-comments.nvim',
   event = 'VeryLazy',
   config = conf.todo_comments,
