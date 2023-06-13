@@ -26,7 +26,6 @@ package({
 
 package({
   'glepnir/whiskyline.nvim',
-  commit = '2cc41a941290bbb254e84eb95efcfa8691a63cdf',
   dependencies = { 'kyazdani42/nvim-web-devicons' },
 
   config = function()
