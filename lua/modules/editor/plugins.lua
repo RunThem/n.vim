@@ -9,7 +9,6 @@ local setup = require('core.pack').setup
 
 package({
   'neovim/nvim-lspconfig',
-  ft = ft,
   config = conf.nvim_lsp,
 })
 
