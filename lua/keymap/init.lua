@@ -34,9 +34,9 @@ nmap({
   { 'gn', cmd('Lspsaga diagnostic_jump_next'), opts(noremap, silent) },
 })
 
--- lspsaga term
-nmap({ '==', cmd('Lspsaga term_toggle'), opts(noremap, silent) })
-tmap({ '==', cmd('Lspsaga term_toggle'), opts(noremap, silent) })
+-- nvterm
+nmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')"), opts(noremap, silent) })
+tmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')"), opts(noremap, silent) })
 
 -- coman
 nmap({

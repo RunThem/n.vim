@@ -43,3 +43,9 @@ package({
     'nvim-lua/plenary.nvim',
   },
 })
+
+package({
+  'NvChad/nvterm',
+  event = 'VeryLazy',
+  config = conf.nvterm,
+})
