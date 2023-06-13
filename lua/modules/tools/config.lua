@@ -19,23 +19,20 @@ function config.todo_comments()
   })
 end
 
-function config.easyformat()
-  local configs = require('easyformat.config')
+function config.guard()
+  local ft = require('guard.filetype')
 
-  configs.lua = {
+  ft('c'):lint('clang-tidy')
+
+  ft('c'):fmt('clang-format')
+  ft('go'):fmt('golines')
+  ft('rust'):fmt('rustfmt')
+  ft('lua'):fmt({
+    cmd = 'stylua',
     args = { '--search-parent-directories', '-' },
-  }
-
-  configs.use_default({
-    'c',
-    'cpp',
-    'go',
-    'rust',
   })
 
-  require('easyformat').setup({
-    fmt_on_save = false,
-  })
+  require('guard').setup({})
 end
 
 function config.autoclose()

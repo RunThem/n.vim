@@ -13,10 +13,10 @@ package({
 })
 
 package({
-  'glepnir/easyformat.nvim',
+  'nvimdev/guard.nvim',
   ft = { 'c', 'cpp', 'rust', 'lua', 'go' },
   event = 'VeryLazy',
-  config = conf.easyformat,
+  config = conf.guard,
 })
 
 package({
