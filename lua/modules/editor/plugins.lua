@@ -16,7 +16,7 @@ package({
   'glepnir/lspsaga.nvim',
   event = 'BufRead',
   dev = false,
-  config = conf.lspsaga,
+  config = setup('lspsaga'),
 })
 
 package({
