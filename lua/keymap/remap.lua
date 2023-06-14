@@ -99,3 +99,5 @@ cmap({
 
 -- terminal remap
 tmap({ '<Esc>', [[<C-\><C-n>]] })
+
+nmap({ '<Leader>d', cmd('lua require("dev").setup()') })
