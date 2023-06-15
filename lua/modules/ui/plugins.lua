@@ -25,10 +25,7 @@ package({
 })
 
 package({
-  'glepnir/whiskyline.nvim',
+  'RunThem/whiskyline.nvim',
   dependencies = { 'kyazdani42/nvim-web-devicons' },
-
-  config = function()
-    require('whiskyline').setup()
-  end,
+  config = setup('whiskyline'),
 })
