@@ -13,25 +13,15 @@ package({
 })
 
 package({
+  'echasnovski/mini.completion',
+  config = conf.completion,
+})
+
+package({
   'glepnir/lspsaga.nvim',
   event = 'BufRead',
   dev = false,
   config = setup('lspsaga'),
-})
-
-package({
-  'hrsh7th/nvim-cmp',
-  event = 'InsertEnter',
-  config = conf.nvim_cmp,
-  dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-path',
-    'dcampos/cmp-snippy',
-    'RunThem/cmp-xmake',
-
-    'onsails/lspkind-nvim',
-    'dcampos/nvim-snippy',
-  },
 })
 
 package({

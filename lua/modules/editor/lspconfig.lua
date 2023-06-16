@@ -92,13 +92,7 @@ local lsp_servers = {
 }
 
 local all_conf = {
-  capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-
-  on_attach = function(client, _)
-    vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
-    client.server_capabilities.semanticTokensProvider = nil
-  end,
-
+  on_attach = function(client, _) end,
   init_options = {
     usePlaceholders = true,
     completeUnimported = true,
