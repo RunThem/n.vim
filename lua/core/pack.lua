@@ -9,7 +9,7 @@ local pack = {}
 pack.__index = pack
 
 function pack:load_modules_packages()
-  local modules_dir = util.get_config_path() .. '/lua/modules'
+  local modules_dir = util.conf_path() .. '/lua/modules'
   self.repos = {}
 
   local list = vim.fs.find('plugins.lua', { path = modules_dir, type = 'file', limit = 10 })
@@ -25,7 +25,7 @@ function pack:load_modules_packages()
 end
 
 function pack:boot_strap()
-  local lazy_path = string.format('%s/lazy/lazy.nvim', util.get_data_path())
+  local lazy_path = string.format('%s/lazy/lazy.nvim', util.data_path())
   local state = uv.fs_stat(lazy_path)
   if not state then
     local cmd = '!git clone https://github.com/folke/lazy.nvim ' .. lazy_path
@@ -36,7 +36,7 @@ function pack:boot_strap()
 
   local lazy = require('lazy')
   local opts = {
-    lockfile = util.get_data_path() .. '/lazy-lock.json',
+    lockfile = util.data_path() .. '/lazy-lock.json',
   }
 
   self:load_modules_packages()
