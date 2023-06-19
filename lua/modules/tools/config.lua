@@ -35,16 +35,6 @@ function config.guard()
   require('guard').setup({})
 end
 
-function config.autoclose()
-  require('autoclose').setup({
-    options = {
-      disable_when_touch = true,
-      pair_spaces = true,
-      auto_indent = true,
-    },
-  })
-end
-
 function config.nvterm()
   require('nvterm').setup({
     terminals = {

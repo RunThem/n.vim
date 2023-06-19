@@ -20,12 +20,6 @@ package({
 })
 
 package({
-  'm4xshen/autoclose.nvim',
-  event = 'VeryLazy',
-  config = conf.autoclose,
-})
-
-package({
   'RunThem/fzy.nvim',
   -- dir = '/home/iccy/Code/i_lua/fzy.nvim/',
   event = 'VeryLazy',
