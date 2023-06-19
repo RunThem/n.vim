@@ -28,13 +28,13 @@ _G.smart_enter = function()
 
     key = '<C-y>'
     if info.selected == -1 then
-      info.selected = 0
+      info.selected = 1
       key = '<C-n><C-y>'
     end
 
-    -- require('lua.core.util').info(info.items[info.selected + 1].abbr)
+    print('"' .. info.items[info.selected].abbr .. '"')
 
-    if string.find(info.items[info.selected + 1].abbr, '(.*)') ~= nil then
+    if string.find(info.items[info.selected].abbr, '%b()') ~= nil then
       key = key .. '()<Esc>i'
     end
   else
