@@ -22,7 +22,7 @@ end
 
 _G.smart_enter = function()
   if vim.fn.pumvisible() ~= 0 then
-    return '<C-n><C-y>'
+    return '<C-y>'
   else
     return '<Cr>'
   end
