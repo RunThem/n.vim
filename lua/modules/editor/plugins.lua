@@ -9,14 +9,12 @@ local setup = require('core.pack').setup
 
 package({
   'neovim/nvim-lspconfig',
-  event = 'VeryLazy',
   config = conf.nvim_lsp,
 })
 
 package({
   'echasnovski/mini.completion',
-  event = 'VeryLazy',
-  config = conf.completion,
+  config = setup('mini.completion'),
 })
 
 package({

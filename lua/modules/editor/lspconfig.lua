@@ -1,33 +1,16 @@
-local lspconfig = require('lspconfig')
-
-local signs = {
-  Error = ' ',
-  Warn = ' ',
-  Info = ' ',
-  Hint = ' ',
-}
-
-for type, icon in pairs(signs) do
-  local hl = 'DiagnosticSign' .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
-vim.diagnostic.config({
-  signs = true,
-  update_in_insert = false,
-  underline = true,
-  severity_sort = true,
-  virtual_text = {
-    source = true,
-  },
-})
-
-local lsp_servers = {
+return {
+  --- shell
   bashls = {},
+
+  --- zig
   zls = {},
+
+  -- vlang
   vls = {
     cmd = { 'vls' },
   },
+
+  --- golang
   gopls = {
     cmd = { 'gopls', '--remote=auto' },
     analyses = {
@@ -35,6 +18,8 @@ local lsp_servers = {
     },
     staticcheck = true,
   },
+
+  --- lua
   lua_ls = {
     settings = {
       Lua = {
@@ -49,6 +34,8 @@ local lsp_servers = {
       },
     },
   },
+
+  --- c, cpp
   clangd = {
     cmd = {
       'clangd',
@@ -71,6 +58,8 @@ local lsp_servers = {
   --     },
   --   },
   -- },
+
+  --- rust
   rust_analyzer = {
     settings = {
       imports = {
@@ -91,19 +80,3 @@ local lsp_servers = {
   },
 }
 
-local all_conf = {
-  on_attach = function(client, _) end,
-  init_options = {
-    usePlaceholders = true,
-    completeUnimported = true,
-  },
-}
-
-for lsp, _ in pairs(lsp_servers) do
-  local extended_opts = vim.tbl_deep_extend('force', all_conf, lsp_servers[lsp])
-  lspconfig[lsp].setup(extended_opts)
-end
-
-vim.diagnostic.config({
-  virtual_text = false,
-})

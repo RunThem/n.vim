@@ -8,11 +8,41 @@ local config = {
 
 -- config server in this function
 function config.nvim_lsp()
-  require('modules.editor.lspconfig')
-end
+  local signs = {
+    Error = ' ',
+    Warn = ' ',
+    Info = ' ',
+    Hint = ' ',
+  }
 
-function config.completion()
-  require('mini.completion').setup({})
+  for type, icon in pairs(signs) do
+    local hl = 'DiagnosticSign' .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
+
+  vim.diagnostic.config({
+    signs = true,
+    update_in_insert = false,
+    underline = true,
+    severity_sort = true,
+    virtual_text = false,
+  })
+
+  local lspconfig = require('lspconfig')
+  local def_conf = {
+    on_attach = function(client, _) end,
+
+    init_options = {
+      usePlaceholders = true,
+      completeUnimported = true,
+    },
+  }
+
+  for lsp, conf in pairs(require('modules.editor.lspconfig')) do
+    local extended_opts = vim.tbl_deep_extend('force', def_conf, conf)
+
+    lspconfig[lsp].setup(extended_opts)
+  end
 end
 
 function config.treesitter()
