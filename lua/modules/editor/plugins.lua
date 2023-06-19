@@ -18,9 +18,8 @@ package({
 })
 
 package({
-  'glepnir/lspsaga.nvim',
+  'nvimdev/lspsaga.nvim',
   event = 'BufRead',
-  dev = false,
   config = setup('lspsaga'),
 })
 
@@ -32,6 +31,6 @@ package({
 })
 
 package({
-  'glepnir/coman.nvim',
+  'nvimdev/coman.nvim',
   event = 'VeryLazy',
 })
