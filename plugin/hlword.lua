@@ -1,5 +1,3 @@
-local M = {}
-
 local cmd = vim.cmd
 local fn = vim.fn
 local key = vim.keymap
@@ -19,22 +17,22 @@ local maps = {
   -- { word, idx }
 }
 
-function M.unhl_word(i)
+function unhl_word(i)
   colors[maps[i].idx].use = false
   cmd(string.format('highlight clear %s', 'hl_words_' .. maps[i].word))
   table.remove(maps, i)
 end
 
-function M.unhl_all()
+function unhl_all()
   while #maps ~= 0 do
-    M.unhl_word(1)
+    unhl_word(1)
   end
 end
 
 function get_idx()
   if #maps == #colors then
     local idx = maps[1].idx
-    M.unhl_word(1)
+    unhl_word(1)
 
     return idx
   else
@@ -46,14 +44,14 @@ function get_idx()
   end
 end
 
-function M.hl_word()
+function hl_word()
   local idx = 0
   local word = fn.expand('<cword>')
   local hl_group = 'hl_words_' .. word
 
   for i = 1, #maps do
     if maps[i].word == word then
-      M.unhl_word(i)
+      unhl_word(i)
 
       return
     end
@@ -71,7 +69,5 @@ function M.hl_word()
   table.insert(maps, { word = word, idx = idx })
 end
 
-key.set('n', '<Leader>m', M.hl_word, { desc = 'highlight/unhighlight word' })
-key.set('n', '<Leader>c', M.unhl_all, { desc = 'unhighlight all word' })
-
-return M
+key.set('n', '<Leader>m', hl_word, { desc = 'highlight/unhighlight word' })
+key.set('n', '<Leader>c', unhl_all, { desc = 'unhighlight all word' })
