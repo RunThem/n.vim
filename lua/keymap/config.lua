@@ -21,20 +21,11 @@ _G.smart_shift_tab = function()
 end
 
 _G.smart_enter = function()
-  local key = ''
+  local key = '<C-y>'
+  local info = vim.fn.complete_info()
 
-  if vim.fn.pumvisible() ~= 0 then
-    local info = vim.fn.complete_info()
-
-    key = '<C-y>'
-    if info.selected == -1 then
-      info.selected = 1
-      key = '<C-n><C-y>'
-    end
-
-    print('"' .. info.items[info.selected].abbr .. '"')
-
-    if string.find(info.items[info.selected].abbr, '%b()') ~= nil then
+  if info.pum_visible == 1 then
+    if string.find(info.items[info.selected + 1].abbr, '%b()') ~= nil then
       key = key .. '()<Esc>i'
     end
   else

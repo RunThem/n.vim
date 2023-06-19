@@ -21,7 +21,6 @@ imap({
 smap({
   { '<Tab>', _G.smart_tab, opts(expr, remap) },
   { '<S-Tab>', _G.smart_shift_tab, opts(expr, remap) },
-  { '<CR>', _G.smart_enter, opts(expr, remap) },
 })
 
 -- lspsaga
