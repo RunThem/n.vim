@@ -34,6 +34,7 @@ nmap({
   { 'gT', cmd('Lspsaga goto_type_definition'), opts(noremap, silent) },
   { 'ga', cmd('Lspsaga code_action'), opts(noremap, silent) },
   { 'gn', cmd('Lspsaga diagnostic_jump_next'), opts(noremap, silent) },
+  { 'gi', cmd('Lspsaga outline'), opts(noremap, silent) },
 })
 
 -- nvterm
