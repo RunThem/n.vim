@@ -23,13 +23,16 @@ function util.data_path()
 end
 
 function util.info(b)
+  local msg
   if type(b) == 'table' then
-    print(vim.inspect(b))
+    msg = vim.inspect(b)
   elseif type(b) == 'string' then
-    print("'" .. b .. "'")
+    msg = "'" .. b .. "'"
   else
-    print(tostring(b))
+    msg = tostring(b)
   end
+
+  vim.api.nvim_err_writeln(msg)
 end
 
 function util.col()
