@@ -6,7 +6,7 @@
 --- move to prev/next item in completion menuone
 _G.smart_tab = function()
   if vim.fn.pumvisible() ~= 0 then
-    return '<C-n><C-y>'
+    return '<C-n>'
   else
     return '<Tab>'
   end
@@ -14,7 +14,7 @@ end
 
 _G.smart_shift_tab = function()
   if vim.fn.pumvisible() ~= 0 then
-    return '<C-p><C-y>'
+    return '<C-p>'
   else
     return '<S-Tab>'
   end
