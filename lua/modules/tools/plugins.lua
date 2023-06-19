@@ -27,12 +27,19 @@ package({
 
 package({
   'nvimdev/hlsearch.nvim',
-  event = 'BufRead',
+  event = 'VeryLazy',
   config = setup('hlsearch'),
 })
 
 package({
+  'nvimdev/flybuf.nvim',
+  event = 'VeryLazy',
+  config = setup('flybuf'),
+})
+
+package({
   'kdheepak/lazygit.nvim',
+  event = 'VeryLazy',
   dependencies = {
     'nvim-lua/plenary.nvim',
   },

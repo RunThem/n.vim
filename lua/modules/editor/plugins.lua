@@ -9,17 +9,19 @@ local setup = require('core.pack').setup
 
 package({
   'neovim/nvim-lspconfig',
+  event = 'VeryLazy',
   config = conf.nvim_lsp,
 })
 
 package({
   'echasnovski/mini.completion',
+  event = 'VeryLazy',
   config = conf.completion,
 })
 
 package({
   'nvimdev/lspsaga.nvim',
-  event = 'BufRead',
+  event = 'VeryLazy',
   config = setup('lspsaga'),
 })
 

@@ -19,12 +19,6 @@ package({
 })
 
 package({
-  'nvimdev/flybuf.nvim',
-  event = 'VeryLazy',
-  config = setup('flybuf'),
-})
-
-package({
   'RunThem/whiskyline.nvim',
   dependencies = { 'kyazdani42/nvim-web-devicons' },
   config = setup('whiskyline'),
