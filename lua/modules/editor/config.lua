@@ -30,7 +30,11 @@ function config.nvim_lsp()
 
   local lspconfig = require('lspconfig')
   local def_conf = {
-    on_attach = function(client, _) end,
+    on_attach = function(client, _)
+      vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+      client.server_capabilities.semanticTokensProvider = nil
+    end,
 
     init_options = {
       usePlaceholders = true,
