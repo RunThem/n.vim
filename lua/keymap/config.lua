@@ -24,7 +24,7 @@ _G.smart_enter = function()
   local key = '<C-y>'
   local info = vim.fn.complete_info()
 
-  if info.pum_visible == 1 then
+  if info.pum_visible == 1 and info.selected ~= -1 then
     if string.find(info.items[info.selected + 1].abbr, '%b()') ~= nil then
       key = key .. '()<Esc>i'
     end
