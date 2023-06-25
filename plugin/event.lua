@@ -25,6 +25,14 @@ api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 
+api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  group = n_vim_group,
+  pattern = '*.li',
+  callback = function()
+    api.nvim_buf_set_option(0, 'filetype', 'little')
+  end,
+})
+
 api.nvim_create_autocmd({ 'TextYankPost' }, {
   group = n_vim_group,
   pattern = '*',
