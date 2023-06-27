@@ -50,3 +50,8 @@ package({
   event = 'VeryLazy',
   config = conf.nvterm,
 })
+
+package({
+  'mvllow/modes.nvim',
+  config = conf.modes,
+})
