@@ -31,8 +31,6 @@ function config.nvim_lsp()
   local lspconfig = require('lspconfig')
   local def_conf = {
     on_attach = function(client, _)
-      vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
-
       client.server_capabilities.semanticTokensProvider = nil
     end,
 
@@ -50,8 +48,8 @@ function config.nvim_lsp()
 end
 
 function config.treesitter()
-  vim.api.nvim_command('set foldmethod=expr')
-  vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')
+  -- vim.api.nvim_command('set foldmethod=expr')
+  -- vim.api.nvim_command('set foldexpr=nvim_treesitter#foldexpr()')
 
   -- for _, conf in pairs(require('nvim-treesitter.parsers').get_parser_configs()) do
   --   conf.install_info.url = conf.install_info.url:gsub('https://github.com', 'https://hub.fastgit.org')
@@ -61,6 +59,7 @@ function config.treesitter()
     ensure_installed = { 'lua', 'rust', 'c', 'cpp', 'go' },
     auto_install = true,
     highlight = { enable = true },
+    indent = { enable = true },
   })
 end
 
