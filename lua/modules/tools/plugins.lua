@@ -38,6 +38,11 @@ package({
 })
 
 package({
+  'mvllow/modes.nvim',
+  config = setup('modes'),
+})
+
+package({
   'kdheepak/lazygit.nvim',
   event = 'VeryLazy',
   dependencies = {
@@ -49,9 +54,4 @@ package({
   'NvChad/nvterm',
   event = 'VeryLazy',
   config = conf.nvterm,
-})
-
-package({
-  'mvllow/modes.nvim',
-  config = conf.modes,
 })

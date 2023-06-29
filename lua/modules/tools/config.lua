@@ -49,10 +49,4 @@ function config.nvterm()
   })
 end
 
-function config.modes()
-  require('modes').setup({
-    line_opacity = 0.30,
-  })
-end
-
 return config
