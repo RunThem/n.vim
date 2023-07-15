@@ -13,8 +13,18 @@ package({
 })
 
 package({
-  'echasnovski/mini.completion',
-  config = setup('mini.completion'),
+  'hrsh7th/nvim-cmp',
+  event = 'VeryLazy',
+  config = conf.cmp,
+  dependencies = {
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
+    'dcampos/cmp-snippy',
+    'RunThem/cmp-xmake',
+
+    'dcampos/nvim-snippy',
+    'onsails/lspkind-nvim',
+  },
 })
 
 package({

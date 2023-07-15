@@ -10,19 +10,6 @@ local expr, remap = keymap.expr, keymap.remap
 local opts = keymap.new_opts
 local cmd = keymap.cmd
 
-require('keymap.config')
-
-imap({
-  { '<Tab>', _G.smart_tab, opts(expr, remap) },
-  { '<S-Tab>', _G.smart_shift_tab, opts(expr, remap) },
-  { '<Cr>', _G.smart_enter, opts(expr, remap) },
-})
-
-smap({
-  { '<Tab>', _G.smart_tab, opts(expr, remap) },
-  { '<S-Tab>', _G.smart_shift_tab, opts(expr, remap) },
-})
-
 -- lspsaga
 nmap({
   { 'K', cmd('Lspsaga hover_doc'), opts(noremap, silent) },

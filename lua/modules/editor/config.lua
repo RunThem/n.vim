@@ -8,6 +8,8 @@ local config = {
 
 -- config server in this function
 function config.nvim_lsp()
+  local lspconfig = require('lspconfig')
+
   local signs = {
     Error = ' ',
     Warn = ' ',
@@ -28,12 +30,14 @@ function config.nvim_lsp()
     virtual_text = false,
   })
 
-  local lspconfig = require('lspconfig')
-  local def_conf = {
-    on_attach = function(client, _)
-      client.server_capabilities.semanticTokensProvider = nil
-    end,
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local on_attach = function(client, _)
+    client.server_capabilities.semanticTokensProvider = nil
+  end
 
+  local def_conf = {
+    capabilities = capabilities,
+    on_attach = on_attach,
     init_options = {
       usePlaceholders = true,
       completeUnimported = true,
@@ -45,6 +49,93 @@ function config.nvim_lsp()
 
     lspconfig[lsp].setup(extended_opts)
   end
+end
+
+local has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+end
+
+function config.cmp()
+  local cmp = require('cmp')
+  local lspkind = require('lspkind')
+  local snippy = require('snippy')
+
+  require('modules.ui.config').cmp_hl()
+
+  lspkind.init({
+    symbol_map = { TypeParameter = ' ' },
+  })
+
+  local window = {
+    completion = {
+      winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+      col_offset = -2,
+      side_padding = 0,
+    },
+  }
+
+  local formatting = {
+    fields = { 'kind', 'abbr', 'menu' },
+    format = function(entry, vim_item)
+      local kind = lspkind.cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item)
+      local strings = vim.split(kind.kind, '%s', { trimempty = true })
+      kind.kind = ' ' .. strings[1] .. ' '
+
+      return kind
+    end,
+  }
+
+  local mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<Cr>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    }),
+
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif snippy.can_expand_or_advance() then
+        snippy.expand_or_advance()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif snippy.can_jump(-1) then
+        snippy.previous()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+  }
+
+  local snippet = {
+    expand = function(args)
+      snippy.expand_snippet(args.body)
+    end,
+  }
+
+  cmp.setup({
+    preselect = cmp.PreselectMode.Item,
+    window = window,
+    formatting = formatting,
+    mapping = mapping,
+    snippet = snippet,
+    sources = {
+      { name = 'nvim_lsp' },
+      { name = 'path' },
+      { name = 'xmake' },
+      { name = 'snippy' },
+    },
+  })
 end
 
 function config.treesitter()
