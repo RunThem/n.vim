@@ -44,3 +44,9 @@ package({
   'nvimdev/coman.nvim',
   event = 'VeryLazy',
 })
+
+package({
+  'windwp/nvim-autopairs',
+  event = 'VeryLazy',
+  config = conf.autopairs,
+})
