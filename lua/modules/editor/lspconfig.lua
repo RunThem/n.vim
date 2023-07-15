@@ -43,13 +43,13 @@ return {
       '--suggest-missing-includes',
       '--clang-tidy',
       '--header-insertion=iwyu',
-      '--compile-commands-dir=build',
+      '--compile-commands-dir=build/lsp',
     },
   },
   -- ccls = {
   --   cmd = { 'ccls' },
   --   init_options = {
-  --     compilationDatabaseDirectory = 'build',
+  --     compilationDatabaseDirectory = 'build/lsp',
   --     index = {
   --       threads = 0,
   --     },
