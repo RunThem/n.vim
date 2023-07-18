@@ -23,6 +23,7 @@ function config.guard()
   local ft = require('guard.filetype')
 
   ft('c'):fmt('clang-format'):lint('clang-tidy')
+  ft('cpp'):fmt('clang-format'):lint('clang-tidy')
   ft('go'):fmt('golines')
   ft('rust'):fmt('rustfmt')
 
