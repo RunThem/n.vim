@@ -42,7 +42,7 @@ return {
       '--background-index',
       '--suggest-missing-includes',
       '--clang-tidy',
-      '--header-insertion=iwyu',
+      '--header-insertion=never',
       '--compile-commands-dir=build/lsp',
     },
   },
