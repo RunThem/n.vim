@@ -58,5 +58,3 @@ nmap({
     opts(noremap, silent),
   },
 })
-
-nmap({ '<Leader>gg', cmd('LazyGit'), opts(noremap, silent) })

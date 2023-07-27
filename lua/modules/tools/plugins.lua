@@ -43,14 +43,6 @@ package({
 })
 
 package({
-  'kdheepak/lazygit.nvim',
-  event = 'VeryLazy',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-  },
-})
-
-package({
   'NvChad/nvterm',
   event = 'VeryLazy',
   config = conf.nvterm,
