@@ -27,7 +27,7 @@ return {
           enable = false,
           globals = { 'vim', 'packer_plugins' },
         },
-        runtime = { version = 'LuaJIT' },
+        runtime = { version = 'Lua5.4' },
         workspace = {
           library = vim.list_extend({ [vim.fn.expand('$VIMRUNTIME/lua')] = true }, {}),
         },
@@ -42,7 +42,7 @@ return {
       '--background-index',
       '--suggest-missing-includes',
       '--clang-tidy',
-      '--header-insertion=iwyu',
+      '--header-insertion=never',
       '--compile-commands-dir=build/lsp',
     },
   },
