@@ -8,12 +8,12 @@ function config.cmp_hl()
   local hl = vim.api.nvim_set_hl
 
   -- stylua: ignore start
-  hl(0, 'PmenuSel',                 { bg = '#282C34', fg = 'NONE' })
-  hl(0, 'Pmenu',                    { fg = '#C5CDD9', bg = '#22252A' })
+  hl(0, 'PmenuSel',                 { bg = '#65CDD9', fg = '#000000' })
+  hl(0, 'Pmenu',                    { fg = '#C5CDD9', bg = '#000000' })
   hl(0, 'CmpItemAbbrDeprecated',    { fg = '#7E8294', bg = 'NONE', strikethrough = true })
   hl(0, 'CmpItemAbbrMatch',         { fg = '#82AAFF', bg = 'NONE', bold = true })
   hl(0, 'CmpItemAbbrMatchFuzzy',    { fg = '#82AAFF', bg = 'NONE', bold = true })
-  hl(0, 'CmpItemMenu',              { fg = '#C792EA', bg = 'NONE', italic = true })
+  hl(0, 'CmpItemMenu',              { fg = '#0792EA', bg = 'NONE', italic = true })
   hl(0, 'CmpItemKindField',         { fg = '#EED8DA', bg = '#B5585F' })
   hl(0, 'CmpItemKindProperty',      { fg = '#EED8DA', bg = '#B5585F' })
   hl(0, 'CmpItemKindEvent',         { fg = '#EED8DA', bg = '#B5585F' })
