@@ -4,21 +4,6 @@
 
 local config = {}
 
-function config.todo_comments()
-  require('todo-comments').setup({
-    keywords = {
-      FIX = { alt = { 'FIX' } },
-    },
-    highlight = {
-      before = 'fg',
-      keyword = 'fg',
-    },
-    colors = {
-      info = { 'LspDiagnosticsDefaultInformation', '#0DB0D7' },
-    },
-  })
-end
-
 function config.guard()
   local ft = require('guard.filetype')
 

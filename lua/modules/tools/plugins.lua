@@ -7,12 +7,6 @@ local setup = require('core.pack').setup
 local conf = require('modules.tools.config')
 
 package({
-  'folke/todo-comments.nvim',
-  event = 'VeryLazy',
-  config = conf.todo_comments,
-})
-
-package({
   'nvimdev/guard.nvim',
   ft = { 'c', 'cpp', 'rust', 'lua', 'go' },
   event = 'VeryLazy',
