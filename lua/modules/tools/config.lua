@@ -28,7 +28,7 @@ function config.nvterm()
           row = 0.5,
           col = 0.1,
           width = 0.8,
-          height = 0.4,
+          height = 0.6,
         },
       },
     },
