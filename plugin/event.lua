@@ -42,12 +42,9 @@ api.nvim_create_autocmd({ 'TextYankPost' }, {
 })
 
 if vim.fn.executable('fcitx-remote') == 1 then
-  local state = ''
-
   api.nvim_create_autocmd({ 'InsertLeave' }, {
     group = n_vim_group,
     callback = function()
-      state = io.popen('fcitx-remote'):read('*a')
       os.execute('fcitx-remote -c')
     end,
   })
@@ -55,9 +52,7 @@ if vim.fn.executable('fcitx-remote') == 1 then
   api.nvim_create_autocmd({ 'InsertEnter' }, {
     group = n_vim_group,
     callback = function()
-      if state == '2\n' then
-        os.execute('fcitx-remote -o')
-      end
+      os.execute('fcitx-remote -c')
     end,
   })
 end
