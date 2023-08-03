@@ -14,7 +14,7 @@ local cmd = keymap.cmd
 nmap({
   { 'K', cmd('Lspsaga hover_doc'), opts(noremap, silent) },
   { 'gr', cmd('Lspsaga rename'), opts(noremap, silent) },
-  { 'gh', cmd('Lspsaga lsp_finder'), opts(noremap, silent) },
+  { 'gh', cmd('Lspsaga finder'), opts(noremap, silent) },
   { 'gd', cmd('Lspsaga peek_definition'), opts(noremap, silent) },
   { 'gD', cmd('Lspsaga goto_definition'), opts(noremap, silent) },
   { 'gt', cmd('Lspsaga peek_type_definition'), opts(noremap, silent) },
