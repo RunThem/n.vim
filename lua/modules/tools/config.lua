@@ -9,9 +9,9 @@ function config.guard()
 
   ft('c'):fmt('clang-format'):lint('clang-tidy')
   ft('cpp'):fmt('clang-format'):lint('clang-tidy')
-  ft('go'):fmt('golines')
   ft('rust'):fmt('rustfmt')
 
+  ft('go'):fmt({ cmd = 'golines', args = { '-m', '120' } })
   ft('lua'):fmt({
     cmd = 'stylua',
     args = { '--search-parent-directories', '-' },
