@@ -45,6 +45,15 @@ return {
       '--header-insertion=never',
       '--compile-commands-dir=build/lsp',
     },
+    capabilities = {
+      textDocument = {
+        completion = {
+          completionItem = {
+            snippetSupport = false,
+          },
+        },
+      },
+    },
   },
   -- ccls = {
   --   cmd = { 'ccls' },
