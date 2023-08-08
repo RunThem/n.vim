@@ -142,6 +142,7 @@ function config.cmp()
     sources = {
       { name = 'nvim_lsp' },
       { name = 'path' },
+      { name = 'buffer' },
       { name = 'xmake' },
       { name = 'snippy' },
     },
