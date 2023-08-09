@@ -27,10 +27,8 @@ return {
           enable = false,
           globals = { 'vim', 'packer_plugins' },
         },
-        runtime = { version = 'Lua5.4' },
-        workspace = {
-          library = vim.list_extend({ [vim.fn.expand('$VIMRUNTIME/lua')] = true }, {}),
-        },
+        runtime = { version = 'LuaJit' },
+        workspace = { library = vim.api.nvim_get_runtime_file('', true) },
       },
     },
   },
