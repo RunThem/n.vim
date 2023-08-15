@@ -147,6 +147,17 @@ function config.cmp()
       { name = 'xmake' },
       { name = 'snippy' },
     },
+    sorting = {
+      comparators = {
+        cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+        cmp.config.compare.offset,
+        --compare.order,
+        --compare.sort_text,
+        -- compare.exact,
+        -- compare.kind,
+        -- compare.length,
+      },
+    },
   })
 end
 
