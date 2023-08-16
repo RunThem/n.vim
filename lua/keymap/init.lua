@@ -58,3 +58,6 @@ nmap({
     opts(noremap, silent),
   },
 })
+
+-- Guard
+nmap({ '--', cmd('GuardFmt'), opts(noremap, silent) })
