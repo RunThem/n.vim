@@ -172,12 +172,8 @@ function config.treesitter()
   require('nvim-treesitter.configs').setup({
     ensure_installed = { 'lua', 'rust', 'c', 'cpp', 'go' },
     auto_install = true,
+    highlight = { enable = true },
     indent = { enable = true },
-
-    highlight = {
-      enable = true,
-      disable = { 'c', 'lua' },
-    },
   })
 end
 
