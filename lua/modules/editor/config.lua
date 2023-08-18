@@ -32,7 +32,7 @@ function config.nvim_lsp()
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   local on_attach = function(client, _)
-    -- client.server_capabilities.semanticTokensProvider = nil
+    client.server_capabilities.semanticTokensProvider = nil
   end
 
   local def_conf = {
@@ -166,7 +166,7 @@ function config.treesitter()
   -- end
 
   require('nvim-treesitter.configs').setup({
-    ensure_installed = { 'lua', 'rust', 'c', 'cpp', 'go' },
+    ensure_installed = { 'lua', 'rust', 'go' },
     auto_install = true,
     highlight = { enable = true },
     indent = { enable = true },

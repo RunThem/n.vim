@@ -53,6 +53,7 @@ return {
         },
       },
     },
+    on_attach = function(client, _) end,
   },
   -- ccls = {
   --   cmd = { 'ccls' },

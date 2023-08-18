@@ -98,17 +98,3 @@ api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
     })
   end,
 })
-
-_G.semantic_highlight_inited = {}
-api.nvim_create_autocmd('LspTokenUpdate', {
-  group = n_vim_group,
-  pattern = '*.c,*.cpp,*.lua',
-  callback = function(args)
-    local buf = args.buf
-    if _G.semantic_highlight_inited[buf] then
-      vim.treesitter.stop(buf)
-      return
-    end
-    _G.semantic_highlight_inited[buf] = true
-  end,
-})
