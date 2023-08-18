@@ -59,19 +59,14 @@ nmap({
   },
 })
 
--- Guard
+-- guard
 nmap({ '--', cmd('GuardFmt'), opts(noremap, silent) })
 
+-- cmp
 imap({
-  '<Leader>s',
+  '<C-x>',
   function()
     local cmp = require('cmp')
-
-    -- cmp.setup.buffer({
-    --   sources = {
-    --     { name = 'snippy' },
-    --   },
-    -- })
 
     cmp.complete({
       config = {
