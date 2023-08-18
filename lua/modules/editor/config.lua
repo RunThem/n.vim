@@ -141,11 +141,7 @@ function config.cmp()
     snippet = snippet,
     sources = {
       { name = 'nvim_lsp' },
-      { name = 'nvim_lua' },
       { name = 'path' },
-      { name = 'buffer' },
-      { name = 'xmake' },
-      { name = 'snippy' },
     },
     -- sorting = {
     -- comparators = {

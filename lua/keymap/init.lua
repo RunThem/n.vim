@@ -61,3 +61,25 @@ nmap({
 
 -- Guard
 nmap({ '--', cmd('GuardFmt'), opts(noremap, silent) })
+
+imap({
+  '<Leader>s',
+  function()
+    local cmp = require('cmp')
+
+    -- cmp.setup.buffer({
+    --   sources = {
+    --     { name = 'snippy' },
+    --   },
+    -- })
+
+    cmp.complete({
+      config = {
+        sources = {
+          { name = 'snippy', group_index = 1 },
+        },
+      },
+    })
+  end,
+  opts(noremap, silent),
+})
