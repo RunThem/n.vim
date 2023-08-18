@@ -32,53 +32,39 @@ snippet def
 # switch
 snippet switch
 	switch (${1:/* variable */}) {
-		default:
-			${2}
+  default:
+    break;
 	}
 
 # case
 snippet case
-	case ${1:/* variable case */}: {
+	case ${1:/* variable case */}:
 		${2}
     break;
-  }
 
-snippet ret
+snippet return
 	return ${0};
-
-## Loops
-# while
-snippet wh
-	while (${1}) {
-		${0:${VISUAL}}
-	}
-
-# do... while
-snippet do
-	do {
-		${0:${VISUAL}}
-	} while (${1});
 
 ## Functions
 # function definition
-snippet fun
+snippet func
 	${1:void} ${2:function_name}(${3:void}) {
 		${4}
 	}
 
 # function declaration
-snippet fund
+snippet funcd
 	${1:void} ${2:function_name}(${3});
 
 ## Input/Output
 snippet prd
-	inf("${1:} = %d\n", ${1});
+	printf("${1:} = %d\n", ${1});
 
 snippet prf
-	inf("${1:} = %f\n", ${1});
+	printf("${1:} = %f\n", ${1});
 
 snippet prx
-	inf("${1:} = %${2}\n", ${1});
+	printf("${1:} = %${2}\n", ${1});
 	 
 ## Miscellaneous
 # This is kind of convenient
