@@ -94,6 +94,7 @@ api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'xmake' },
+        { name = 'path' },
       },
     })
   end,
