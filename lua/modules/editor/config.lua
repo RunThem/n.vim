@@ -170,6 +170,13 @@ function config.treesitter()
     auto_install = true,
     highlight = { enable = true },
     indent = { enable = true },
+
+    rainbow = {
+      enable = true,
+      disable = { 'jsx', 'cpp' },
+      query = 'rainbow-parens',
+      strategy = require('ts-rainbow').strategy.global,
+    },
   })
 end
 

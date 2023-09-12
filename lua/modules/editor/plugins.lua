@@ -40,6 +40,9 @@ package({
   ft = ft,
   event = 'VeryLazy',
   config = conf.treesitter,
+  dependencies = {
+    'HiPhish/nvim-ts-rainbow2',
+  },
 })
 
 package({
