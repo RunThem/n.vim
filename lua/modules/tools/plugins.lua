@@ -11,6 +11,9 @@ package({
   ft = { 'c', 'cpp', 'rust', 'lua', 'go' },
   event = 'VeryLazy',
   config = conf.guard,
+  dependencies = {
+    'nvimdev/guard-collection',
+  },
 })
 
 package({
