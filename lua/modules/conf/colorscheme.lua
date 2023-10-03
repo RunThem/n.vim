@@ -1,13 +1,38 @@
--- author: glepnr https://github.com/glepnir
--- date: 2023-03-26
--- License: MIT
-
-local config = {}
-
-function config.cmp_hl()
+return function()
   local hl = vim.api.nvim_set_hl
 
+  -- vim.cmd('colorscheme porcelain')
+  vim.cmd('colorscheme zephyr')
+
+  local groups = {
+    'Normal',
+    'NormalFloat',
+    'NormalNC',
+    'FloatBorder',
+    'Special',
+    'Underlined',
+    'NonText',
+    'SignColumn',
+    'EndOfBuffer',
+    'TabLine',
+    'TabLineSel',
+    'StatusLine',
+    'StatusLineNC',
+  }
+
+  for _, group in ipairs(groups) do
+    hl(0, group, {})
+  end
+
   -- stylua: ignore start
+  hl(0, 'LineNr',                   { fg = '#61afaf' })
+  hl(0, 'CursorLineNr',             { fg = '#f8ab17' })
+  hl(0, 'VertSplit',                { fg = '#c98afa' })
+  hl(0, 'Comment',                  { fg = '#6a8ad9' })
+  hl(0, 'TabLineSel',               { fg = '#c98afa' })
+
+
+
   hl(0, 'PmenuSel',                 { bg = '#65CDD9', fg = '#000000' })
   hl(0, 'Pmenu',                    { fg = '#C5CDD9', bg = '#000000' })
   hl(0, 'CmpItemAbbrDeprecated',    { fg = '#7E8294', bg = 'NONE', strikethrough = true })
@@ -40,40 +65,6 @@ function config.cmp_hl()
   hl(0, 'CmpItemKindColor',         { fg = '#D8EEEB', bg = '#58B5A8' })
   hl(0, 'CmpItemKindTypeParameter', { fg = '#D8EEEB', bg = '#58B5A8' })
   -- stylua: ignore end
-end
-
-function config.colorscheme()
-  -- vim.cmd('colorscheme porcelain')
-  vim.cmd('colorscheme zephyr')
-
-  local groups = {
-    'Normal',
-    'NormalFloat',
-    'NormalNC',
-    'FloatBorder',
-    'Special',
-    'Underlined',
-    'NonText',
-    'SignColumn',
-    'EndOfBuffer',
-    'TabLine',
-    'TabLineSel',
-    'StatusLine',
-    'StatusLineNC',
-  }
-
-  for _, group in ipairs(groups) do
-    vim.cmd(string.format('highlight clear %s', group))
-    vim.cmd(string.format('highlight %s guibg=NONE guifg=NONE', group))
-  end
-
-  vim.cmd('highlight LineNr                   guibg=NONE guifg=#61afaf')
-  vim.cmd('highlight CursorLineNr             guibg=NONE guifg=#f8ab17') -- #e95678
-  vim.cmd('highlight VertSplit                guibg=NONE guifg=#c98afa')
-  vim.cmd('highlight Comment                  guibg=NONE guifg=#6a8ad9 gui=NONE')
-  vim.cmd('highlight TelescopeNormal          guibg=NONE guifg=#61afaf')
-  vim.cmd('highlight ToggleTerm1Normal        guibg=NONE guifg=#61afaf')
-  vim.cmd('highlight TabLineSel               guibg=NONE guifg=#c98afa')
 
   -- local links = {
   --   ['@lsp.type.namespace'] = '@namespace',
@@ -96,5 +87,3 @@ function config.colorscheme()
   --   vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
   -- end
 end
-
-return config

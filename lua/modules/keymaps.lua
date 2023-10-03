@@ -1,14 +1,13 @@
--- author: glepnr https://github.com/glepnir
--- date: 2022-07-02
+-- author: RunThem https://github.com/RunThem
+-- date: 2023-10-03
 -- License: MIT
 
-require('keymap.remap')
-local keymap = require('core.keymap')
-local nmap, imap, xmap, smap, tmap = keymap.nmap, keymap.imap, keymap.xmap, keymap.smap, keymap.tmap
-local silent, noremap = keymap.silent, keymap.noremap
-local expr, remap = keymap.expr, keymap.remap
-local opts = keymap.new_opts
-local cmd = keymap.cmd
+local util = require('core.util')
+local nmap, imap, xmap, smap, tmap = util.nmap, util.imap, util.xmap, util.smap, util.tmap
+local silent, noremap = util.silent, util.noremap
+local expr, remap = util.expr, util.remap
+local opts = util.new_opts
+local cmd = util.cmd
 
 -- lspsaga
 nmap({
@@ -24,9 +23,8 @@ nmap({
   { '<Leader>o', cmd('Lspsaga outline'), opts(noremap, silent) },
 })
 
--- nvterm
-nmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')"), opts(noremap, silent) })
-tmap({ '==', cmd("lua require('nvterm.terminal').toggle('float')"), opts(noremap, silent) })
+nmap({ '--', cmd('Lspsaga term_toggle'), opts(noremap, silent) })
+tmap({ '--', cmd('Lspsaga term_toggle'), opts(noremap, silent) })
 
 -- coman
 nmap({
@@ -38,6 +36,9 @@ xmap({ 'gcc', ':ComComment<Cr>', opts(noremap, silent) })
 
 -- flybuf
 nmap({ 'gb', cmd('FlyBuf'), opts(noremap, silent) })
+
+-- guard
+nmap({ '==', cmd('GuardFmt'), opts(noremap, silent) })
 
 -- fzy
 nmap({
@@ -58,9 +59,6 @@ nmap({
     opts(noremap, silent),
   },
 })
-
--- guard
-nmap({ '--', cmd('GuardFmt'), opts(noremap, silent) })
 
 -- cmp
 imap({

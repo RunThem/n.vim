@@ -8,23 +8,7 @@ local util = require('core.util')
 local pack = {}
 pack.__index = pack
 
-function pack:load_modules_packages()
-  local modules_dir = util.conf_path() .. '/lua/modules'
-  self.repos = {}
-
-  local list = vim.fs.find('plugins.lua', { path = modules_dir, type = 'file', limit = 10 })
-  if #list == 0 then
-    return
-  end
-
-  for _, f in pairs(list) do
-    local _, pos = f:find(modules_dir)
-    f = f:sub(pos - 6, #f - 4)
-    require(f)
-  end
-end
-
-function pack:boot_strap()
+function pack:init()
   local lazy_path = string.format('%s/lazy/lazy.nvim', util.data_path())
   local state = uv.fs_stat(lazy_path)
   if not state then
@@ -34,13 +18,11 @@ function pack:boot_strap()
 
   vim.opt.runtimepath:prepend(lazy_path)
 
-  local lazy = require('lazy')
-  local opts = {
-    lockfile = util.data_path() .. '/lazy-lock.json',
-  }
+  require('modules.plugins')
 
-  self:load_modules_packages()
-  lazy.setup(self.repos, opts)
+  require('lazy').setup(self.repos, { lockfile = util.data_path() .. '/lazy-lock.json' })
+
+  require('modules.keymaps')
 end
 
 function pack.package(repo)

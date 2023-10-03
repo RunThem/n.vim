@@ -1,13 +1,13 @@
--- author: glepnr https://github.com/glepnir
--- date: 2023-01-04
+-- author: RunThem https://github.com/RunThem
+-- date: 2023-10-03
 -- License: MIT
 
-local keymap = require('core.keymap')
-local nmap, imap, cmap, tmap = keymap.nmap, keymap.imap, keymap.cmap, keymap.tmap
-local silent, noremap = keymap.silent, keymap.noremap
-local expr = keymap.expr
-local opts = keymap.new_opts
-local cmd = keymap.cmd
+local util = require('core.util')
+local nmap, imap, cmap, tmap = util.nmap, util.imap, util.cmap, util.tmap
+local silent, noremap = util.silent, util.noremap
+local expr = util.expr
+local opts = util.new_opts
+local cmd = util.cmd
 
 -- noremap remap
 nmap({
