@@ -29,9 +29,6 @@ return function()
   hl(0, 'CursorLineNr',             { fg = '#f8ab17' })
   hl(0, 'VertSplit',                { fg = '#c98afa' })
   hl(0, 'Comment',                  { fg = '#6a8ad9' })
-  hl(0, 'TabLineSel',               { fg = '#c98afa' })
-
-
 
   hl(0, 'PmenuSel',                 { bg = '#65CDD9', fg = '#000000' })
   hl(0, 'Pmenu',                    { fg = '#C5CDD9', bg = '#000000' })

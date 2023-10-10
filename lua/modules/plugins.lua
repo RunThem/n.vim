@@ -77,12 +77,6 @@ package({
 })
 
 package({
-  'echasnovski/mini.tabline',
-  config = setup('mini.tabline'),
-  dependencies = { 'kyazdani42/nvim-web-devicons' },
-})
-
-package({
   'windwp/nvim-autopairs',
   config = require('modules.conf.autopairs'),
 })
