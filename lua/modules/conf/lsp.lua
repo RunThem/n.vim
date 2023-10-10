@@ -1,6 +1,6 @@
 return function()
   local lspconfig = require('lspconfig')
-  local lsp = {
+  local lsp_conf = {
     bashls = {},
     zls = {},
     vls = { cmd = { 'vls' } },
@@ -16,7 +16,7 @@ return function()
       settings = {
         Lua = {
           diagnostics = {
-            enable = false,
+            -- enable = false,
             globals = { 'vim', 'packer_plugins' },
           },
           runtime = { version = 'Lua 5.4' },
@@ -47,7 +47,7 @@ return function()
           },
         },
       },
-      on_attach = function(client, _) end,
+      on_attach = function(_, _) end,
     },
     -- ccls = {
     --   cmd = { 'ccls' },
@@ -110,7 +110,7 @@ return function()
     },
   }
 
-  for lsp, conf in pairs(lsp) do
+  for lsp, conf in pairs(lsp_conf) do
     local extended_opts = vim.tbl_deep_extend('force', def_conf, conf)
 
     lspconfig[lsp].setup(extended_opts)
