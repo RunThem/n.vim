@@ -62,7 +62,7 @@ package({
 package({
   'glepnir/zephyr-nvim',
   -- 'glepnir/porcelain.nvim',
-  config = require('modules.conf.colorscheme'),
+  config = require('modules.conf.hl'),
 })
 
 package({
@@ -78,5 +78,5 @@ package({
 
 package({
   'windwp/nvim-autopairs',
-  config = require('modules.conf.autopairs'),
+  config = require('modules.conf.pairs'),
 })

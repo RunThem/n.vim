@@ -47,7 +47,6 @@ return function()
           },
         },
       },
-      on_attach = function(_, _) end,
     },
     -- ccls = {
     --   cmd = { 'ccls' },
@@ -97,8 +96,9 @@ return function()
   })
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  local on_attach = function(client, _)
+  local on_attach = function(client, bufnr)
     -- client.server_capabilities.semanticTokensProvider = nil
+    -- vim.lsp.auto_complete(client, bufnr)
   end
 
   local def_conf = {
