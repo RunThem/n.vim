@@ -4,7 +4,7 @@ local key = vim.keymap
 
 local colors = {
   { color = '#ff7272', use = false },
-  { color = '#80fee1', use = false },
+  { color = '#10fea1', use = false },
   { color = '#a4f225', use = false },
   { color = '#13cbea', use = false },
   { color = '#ffcb72', use = false },
