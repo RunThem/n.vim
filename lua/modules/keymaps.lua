@@ -65,7 +65,7 @@ if _G.epo == true then
     {
       '<Tab>',
       function()
-        if vim.fn.pumvisible() then
+        if vim.fn.pumvisible() == 1 then
           return '<C-n><C-y>'
         end
 
@@ -76,7 +76,7 @@ if _G.epo == true then
     {
       '<Cr>',
       function()
-        if vim.fn.pumvisible() then
+        if vim.fn.pumvisible() == 1 then
           return '<C-y>'
         end
 
