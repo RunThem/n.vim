@@ -68,34 +68,36 @@ api.nvim_create_autocmd({ 'Filetype' }, {
   end,
 })
 
-api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-  group = n_vim_group,
-  pattern = vim.env.HOME .. '/.config/nvim/*.lua',
-  callback = function()
-    local cmp = require('cmp')
+if _G.epo ~= true then
+  api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+    group = n_vim_group,
+    pattern = vim.env.HOME .. '/.config/nvim/*.lua',
+    callback = function()
+      local cmp = require('cmp')
 
-    cmp.setup.buffer({
-      sources = {
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lua' },
-        { name = 'path' },
-      },
-    })
-  end,
-})
+      cmp.setup.buffer({
+        sources = {
+          { name = 'nvim_lsp' },
+          { name = 'nvim_lua' },
+          { name = 'path' },
+        },
+      })
+    end,
+  })
 
-api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-  group = n_vim_group,
-  pattern = 'xmake.lua',
-  callback = function()
-    local cmp = require('cmp')
+  api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+    group = n_vim_group,
+    pattern = 'xmake.lua',
+    callback = function()
+      local cmp = require('cmp')
 
-    cmp.setup.buffer({
-      sources = {
-        { name = 'nvim_lsp' },
-        { name = 'xmake' },
-        { name = 'path' },
-      },
-    })
-  end,
-})
+      cmp.setup.buffer({
+        sources = {
+          { name = 'nvim_lsp' },
+          { name = 'xmake' },
+          { name = 'path' },
+        },
+      })
+    end,
+  })
+end

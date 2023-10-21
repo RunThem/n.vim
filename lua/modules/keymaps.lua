@@ -60,19 +60,45 @@ nmap({
   },
 })
 
--- cmp
-imap({
-  '<C-x>',
-  function()
-    local cmp = require('cmp')
+if _G.epo == true then
+  imap({
+    {
+      '<Tab>',
+      function()
+        if vim.fn.pumvisible() then
+          return '<C-n><C-y>'
+        end
 
-    cmp.complete({
-      config = {
-        sources = {
-          { name = 'snippy', group_index = 1 },
+        return '<Tab>'
+      end,
+      opts(expr),
+    },
+    {
+      '<Cr>',
+      function()
+        if vim.fn.pumvisible() then
+          return '<C-y>'
+        end
+
+        return '<Cr>'
+      end,
+      opts(expr),
+    },
+  })
+else
+  imap({
+    '<C-x>',
+    function()
+      local cmp = require('cmp')
+
+      cmp.complete({
+        config = {
+          sources = {
+            { name = 'snippy', group_index = 1 },
+          },
         },
-      },
-    })
-  end,
-  opts(noremap, silent),
-})
+      })
+    end,
+    opts(noremap, silent),
+  })
+end

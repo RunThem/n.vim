@@ -10,21 +10,30 @@ package({
   config = require('modules.conf.lsp'),
 })
 
-package({
-  'hrsh7th/nvim-cmp',
-  config = require('modules.conf.cmp'),
-  dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-nvim-lua',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-buffer',
-    'dcampos/cmp-snippy',
-    'RunThem/cmp-xmake',
+if _G.epo == true then
+  package({
+    'nvimdev/epo.nvim',
+    config = function()
+      require('epo').setup({})
+    end,
+  })
+else
+  package({
+    'hrsh7th/nvim-cmp',
+    config = require('modules.conf.cmp'),
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
+      'dcampos/cmp-snippy',
+      'RunThem/cmp-xmake',
 
-    'dcampos/nvim-snippy',
-    'onsails/lspkind-nvim',
-  },
-})
+      'dcampos/nvim-snippy',
+      'onsails/lspkind-nvim',
+    },
+  })
+end
 
 package({
   'nvimdev/lspsaga.nvim',
