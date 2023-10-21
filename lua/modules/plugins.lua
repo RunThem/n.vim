@@ -81,9 +81,13 @@ package({
 })
 
 package({
-  'RunThem/fzy.nvim',
-  -- dir = '/home/iccy/Code/i_lua/fzy.nvim/',
+  'mfussenegger/nvim-fzy',
 })
+
+-- package({
+--   'RunThem/fzy.nvim',
+--   dir = '/home/iccy/Code/i_lua/fzy.nvim/',
+-- })
 
 package({
   'windwp/nvim-autopairs',
