@@ -77,7 +77,7 @@ opt.spelloptions = 'camel'
 
 opt.textwidth = 100
 opt.colorcolumn = '100'
-opt.conceallevel = 2
+opt.conceallevel = 0
 opt.concealcursor = 'niv'
 opt.cursorline = true
 opt.fillchars:append({ eob = ' ' })
