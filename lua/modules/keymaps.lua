@@ -61,27 +61,30 @@ nmap({
 })
 
 if _G.epo == true then
-  imap({
-    {
-      '<Tab>',
-      function()
-        if vim.fn.pumvisible() == 1 then
+  local select_func = function(key)
+    return function()
+      if vim.fn.pumvisible() == 1 then
+        local selected = vim.fn.complete_info({ 'selected' }).selected
+        if selected == -1 then
           return '<C-n><C-y>'
         end
 
-        return '<Tab>'
-      end,
+        return '<C-y>'
+      end
+
+      return key
+    end
+  end
+
+  imap({
+    {
+      '<Tab>',
+      select_func('<Tab>'),
       opts(expr),
     },
     {
       '<Cr>',
-      function()
-        if vim.fn.pumvisible() == 1 then
-          return '<C-y>'
-        end
-
-        return '<Cr>'
-      end,
+      select_func('<Cr>'),
       opts(expr),
     },
   })
