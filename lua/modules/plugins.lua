@@ -37,7 +37,7 @@ end
 
 package({
   'nvimdev/lspsaga.nvim',
-  config = setup('lspsaga'),
+  config = require('modules.conf.lspsaga'),
 })
 
 package({
