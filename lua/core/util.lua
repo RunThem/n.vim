@@ -3,7 +3,6 @@
 -- License: MIT
 
 local util = {}
-local opts = {}
 
 --- Path
 local home_path = os.getenv('HOME')
@@ -36,7 +35,7 @@ function util.info(b)
     msg = tostring(b)
   end
 
-  vim.api.nvim_err_writeln(msg)
+  print(msg)
 end
 
 --- Api
@@ -65,116 +64,24 @@ function util.cur_line()
 end
 
 --- Keymap
-function opts:new(instance)
-  instance = instance
-    or {
-      options = {
-        silent = false,
-        nowait = false,
-        expr = false,
-        noremap = false,
-      },
-    }
-  setmetatable(instance, self)
-  self.__index = self
-  return instance
+local map = {}
+
+function map.cmd(c)
+  return '<cmd>' .. c .. '<Cr>'
 end
 
-function util.silent(opt)
-  return function()
-    opt.silent = true
-  end
-end
-
-function util.noremap(opt)
-  return function()
-    opt.noremap = true
-  end
-end
-
-function util.expr(opt)
-  return function()
-    opt.expr = true
-  end
-end
-
-function util.remap(opt)
-  return function()
-    opt.remap = true
-  end
-end
-
-function util.nowait(opt)
-  return function()
-    opt.nowait = true
-  end
-end
-
-function util.new_opts(...)
-  local args = { ... }
-  local o = opts:new()
-
-  if #args == 0 then
-    return o.options
-  end
-
-  for _, arg in pairs(args) do
-    if type(arg) == 'string' then
-      o.options.desc = arg
+for _, m in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
+  map[m] = function(key, expr, opt)
+    if opt == nil then
+      opt = { noremap = true, nowait = true, silent = true }
     else
-      arg(o.options)()
+      vim.validate({ opt = { opt, 'table' } })
     end
-  end
-  return o.options
-end
 
-function util.cmd(str)
-  return '<cmd>' .. str .. '<CR>'
-end
-
--- visual
-function util.cu(str)
-  return '<C-u><cmd>' .. str .. '<CR>'
-end
-
---@private
-local keymap_set = function(mode, tbl)
-  vim.validate({
-    tbl = { tbl, 'table' },
-  })
-  local len = #tbl
-  if len < 2 then
-    vim.notify('keymap must has rhs')
-    return
-  end
-
-  local options = len == 3 and tbl[3] or util.new_opts()
-
-  vim.keymap.set(mode, tbl[1], tbl[2], options)
-end
-
-local function map(mod)
-  return function(tbl)
-    vim.validate({
-      tbl = { tbl, 'table' },
-    })
-
-    if type(tbl[1]) == 'table' and type(tbl[2]) == 'table' then
-      for _, v in pairs(tbl) do
-        keymap_set(mod, v)
-      end
-    else
-      keymap_set(mod, tbl)
-    end
+    vim.keymap.set(m, key, expr, opt)
   end
 end
 
-util.nmap = map('n')
-util.imap = map('i')
-util.cmap = map('c')
-util.vmap = map('v')
-util.xmap = map('x')
-util.tmap = map('t')
-util.smap = map('s')
+util.map = map
 
 return util
