@@ -38,4 +38,6 @@ end, { expr = true })
 map.t('<Esc>', [[<C-\><C-n>]])
 
 -- dev
-map.n('<Leader>d', cmd('lua require("dev").setup()'))
+map.n('<Leader>d', function()
+  require('dev').setup()
+end)
