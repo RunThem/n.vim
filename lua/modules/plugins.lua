@@ -9,7 +9,12 @@ local setup = require('core.pack').setup
 package({
   -- 'glepnir/zephyr-nvim',
   'glepnir/porcelain.nvim',
-  config = require('modules.conf.hl'),
+  config = function()
+    -- vim.cmd('colorscheme zephyr')
+    vim.cmd('colorscheme porcelain')
+
+    require('modules.conf.hl')()
+  end,
 })
 
 package({

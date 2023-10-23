@@ -1,9 +1,6 @@
 return function()
   local hl = vim.api.nvim_set_hl
 
-  -- vim.cmd('colorscheme porcelain')
-  vim.cmd('colorscheme zephyr')
-
   local groups = {
     'Normal',
     'NormalFloat',
