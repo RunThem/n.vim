@@ -5,6 +5,25 @@
 local package = require('core.pack').package
 local setup = require('core.pack').setup
 
+--- ui
+package({
+  -- 'glepnir/zephyr-nvim',
+  'glepnir/porcelain.nvim',
+  config = require('modules.conf.hl'),
+})
+
+package({
+  'mvllow/modes.nvim',
+  config = setup('modes'),
+})
+
+package({
+  'RunThem/whiskyline.nvim',
+  config = setup('whiskyline'),
+  dependencies = { 'kyazdani42/nvim-web-devicons' },
+})
+
+--- lsp
 package({
   'neovim/nvim-lspconfig',
   config = require('modules.conf.lsp'),
@@ -41,16 +60,17 @@ package({
 })
 
 package({
-  'nvimdev/coman.nvim',
-})
-
-package({
   'nvimdev/guard.nvim',
   ft = { 'c', 'cpp', 'rust', 'lua', 'go' },
   config = require('modules.conf.guard'),
   dependencies = {
     'nvimdev/guard-collection',
   },
+})
+
+--- tool
+package({
+  'nvimdev/coman.nvim',
 })
 
 package({
@@ -64,30 +84,11 @@ package({
 })
 
 package({
-  'mvllow/modes.nvim',
-  config = setup('modes'),
-})
+  -- 'RunThem/fzy.nvim',
+  -- dir = '/home/iccy/Code/i_lua/fzy.nvim/',
 
-package({
-  'glepnir/zephyr-nvim',
-  -- 'glepnir/porcelain.nvim',
-  config = require('modules.conf.hl'),
-})
-
-package({
-  'RunThem/whiskyline.nvim',
-  config = setup('whiskyline'),
-  dependencies = { 'kyazdani42/nvim-web-devicons' },
-})
-
-package({
   'mfussenegger/nvim-fzy',
 })
-
--- package({
---   'RunThem/fzy.nvim',
---   dir = '/home/iccy/Code/i_lua/fzy.nvim/',
--- })
 
 package({
   'windwp/nvim-autopairs',
