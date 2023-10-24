@@ -95,7 +95,9 @@ return function()
     virtual_text = false,
   })
 
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local epo = require('epo')
+  local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), epo.register_cap())
+
   local on_attach = function(client, bufnr)
     -- client.server_capabilities.semanticTokensProvider = nil
     -- vim.lsp.auto_complete(client, bufnr)

@@ -38,7 +38,9 @@ if _G.epo == true then
   package({
     'nvimdev/epo.nvim',
     config = function()
-      require('epo').setup({})
+      require('epo').setup({
+        signature = true,
+      })
     end,
   })
 else
