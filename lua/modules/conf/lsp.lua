@@ -24,7 +24,7 @@ return function()
             library = vim.api.nvim_get_runtime_file('', true),
             checkThirdParty = false,
           },
-          completion = { keywordSnippet = 'Disable' },
+          completion = { keywordSnippet = 'Disable', callSnippet = 'Replace' },
         },
       },
     },
@@ -42,7 +42,7 @@ return function()
         textDocument = {
           completion = {
             completionItem = {
-              snippetSupport = false,
+              snippetSupport = true,
             },
           },
         },
