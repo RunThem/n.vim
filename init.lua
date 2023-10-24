@@ -16,7 +16,21 @@ _G.epo = true
 require('core')
 
 --[[ mini debug config
-vim.opt.rtp:append('~/.config/nvim/xxx')
+vim.opt.rtp:append('~/.local/share/nvim/lazy/nvim-lspconfig')
+vim.opt.rtp:append('~/.local/share/nvim/lazy/epo.nvim')
 
-require('xxx').setup()
+vim.opt.completeopt = 'menu,menuone,noselect'
+
+local epo = require('epo')
+local lspconfig = require('lspconfig')
+
+epo.setup({
+  signature = false,
+})
+
+lspconfig['lua_ls'].setup({
+  capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), epo.register_cap()),
+  on_attach = function(_, _) end,
+})
+
 --]]
