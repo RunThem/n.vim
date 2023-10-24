@@ -31,8 +31,8 @@ g.loaded_netrwFileHandlers = 1
 g.mapleader = ' '
 
 -- leaderkey
-api.nvim_set_keymap('n', ' ', '', { noremap = true })
-api.nvim_set_keymap('x', ' ', '', { noremap = true })
+api.nvim_set_keymap('n', ' ', '', { noremap = true, nowait = true, silent = true })
+api.nvim_set_keymap('x', ' ', '', { noremap = true, nowait = true, silent = true })
 
 require('core.opt')
 require('core.key')

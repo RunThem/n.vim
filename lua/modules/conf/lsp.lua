@@ -1,5 +1,6 @@
 return function()
   local lspconfig = require('lspconfig')
+
   local lsp_conf = {
     bashls = {},
     zls = {},
@@ -102,8 +103,6 @@ return function()
   }
 
   for lsp, conf in pairs(lsp_conf) do
-    local extended_opts = vim.tbl_deep_extend('force', def_conf, conf)
-
-    lspconfig[lsp].setup(extended_opts)
+    lspconfig[lsp].setup(vim.tbl_deep_extend('force', def_conf, conf))
   end
 end
