@@ -6,7 +6,7 @@ local util = require('core.util')
 local map = util.map
 local cmd = map.cmd
 
--- lspsaga
+--- lspsaga
 map.n('K', cmd('Lspsaga hover_doc'))
 map.n('gr', cmd('Lspsaga rename'))
 map.n('gh', cmd('Lspsaga finder'))
@@ -20,18 +20,18 @@ map.n('go', cmd('Lspsaga outline'))
 map.n('--', cmd('Lspsaga term_toggle'))
 map.t('--', cmd('Lspsaga term_toggle'))
 
--- coman
+--- coman
 map.n('gcc', cmd('ComComment'))
 map.n('gcj', cmd('ComAnnotation'))
 map.x('gcc', ':ComComment<Cr>')
 
--- flybuf
+--- flybuf
 map.n('gb', cmd('FlyBuf'))
 
--- guard
+--- guard
 map.n('==', cmd('GuardFmt'))
 
--- fzy
+--- fzy
 map.n('<leader>ff', function()
   local fzy = require('fzy')
   fzy.execute('fd', fzy.sinks.edit_file)
@@ -42,53 +42,39 @@ map.n('<leader>fa', function()
   fzy.execute('rg --no-heading --trim -nH .', fzy.sinks.edit_live_grep)
 end)
 
--- complete
-if _G.epo == true then
-  map.i('<Tab>', function()
-    if vim.fn.pumvisible() == 1 then
-      local selected = vim.fn.complete_info({ 'selected' }).selected
-      if selected ~= -1 then
-        return '<C-y>'
-      end
-
-      return '<C-n><C-y>'
-    elseif vim.snippet.jumpable(1) then
-      return '<cmd>lua vim.snippet.jump(1)<Cr>'
+--- epo
+map.i('<Tab>', function()
+  if vim.fn.pumvisible() == 1 then
+    local selected = vim.fn.complete_info({ 'selected' }).selected
+    if selected ~= -1 then
+      return '<C-y>'
     end
 
-    return '<Tab>'
-  end, { expr = true })
+    return '<C-n><C-y>'
+  elseif vim.snippet.jumpable(1) then
+    return '<cmd>lua vim.snippet.jump(1)<Cr>'
+  end
 
-  map.i('<S-Tab>', function()
-    if vim.snippet.jumpable(-1) then
-      return '<cmd>lua vim.snippet.jump(-1)<Cr>'
+  return '<Tab>'
+end, { expr = true })
+
+map.i('<S-Tab>', function()
+  if vim.snippet.jumpable(-1) then
+    return '<cmd>lua vim.snippet.jump(-1)<Cr>'
+  end
+
+  return '<S-Tab>'
+end, { expr = true })
+
+map.i('<Cr>', function()
+  if vim.fn.pumvisible() == 1 then
+    local selected = vim.fn.complete_info({ 'selected' }).selected
+    if selected ~= -1 then
+      return '<C-y>'
     end
 
-    return '<S-Tab>'
-  end, { expr = true })
+    return '<C-n><C-y>'
+  end
 
-  map.i('<Cr>', function()
-    if vim.fn.pumvisible() == 1 then
-      local selected = vim.fn.complete_info({ 'selected' }).selected
-      if selected ~= -1 then
-        return '<C-y>'
-      end
-
-      return '<C-n><C-y>'
-    end
-
-    return '<Cr>'
-  end, { expr = true })
-else
-  map.i('<C-x>', function()
-    local cmp = require('cmp')
-
-    cmp.complete({
-      config = {
-        sources = {
-          { name = 'snippy', group_index = 1 },
-        },
-      },
-    })
-  end)
-end
+  return '<Cr>'
+end, { expr = true })

@@ -41,6 +41,17 @@ api.nvim_create_autocmd({ 'TextYankPost' }, {
   end,
 })
 
+-- disable default syntax in these file.
+-- when file is larged ,load regex syntax
+-- highlight will cause very slow
+api.nvim_create_autocmd({ 'Filetype' }, {
+  group = n_vim_group,
+  pattern = '*.c,*.cpp,*.lua,*.go,*.rs,*.py,*.ts,*.tsx',
+  callback = function()
+    vim.cmd('syntax off')
+  end,
+})
+
 if vim.fn.executable('fcitx-remote') == 1 then
   api.nvim_create_autocmd({ 'InsertLeave' }, {
     group = n_vim_group,
@@ -53,51 +64,6 @@ if vim.fn.executable('fcitx-remote') == 1 then
     group = n_vim_group,
     callback = function()
       os.execute('fcitx-remote -c')
-    end,
-  })
-end
-
--- disable default syntax in these file.
--- when file is larged ,load regex syntax
--- highlight will cause very slow
-api.nvim_create_autocmd({ 'Filetype' }, {
-  group = n_vim_group,
-  pattern = '*.c,*.cpp,*.lua,*.go,*.rs,*.py,*.ts,*.tsx',
-  callback = function()
-    vim.cmd('syntax off')
-  end,
-})
-
-if _G.epo ~= true then
-  api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-    group = n_vim_group,
-    pattern = vim.env.HOME .. '/.config/nvim/*.lua',
-    callback = function()
-      local cmp = require('cmp')
-
-      cmp.setup.buffer({
-        sources = {
-          { name = 'nvim_lsp' },
-          { name = 'nvim_lua' },
-          { name = 'path' },
-        },
-      })
-    end,
-  })
-
-  api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-    group = n_vim_group,
-    pattern = 'xmake.lua',
-    callback = function()
-      local cmp = require('cmp')
-
-      cmp.setup.buffer({
-        sources = {
-          { name = 'nvim_lsp' },
-          { name = 'xmake' },
-          { name = 'path' },
-        },
-      })
     end,
   })
 end

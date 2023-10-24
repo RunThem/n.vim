@@ -11,8 +11,6 @@ Maintainer: RunThem
 Website: https://github.com/RunThem/n.vim.git
 --]]
 
-_G.epo = true
-
 require('core')
 
 --[[ mini debug config
