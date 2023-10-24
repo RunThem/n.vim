@@ -38,15 +38,6 @@ return function()
         '--header-insertion=never',
         '--compile-commands-dir=build/lsp',
       },
-      capabilities = {
-        textDocument = {
-          completion = {
-            completionItem = {
-              snippetSupport = true,
-            },
-          },
-        },
-      },
     },
     -- ccls = {
     --   cmd = { 'ccls' },
@@ -95,17 +86,15 @@ return function()
     virtual_text = false,
   })
 
-  local epo = require('epo')
-  local capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), epo.register_cap())
-
-  local on_attach = function(client, bufnr)
-    -- client.server_capabilities.semanticTokensProvider = nil
-    -- vim.lsp.auto_complete(client, bufnr)
-  end
-
   local def_conf = {
-    capabilities = capabilities,
-    on_attach = on_attach,
+    capabilities = vim.tbl_deep_extend(
+      'force',
+      vim.lsp.protocol.make_client_capabilities(),
+      require('epo').register_cap()
+    ),
+
+    on_attach = function(client, bufnr) end,
+
     init_options = {
       usePlaceholders = true,
       completeUnimported = true,

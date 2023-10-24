@@ -44,23 +44,41 @@ end)
 
 -- complete
 if _G.epo == true then
-  local select_func = function(key)
-    return function()
-      if vim.fn.pumvisible() == 1 then
-        local selected = vim.fn.complete_info({ 'selected' }).selected
-        if selected == -1 then
-          return '<C-n><C-y>'
-        end
-
+  map.i('<Tab>', function()
+    if vim.fn.pumvisible() == 1 then
+      local selected = vim.fn.complete_info({ 'selected' }).selected
+      if selected ~= -1 then
         return '<C-y>'
       end
 
-      return key
+      return '<C-n><C-y>'
+    elseif vim.snippet.jumpable(1) then
+      return '<cmd>lua vim.snippet.jump(1)<Cr>'
     end
-  end
 
-  map.i('<Tab>', select_func('<Tab>'), { expr = true })
-  map.i('<Cr>', select_func('<Cr>'), { expr = true })
+    return '<Tab>'
+  end, { expr = true })
+
+  map.i('<S-Tab>', function()
+    if vim.snippet.jumpable(-1) then
+      return '<cmd>lua vim.snippet.jump(-1)<Cr>'
+    end
+
+    return '<S-Tab>'
+  end, { expr = true })
+
+  map.i('<Cr>', function()
+    if vim.fn.pumvisible() == 1 then
+      local selected = vim.fn.complete_info({ 'selected' }).selected
+      if selected ~= -1 then
+        return '<C-y>'
+      end
+
+      return '<C-n><C-y>'
+    end
+
+    return '<Cr>'
+  end, { expr = true })
 else
   map.i('<C-x>', function()
     local cmp = require('cmp')
