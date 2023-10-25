@@ -36,7 +36,7 @@ package({
 
 package({
   'nvimdev/epo.nvim',
-  config = setup('epo'),
+  config = require('modules.conf.epo'),
 })
 
 package({
