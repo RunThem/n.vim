@@ -1,5 +1,9 @@
 return function()
   local epo = require('epo')
 
-  epo.setup({ signature = false })
+  epo.setup({
+    fuzzy = true,
+    debounce = 50,
+    signature = false,
+  })
 end
