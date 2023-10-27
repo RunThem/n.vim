@@ -76,5 +76,12 @@ map.i('<Cr>', function()
     return '<C-n><C-y>'
   end
 
+  local col = util.col()
+  local s, e = util.cur_line():find('{%s*}')
+
+  if s ~= nil and col >= s and col <= e then
+    return '<Cr><Esc><Up>a<Cr>'
+  end
+
   return '<Cr>'
 end, { expr = true })
