@@ -43,6 +43,8 @@ map.n('<leader>fa', function()
 end)
 
 --- epo
+map.i('<C-f>', '<C-x><C-f><C-n>')
+
 map.i('<C-e>', function()
   return vim.fn.pumvisible() == 1 and '<C-e>' or '<Esc>g_a'
 end, { expr = true })
