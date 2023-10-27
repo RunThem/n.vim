@@ -84,7 +84,7 @@ map.i('<Cr>', function()
   local s, e = util.cline():find('{%s*}')
 
   if s ~= nil and col >= s and col <= e then
-    return '<Cr><Esc><Up>a<Cr>'
+    return '<Cr><Esc><Up>o'
   end
 
   return '<Cr>'
