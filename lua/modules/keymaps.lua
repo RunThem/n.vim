@@ -43,6 +43,10 @@ map.n('<leader>fa', function()
 end)
 
 --- epo
+map.i('<C-e>', function()
+  return vim.fn.pumvisible() == 1 and '<C-e>' or '<Esc>g_a'
+end, { expr = true })
+
 map.i('<Tab>', function()
   if vim.fn.pumvisible() == 1 then
     local selected = vim.fn.complete_info({ 'selected' }).selected
@@ -52,7 +56,7 @@ map.i('<Tab>', function()
 
     return '<C-n><C-y>'
   elseif vim.snippet.jumpable(1) then
-    return '<cmd>lua vim.snippet.jump(1)<Cr>'
+    return cmd('lua vim.snippet.jump(1)')
   end
 
   return '<Tab>'
@@ -60,7 +64,7 @@ end, { expr = true })
 
 map.i('<S-Tab>', function()
   if vim.snippet.jumpable(-1) then
-    return '<cmd>lua vim.snippet.jump(-1)<Cr>'
+    return cmd('lua vim.snippet.jump(-1)')
   end
 
   return '<S-Tab>'
@@ -77,7 +81,7 @@ map.i('<Cr>', function()
   end
 
   local col = util.col()
-  local s, e = util.cur_line():find('{%s*}')
+  local s, e = util.cline():find('{%s*}')
 
   if s ~= nil and col >= s and col <= e then
     return '<Cr><Esc><Up>a<Cr>'
