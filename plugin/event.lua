@@ -1,40 +1,32 @@
-local api = vim.api
-local n_vim_group = vim.api.nvim_create_augroup('N_VimGroup', {})
-
-api.nvim_create_autocmd({ 'BufWritePre' }, {
-  group = n_vim_group,
+_G.autocmd({ 'BufWritePre' }, {
   pattern = { '/tmp/*', 'COMMIT_EDITMSG', 'MERGE_MSG', '*.tmp', '*.bak' },
   callback = function()
     vim.opt_local.undofile = false
   end,
 })
 
-api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-  group = n_vim_group,
+_G.autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.conf',
   callback = function()
     api.nvim_buf_set_option(0, 'filetype', 'conf')
   end,
 })
 
-api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-  group = n_vim_group,
+_G.autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.v',
   callback = function()
     api.nvim_buf_set_option(0, 'filetype', 'v')
   end,
 })
 
-api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-  group = n_vim_group,
+_G.autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.li',
   callback = function()
     api.nvim_buf_set_option(0, 'filetype', 'little')
   end,
 })
 
-api.nvim_create_autocmd({ 'TextYankPost' }, {
-  group = n_vim_group,
+_G.autocmd({ 'TextYankPost' }, {
   pattern = '*',
   callback = function()
     vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 400 })
@@ -44,8 +36,7 @@ api.nvim_create_autocmd({ 'TextYankPost' }, {
 -- disable default syntax in these file.
 -- when file is larged ,load regex syntax
 -- highlight will cause very slow
-api.nvim_create_autocmd({ 'Filetype' }, {
-  group = n_vim_group,
+_G.autocmd({ 'Filetype' }, {
   pattern = '*.c,*.cpp,*.lua,*.go,*.rs,*.py,*.ts,*.tsx',
   callback = function()
     vim.cmd('syntax off')
@@ -53,15 +44,13 @@ api.nvim_create_autocmd({ 'Filetype' }, {
 })
 
 if vim.fn.executable('fcitx-remote') == 1 then
-  api.nvim_create_autocmd({ 'InsertLeave' }, {
-    group = n_vim_group,
+  _G.autocmd({ 'InsertLeave' }, {
     callback = function()
       os.execute('fcitx-remote -c')
     end,
   })
 
-  api.nvim_create_autocmd({ 'InsertEnter' }, {
-    group = n_vim_group,
+  _G.autocmd({ 'InsertEnter' }, {
     callback = function()
       os.execute('fcitx-remote -c')
     end,
