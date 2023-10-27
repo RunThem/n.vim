@@ -59,8 +59,45 @@ function util.line(line)
   return vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
 end
 
-function util.cur_line()
+function util.cline()
   return vim.api.nvim_get_current_line()
+end
+
+function util.bufnr()
+  return vim.api.nvim_get_current_buf()
+end
+
+function util.write(coord, msg)
+  local bufnr = util.bufnr()
+
+  if type(coord) ~= 'table' then
+    return
+  end
+
+  local s_row, s_col, e_row, e_col
+  if #coord == 2 then
+    s_row, s_col, e_row, e_col = coord[1] - 1, coord[2], coord[1] - 1, coord[2]
+  elseif #coord == 4 then
+    s_row, s_col, e_row, e_col = coord[1] - 1, coord[2], coord[3] - 1, coord[4]
+  end
+
+  if type(msg) == 'string' then
+    msg = { msg }
+  end
+
+  vim.api.nvim_buf_set_text(bufnr, s_row, s_col, e_row, e_col, msg)
+end
+
+function util.cwrite(msg)
+  local bufnr = util.bufnr()
+  local row = util.row() - 1
+  local col = util.col()
+
+  if type(msg) == 'string' then
+    msg = { msg }
+  end
+
+  vim.api.nvim_buf_set_text(bufnr, row, col, row, col, msg)
 end
 
 --- Keymap

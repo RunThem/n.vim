@@ -11,7 +11,7 @@ local api = vim.api
 map.n('<C-j>', '3j')
 map.n('<C-k>', '3k')
 map.n('0', function()
-  local head = (util.cur_line():find('[^%s]') or 1) - 1
+  local head = (util.cline():find('[^%s]') or 1) - 1
   return util.col() == head and '0' or '^'
 end, { expr = true })
 
@@ -40,4 +40,9 @@ map.t('<Esc>', [[<C-\><C-n>]])
 -- dev
 map.n('<Leader>d', function()
   require('dev').setup()
+end)
+
+map.n('<Leader>S', cmd('e ' .. util.conf_path() .. '/lua/script.lua'))
+map.n('<Leader>s', function()
+  require('dev').script()
 end)
