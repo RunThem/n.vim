@@ -22,13 +22,10 @@ vim.opt.completeopt = 'menu,menuone,noselect'
 local epo = require('epo')
 local lspconfig = require('lspconfig')
 
-epo.setup({
-  signature = false,
-})
+epo.setup({})
+lspconfig['lua_ls'].setup({})
 
-lspconfig['lua_ls'].setup({
-  capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), epo.register_cap()),
-  on_attach = function(_, _) end,
-})
-
+vim.keymap.set('i', '<c-e>', function()
+  return vim.fn.pumvisible() == 1 and '<Esc>g_a' or '<C-e>'
+end, { expr = true })
 --]]
