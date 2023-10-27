@@ -7,7 +7,7 @@ local map = util.map
 local cmd = map.cmd
 local api = vim.api
 
--- noremap remap
+--- noremap remap
 map.n('<C-j>', '3j')
 map.n('<C-k>', '3k')
 map.n('0', function()
@@ -15,7 +15,7 @@ map.n('0', function()
   return util.col() == head and '0' or '^'
 end, { expr = true })
 
--- insertmode remap
+--- insertmode remap
 map.i('**', function()
   local ft = vim.bo.filetype
   if ft == 'c' or ft == 'cpp' or ft == 'go' then
@@ -34,10 +34,27 @@ map.i(';;', function()
   return ';;'
 end, { expr = true })
 
--- terminal remap
+map.i('<C-f>', '<C-x><C-f>')
+
+_G.autocmd({ 'CompleteDone' }, {
+  pattern = '*',
+  callback = function()
+    local u = require('core.util')
+
+    local col = u.col()
+    print(u.cline() .. '<>' .. u.cline():sub(col, col))
+
+    if u.cline():sub(col, col) == '/' then
+      local key = vim.api.nvim_replace_termcodes('<C-x><C-f>', true, false, true)
+      vim.api.nvim_feedkeys(key, 'i', true)
+    end
+  end,
+})
+
+--- terminal remap
 map.t('<Esc>', [[<C-\><C-n>]])
 
--- dev
+--- dev
 map.n('<Leader>d', function()
   require('dev').setup()
 end)
