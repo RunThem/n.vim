@@ -37,7 +37,9 @@ package({
 package({
   -- 'nvimdev/epo.nvim',
   'RunThem/epo.nvim',
+  -- dir = '/home/iccy/.config/nvim/epo.nvim/',
   config = require('modules.conf.epo'),
+  dependencies = { 'onsails/lspkind-nvim' },
 })
 
 package({
