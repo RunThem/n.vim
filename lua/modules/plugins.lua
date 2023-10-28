@@ -35,7 +35,8 @@ package({
 })
 
 package({
-  'nvimdev/epo.nvim',
+  -- 'nvimdev/epo.nvim',
+  'RunThem/epo.nvim',
   config = require('modules.conf.epo'),
 })
 
@@ -48,9 +49,7 @@ package({
   'nvimdev/guard.nvim',
   ft = { 'c', 'cpp', 'rust', 'lua', 'go' },
   config = require('modules.conf.guard'),
-  dependencies = {
-    'nvimdev/guard-collection',
-  },
+  dependencies = { 'nvimdev/guard-collection' },
 })
 
 --- tool
