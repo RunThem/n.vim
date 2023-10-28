@@ -42,8 +42,6 @@ _G.autocmd({ 'CompleteDone' }, {
     local u = require('core.util')
 
     local col = u.col()
-    print(u.cline() .. '<>' .. u.cline():sub(col, col))
-
     if u.cline():sub(col, col) == '/' then
       local key = vim.api.nvim_replace_termcodes('<C-x><C-f>', true, false, true)
       vim.api.nvim_feedkeys(key, 'i', true)
