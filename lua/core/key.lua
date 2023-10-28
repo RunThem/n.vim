@@ -59,7 +59,14 @@ map.n('<Leader>d', function()
   require('dev').setup()
 end)
 
-map.n('<Leader>S', cmd('e ' .. util.conf_path() .. '/lua/script.lua'))
+--- script
+local path = util.conf_path() .. '/lua/script.lua'
+map.n('<Leader>S', cmd('e ' .. path))
 map.n('<Leader>s', function()
-  require('dev').script()
+  local cmd = io.popen(path)
+  local out = cmd:read('*l')
+
+  cmd:close()
+
+  util.cwrite(out)
 end)
