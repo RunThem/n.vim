@@ -1,3 +1,5 @@
+local api = vim.api
+
 _G.autocmd({ 'BufWritePre' }, {
   pattern = { '/tmp/*', 'COMMIT_EDITMSG', 'MERGE_MSG', '*.tmp', '*.bak' },
   callback = function()
