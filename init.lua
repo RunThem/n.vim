@@ -6,7 +6,7 @@
   ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
   ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
 Neovim init file
-Version: 1.0.0 - 2023/10/30
+Version: 1.0.1 - 2023/11/02
 Maintainer: RunThem
 Website: https://github.com/RunThem/n.vim.git
 --]]
@@ -14,6 +14,7 @@ Website: https://github.com/RunThem/n.vim.git
 require('core')
 
 --[[ mini debug config
+
 vim.opt.rtp:append('~/.local/share/nvim/lazy/nvim-lspconfig')
 vim.opt.rtp:append('~/.local/share/nvim/lazy/epo.nvim')
 
@@ -25,7 +26,4 @@ local lspconfig = require('lspconfig')
 epo.setup({})
 lspconfig['lua_ls'].setup({})
 
-vim.keymap.set('i', '<c-e>', function()
-  return vim.fn.pumvisible() == 1 and '<Esc>g_a' or '<C-e>'
-end, { expr = true })
 --]]

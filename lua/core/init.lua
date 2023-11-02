@@ -7,9 +7,10 @@ local g, api = vim.g, vim.api
 _G.author = io.popen('git config user.name'):read('*l')
 _G.email = io.popen('git config user.email'):read('*l')
 
-_G.group = api.nvim_create_augroup('N_Vim', {})
+_G.group = vim.api.nvim_create_augroup('N_Vim', {})
 _G.autocmd = function(event, opt)
-  api.nvim_create_autocmd(event, vim.tbl_deep_extend('force', { group = _G.group }, opt))
+  opt = vim.tbl_deep_extend('force', { group = _G.group }, opt)
+  vim.api.nvim_create_autocmd(event, opt)
 end
 
 -- disable_distribution_plugins
