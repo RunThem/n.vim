@@ -21,14 +21,6 @@ return function()
     hl(0, group, {})
   end
 
-  -- stylua: ignore start
-  hl(0, 'LineNr',                   { fg = '#61afaf' })
-  hl(0, 'CursorLineNr',             { fg = '#f8ab17' })
-  hl(0, 'VertSplit',                { fg = '#c98afa' })
-  hl(0, 'Comment',                  { fg = '#6a8ad9' })
-  hl(0, 'PmenuSel',                 { bg = '#65CDD9', fg = '#000000' })
-  hl(0, 'Pmenu',                    { fg = '#C5CDD9', bg = '#000000' })
-
   local links = {
     ['@lsp.type.namespace'] = '@namespace',
     ['@lsp.type.type'] = '@type',
@@ -47,6 +39,15 @@ return function()
   }
 
   for newgroup, oldgroup in pairs(links) do
-    vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
+    hl(0, newgroup, { link = oldgroup, default = true })
   end
+
+  -- stylua: ignore start
+  hl(0, 'LineNr',                   { fg = '#61afaf' })
+  hl(0, 'CursorLineNr',             { fg = '#f8ab17' })
+  hl(0, 'VertSplit',                { fg = '#c98afa' })
+  hl(0, 'Comment',                  { fg = '#6a8ad9' })
+  hl(0, 'PmenuSel',                 { fg = '#000000', bg = '#65CDD9' })
+  hl(0, 'Pmenu',                    { fg = '#C5CDD9', bg = '#000000' })
+  -- stylua: ignore end
 end
