@@ -18,6 +18,11 @@ package({
 })
 
 package({
+  'nvim-treesitter/nvim-treesitter',
+  config = require('modules.conf.ts'),
+})
+
+package({
   'mvllow/modes.nvim',
   config = setup('modes'),
 })
