@@ -59,7 +59,13 @@ _G.autocmd({ 'CompleteDone' }, {
 })
 
 map.i('<C-e>', function()
-  return vim.fn.pumvisible() == 1 and '<C-e>' or '<End>'
+  if vim.fn.pumvisible() == 1 then
+    require('epo').disable_trigger()
+
+    return '<C-e>'
+  end
+
+  return '<Esc>g_a'
 end, { expr = true })
 
 map.i('<Tab>', function()

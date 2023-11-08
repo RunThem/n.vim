@@ -5,14 +5,35 @@ return function()
     signature = false,
   })
 
-  require('lspkind').init({
-    mode = 'symbol',
-    preset = 'codicons',
+  symbols = {
+    '󰉿',
+    '',
+    '󰊕',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+  }
 
-    symbol_map = {
-      Text = '󰉿',
-      Function = '󰊕',
-      Constructor = '',
-    },
-  })
+  for i, v in ipairs(symbols) do
+    vim.lsp.protocol.CompletionItemKind[i] = v
+  end
 end
