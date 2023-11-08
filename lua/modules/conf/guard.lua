@@ -7,7 +7,7 @@ return function()
   ft('rust'):fmt('rustfmt')
 
   ft('json'):fmt({
-    cmd = 'jsonfmt',
+    cmd = 'json-fmt',
   })
 
   ft('go'):fmt({
