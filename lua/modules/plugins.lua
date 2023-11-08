@@ -53,7 +53,7 @@ package({
 
 package({
   'nvimdev/guard.nvim',
-  ft = { 'c', 'cpp', 'rust', 'lua', 'go' },
+  ft = { 'c', 'cpp', 'rust', 'lua', 'go', 'json' },
   config = require('modules.conf.guard'),
   dependencies = { 'nvimdev/guard-collection' },
 })
