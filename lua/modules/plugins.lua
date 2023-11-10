@@ -29,9 +29,8 @@ package({
 
 package({
   'RunThem/whiskyline.nvim',
-  commit = '0d67c8409c8739c7aa7cbe94a6bed11866ab45fc',
   config = setup('whiskyline'),
-  dependencies = { 'kyazdani42/nvim-web-devicons' },
+  dependencies = { 'glepnir/porcelain.nvim', 'kyazdani42/nvim-web-devicons' },
 })
 
 --- lsp
