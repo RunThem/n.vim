@@ -15,15 +15,19 @@ require('core')
 
 --[[ mini debug config
 
+vim.opt.rtp:append('~/.local/share/nvim/lazy/porcelain.nvim')
 vim.opt.rtp:append('~/.local/share/nvim/lazy/nvim-lspconfig')
-vim.opt.rtp:append('~/.local/share/nvim/lazy/epo.nvim')
+vim.opt.rtp:append('~/.local/share/nvim/lazy/nvim-web-devicons')
+-- vim.opt.rtp:append('~/.local/share/nvim/whiskyline.nvim')
 
-vim.opt.completeopt = 'menu,menuone,noselect'
+vim.opt.rtp:append('~/.config/nvim/whiskyline.nvim')
 
-local epo = require('epo')
+local whiskyline = require('whiskyline')
 local lspconfig = require('lspconfig')
 
-epo.setup({})
+vim.cmd('colorscheme porcelain')
+
 lspconfig['lua_ls'].setup({})
+whiskyline.setup()
 
 --]]
