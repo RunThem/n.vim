@@ -5,5 +5,9 @@ return function()
     symbol_in_winbar = {
       enable = false,
     },
+    outline = {
+      win_width = 70,
+      close_after_jump = true,
+    }
   })
 end
