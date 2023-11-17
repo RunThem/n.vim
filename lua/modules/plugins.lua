@@ -33,6 +33,12 @@ package({
   dependencies = { 'glepnir/porcelain.nvim', 'kyazdani42/nvim-web-devicons' },
 })
 
+package({
+  'kevinhwang91/nvim-ufo',
+  config = require('modules.conf.ufo'),
+  dependencies = { 'kevinhwang91/promise-async' },
+})
+
 --- lsp
 package({
   'neovim/nvim-lspconfig',
