@@ -18,7 +18,8 @@ package({
 })
 
 package({
-  'nvim-treesitter/nvim-treesitter',
+  'kevinhwang91/nvim-treesitter',
+  build = ':TSUpdate',
   config = require('modules.conf.ts'),
 })
 
