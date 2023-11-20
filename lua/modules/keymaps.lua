@@ -32,15 +32,11 @@ map.n('gb', cmd('FlyBuf'))
 map.n('==', cmd('GuardFmt'))
 
 --- fzy
-map.n('<leader>ff', function()
-  local fzy = require('fzy')
-  fzy.execute('fd', fzy.sinks.edit_file)
-end)
-
-map.n('<leader>fa', function()
-  local fzy = require('fzy')
-  fzy.execute('rg --no-heading --trim -nH .', fzy.sinks.edit_live_grep)
-end)
+local azy = require('azy.builtins')
+map.n('<leader>ff', azy.files())
+map.n('<leader>fa', azy.files_contents())
+map.n('<leader>fc', azy.curbuf_content())
+map.n('<leader>fr', azy.lsp.references())
 
 -- complete
 map.i('<C-f>', '<C-x><C-f>')
