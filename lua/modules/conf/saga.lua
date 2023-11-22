@@ -8,6 +8,6 @@ return function()
     outline = {
       win_width = 70,
       close_after_jump = true,
-    }
+    },
   })
 end
