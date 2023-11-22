@@ -20,5 +20,7 @@ return function()
     args = { '--search-parent-directories', '-' },
   })
 
-  guard.setup({})
+  guard.setup({
+    fmt_on_save = false,
+  })
 end
