@@ -90,6 +90,11 @@ local function lsp_capabilities()
   local epo = require('epo')
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+  }
+
   return vim.tbl_deep_extend('force', capabilities, epo.register_cap())
 end
 

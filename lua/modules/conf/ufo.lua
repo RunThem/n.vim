@@ -1,4 +1,7 @@
 return function()
+  local ufo = require('ufo')
+  local promise = require('promise')
+
   -- vim.o.foldcolumn = '1' -- '0' is not bad
   -- vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
   -- vim.o.foldlevelstart = 99
@@ -30,14 +33,36 @@ return function()
       end
       curWidth = curWidth + chunkWidth
     end
+
     table.insert(newVirtText, { suffix, 'MoreMsg' })
+
     return newVirtText
   end
 
-  require('ufo').setup({
+  --- lsp -> treesitter -> indent
+  local selector = function(bufnr)
+    local function handle_err(err, providerNmae)
+      if type(err) == 'string' and err:match('UfoFallbackException') then
+        return ufo.getFolds(bufnr, providerNmae)
+      else
+        return promise.reject()
+      end
+    end
+
+    return ufo
+      .getFolds(bufnr, 'lsp')
+      :catch(function(err)
+        return handle_err(err, 'treesitter')
+      end)
+      :catch(function(err)
+        return handle_err(err, 'indent')
+      end)
+  end
+
+  ufo.setup({
     fold_virt_text_handler = handler,
     provider_selector = function(bufnr, filetype, buftype)
-      return { 'treesitter', 'indent' }
+      return selector
     end,
   })
 end
