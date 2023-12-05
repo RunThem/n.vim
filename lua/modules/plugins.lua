@@ -84,11 +84,7 @@ package({
   -- 'RunThem/fzy.nvim',
   -- dir = '/home/iccy/Code/i_lua/fzy.nvim/',
 
-  -- 'mfussenegger/nvim-fzy',
-
-  url = 'https://git.sr.ht/~vigoux/azy.nvim',
-  build = 'make lib',
-  config = setup('azy'),
+  'mfussenegger/nvim-fzy',
 })
 
 package({
