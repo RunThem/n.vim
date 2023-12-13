@@ -91,3 +91,8 @@ package({
   'windwp/nvim-autopairs',
   config = require('modules.conf.pairs'),
 })
+
+package({
+  'utilyre/sentiment.nvim',
+  config = setup('sentiment'),
+})

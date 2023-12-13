@@ -36,6 +36,8 @@ g.loaded_netrwFileHandlers = 1
 -- Use space as leader key
 g.mapleader = ' '
 
+vim.fn.setreg('f', ']]za')
+
 -- leaderkey
 api.nvim_set_keymap('n', ' ', '', { noremap = true, nowait = true, silent = true })
 api.nvim_set_keymap('x', ' ', '', { noremap = true, nowait = true, silent = true })
