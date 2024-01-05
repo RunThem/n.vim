@@ -2,7 +2,7 @@ local api, fn, w = vim.api, vim.fn, vim.w
 
 local function highlight_cursorword()
   if vim.g.cursorword_highlight ~= false then
-    vim.cmd('highlight CursorWord term=underline cterm=underline gui=underline')
+    vim.cmd('highlight CursorWord term=underline cterm=underline gui=underline guibg=NONE')
   end
 end
 

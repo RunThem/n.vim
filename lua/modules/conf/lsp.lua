@@ -1,8 +1,4 @@
 local lsp_conf = {
-  bashls = {},
-  zls = {},
-  vls = { cmd = { 'vls' } },
-
   gopls = {
     cmd = { 'gopls', '--remote=auto' },
     analyses = { unusedparams = true },

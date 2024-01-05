@@ -47,8 +47,8 @@ package({
 })
 
 package({
-  -- 'nvimdev/epo.nvim',
-  'RunThem/epo.nvim',
+  'nvimdev/epo.nvim',
+  -- 'RunThem/epo.nvim',
   -- dir = '/home/iccy/.config/nvim/epo.nvim/',
   config = require('modules.conf.epo'),
 })
@@ -81,10 +81,7 @@ package({
 })
 
 package({
-  -- 'RunThem/fzy.nvim',
-  -- dir = '/home/iccy/Code/i_lua/fzy.nvim/',
-
-  'mfussenegger/nvim-fzy',
+  'RunThem/fzy.nvim',
 })
 
 package({

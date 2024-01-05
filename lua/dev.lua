@@ -46,34 +46,25 @@ function M.setup()
   M.init()
 
   M._inbuf = M.create_buf()
-  M._outbuf = M.create_buf()
+  -- M._outbuf = M.create_buf()
 
-  M._inwin = M.create_win(M._inwin, M._inbuf, true, {
-    width = 30,
-    height = 1,
-    row = 20,
-    col = 0,
-    noautocmd = true,
-    focusable = false,
-  })
+  -- M._inwin = M.create_win(M._inwin, M._inbuf, true, {
+  --   width = 30,
+  --   height = 1,
+  --   row = 20,
+  --   col = 0,
+  --   noautocmd = true,
+  --   focusable = false,
+  -- })
 
-  M._outwin = M.create_win(M._outwin, M._outbuf, false, {
-    width = 30,
-    height = 5,
-    row = 21,
-    col = 0,
-    noautocmd = false,
-    focusable = true,
-  })
-
-  M.create_autocmd({ 'TextChanged', 'TextChangedI' }, {
-    buffer = M._inbuf,
-    callback = function()
-      local iline = u.cline()
-
-      vim.api.nvim_buf_set_lines(M._outbuf, 0, -1, true, { iline })
-    end,
-  })
+  -- M._outwin = M.create_win(M._outwin, M._outbuf, false, {
+  --   width = 30,
+  --   height = 5,
+  --   row = 21,
+  --   col = 0,
+  --   noautocmd = false,
+  --   focusable = true,
+  -- })
 end
 
 return M
