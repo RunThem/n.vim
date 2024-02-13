@@ -47,10 +47,19 @@ package({
 })
 
 package({
-  'nvimdev/epo.nvim',
-  -- 'RunThem/epo.nvim',
-  -- dir = '/home/iccy/.config/nvim/epo.nvim/',
-  config = require('modules.conf.epo'),
+  'hrsh7th/nvim-cmp',
+  config = require('modules.conf.cmp'),
+  dependencies = {
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer',
+    'dcampos/cmp-snippy',
+    'RunThem/cmp-xmake',
+
+    'dcampos/nvim-snippy',
+    'onsails/lspkind-nvim',
+  },
 })
 
 package({
