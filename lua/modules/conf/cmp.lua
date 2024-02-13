@@ -7,7 +7,6 @@ _G.autocmd({ 'BufRead', 'BufNewFile' }, {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'path' },
-        { name = 'buffer' },
         { name = 'snippy' },
         { name = 'nvim_lua' },
       },
@@ -24,7 +23,6 @@ _G.autocmd({ 'BufRead', 'BufNewFile' }, {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'path' },
-        { name = 'buffer' },
         { name = 'snippy' },
         { name = 'xmake' },
       },
