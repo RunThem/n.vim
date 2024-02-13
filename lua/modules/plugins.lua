@@ -2,11 +2,11 @@
 -- date: 2023-10-03
 -- License: MIT
 
-local package = require('core.pack').package
+local pkg = require('core.pack').pkg
 local setup = require('core.pack').setup
 
 --- ui
-package({
+pkg({
   -- 'glepnir/zephyr-nvim',
   'glepnir/porcelain.nvim',
   config = function()
@@ -17,36 +17,36 @@ package({
   end,
 })
 
-package({
+pkg({
   'kevinhwang91/nvim-treesitter',
   build = ':TSUpdate',
   config = require('modules.conf.ts'),
 })
 
-package({
+pkg({
   'mvllow/modes.nvim',
   config = setup('modes'),
 })
 
-package({
+pkg({
   'RunThem/whiskyline.nvim',
   config = setup('whiskyline'),
   dependencies = { 'glepnir/porcelain.nvim', 'kyazdani42/nvim-web-devicons' },
 })
 
-package({
+pkg({
   'kevinhwang91/nvim-ufo',
   config = require('modules.conf.ufo'),
   dependencies = { 'kevinhwang91/promise-async' },
 })
 
 --- lsp
-package({
+pkg({
   'neovim/nvim-lspconfig',
   config = require('modules.conf.lsp'),
 })
 
-package({
+pkg({
   'hrsh7th/nvim-cmp',
   config = require('modules.conf.cmp'),
   dependencies = {
@@ -61,12 +61,12 @@ package({
   },
 })
 
-package({
+pkg({
   'nvimdev/lspsaga.nvim',
   config = require('modules.conf.saga'),
 })
 
-package({
+pkg({
   'nvimdev/guard.nvim',
   ft = { 'c', 'cpp', 'rust', 'lua', 'go', 'json' },
   config = require('modules.conf.guard'),
@@ -74,30 +74,30 @@ package({
 })
 
 --- tool
-package({
+pkg({
   'nvimdev/coman.nvim',
 })
 
-package({
+pkg({
   'nvimdev/hlsearch.nvim',
   config = setup('hlsearch'),
 })
 
-package({
+pkg({
   'nvimdev/flybuf.nvim',
   config = setup('flybuf'),
 })
 
-package({
+pkg({
   'RunThem/fzy.nvim',
 })
 
-package({
+pkg({
   'windwp/nvim-autopairs',
   config = require('modules.conf.pairs'),
 })
 
-package({
+pkg({
   'utilyre/sentiment.nvim',
   config = setup('sentiment'),
 })

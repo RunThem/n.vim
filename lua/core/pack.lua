@@ -25,7 +25,7 @@ function pack:init()
   require('modules.keymaps')
 end
 
-function pack.package(repo)
+function pack.pkg(repo)
   if not pack.repos then
     pack.repos = {}
   end
