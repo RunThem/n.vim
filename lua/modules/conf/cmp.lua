@@ -1,5 +1,4 @@
 _G.autocmd({ 'BufRead', 'BufNewFile' }, {
-  group = n_vim_group,
   pattern = vim.env.HOME .. '/.config/nvim/*.lua',
   callback = function()
     local cmp = require('cmp')
@@ -7,15 +6,16 @@ _G.autocmd({ 'BufRead', 'BufNewFile' }, {
     cmp.setup.buffer({
       sources = {
         { name = 'nvim_lsp' },
-        { name = 'nvim_lua' },
         { name = 'path' },
+        { name = 'buffer' },
+        { name = 'snippy' },
+        { name = 'nvim_lua' },
       },
     })
   end,
 })
 
 _G.autocmd({ 'BufRead', 'BufNewFile' }, {
-  group = n_vim_group,
   pattern = 'xmake.lua',
   callback = function()
     local cmp = require('cmp')
@@ -23,8 +23,10 @@ _G.autocmd({ 'BufRead', 'BufNewFile' }, {
     cmp.setup.buffer({
       sources = {
         { name = 'nvim_lsp' },
-        { name = 'xmake' },
         { name = 'path' },
+        { name = 'buffer' },
+        { name = 'snippy' },
+        { name = 'xmake' },
       },
     })
   end,
@@ -142,17 +144,7 @@ return function()
     sources = {
       { name = 'nvim_lsp' },
       { name = 'path' },
+      { name = 'snippy' },
     },
-    -- sorting = {
-    -- comparators = {
-    -- cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
-    -- cmp.config.compare.offset,
-    -- cmp.config.compare.exact,
-    -- cmp.config.compare.kind,
-    --compare.order,
-    --compare.sort_text,
-    -- compare.length,
-    -- },
-    -- },
   })
 end
