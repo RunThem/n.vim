@@ -51,6 +51,8 @@ return function()
   hl(0, 'PmenuSel',                 { fg = '#000000', bg = '#65CDD9' })
   hl(0, 'Pmenu',                    { fg = '#C5CDD9', bg = '#000000' })
 
+  hl(0, 'AdCustomFold',             { fg = '#bf8040' })
+
   hl(0, 'CmpItemAbbrDeprecated',    { fg = '#7E8294', bg = 'NONE', strikethrough = true })
   hl(0, 'CmpItemAbbrMatch',         { fg = '#82AAFF', bg = 'NONE', bold = true })
   hl(0, 'CmpItemAbbrMatchFuzzy',    { fg = '#82AAFF', bg = 'NONE', bold = true })

@@ -30,13 +30,13 @@ local lsp_conf = {
       '--suggest-missing-includes',
       '--clang-tidy',
       '--header-insertion=never',
-      '--compile-commands-dir=build/lsp',
+      '--compile-commands-dir=build',
     },
   },
   -- ccls = {
   --   cmd = { 'ccls' },
   --   init_options = {
-  --     compilationDatabaseDirectory = 'build/lsp',
+  --     compilationDatabaseDirectory = 'build',
   --     index = {
   --       threads = 0,
   --     },
@@ -95,9 +95,9 @@ end
 
 local function lsp_attach()
   return function(client, bufnr)
-    if client.name ~= 'clangd' then
-      client.server_capabilities.semanticTokensProvider = nil
-    end
+    -- if client.name ~= 'clangd' then
+    --   client.server_capabilities.semanticTokensProvider = nil
+    -- end
   end
 end
 

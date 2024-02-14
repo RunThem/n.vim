@@ -7,8 +7,6 @@ return function()
   -- vim.o.foldlevelstart = 99
   -- vim.o.foldenable = true
 
-  vim.cmd([[highlight AdCustomFold guifg=#bf8040]])
-
   local handler = function(virtText, lnum, endLnum, width, truncate)
     local newVirtText = {}
     local suffix = (' ... 󰁂 %d '):format(endLnum - lnum)
