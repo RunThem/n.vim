@@ -6,7 +6,7 @@
   ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
   ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
 Neovim init file
-Version: 1.0.1 - 2023/11/02
+Version: 1.1.1 - 2024/02/15
 Maintainer: RunThem
 Website: https://github.com/RunThem/n.vim.git
 --]]
