@@ -35,6 +35,7 @@ return function()
   local lspkind = require('lspkind')
   local snippy = require('snippy')
   local pairs = require('nvim-autopairs.completion.cmp')
+  local handlers = require('nvim-autopairs.completion.handlers')
 
   cmp.event:on(
     'confirm_done',
@@ -46,7 +47,9 @@ return function()
               cmp.lsp.CompletionItemKind.Function,
               cmp.lsp.CompletionItemKind.Method,
               cmp.lsp.CompletionItemKind.Text,
+              cmp.lsp.CompletionItemKind.Snippet,
             },
+            handler = handlers['*'],
           },
         },
       },
