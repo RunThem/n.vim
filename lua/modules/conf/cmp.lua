@@ -47,7 +47,6 @@ return function()
               cmp.lsp.CompletionItemKind.Function,
               cmp.lsp.CompletionItemKind.Method,
               cmp.lsp.CompletionItemKind.Text,
-              cmp.lsp.CompletionItemKind.Snippet,
             },
             handler = handlers['*'],
           },

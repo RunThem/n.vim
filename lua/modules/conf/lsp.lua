@@ -32,6 +32,15 @@ local lsp_conf = {
       '--header-insertion=never',
       '--compile-commands-dir=build',
     },
+    capabilities = {
+      textDocument = {
+        completion = {
+          completionItem = {
+            snippetSupport = false,
+          },
+        },
+      },
+    },
   },
   -- ccls = {
   --   cmd = { 'ccls' },
