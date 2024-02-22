@@ -6,7 +6,7 @@ local lp = {
   ['ft'] = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
 }
 
-local set_cursor_position = function()
+local function set_cursor_position()
   local last_line = fn.line([['"]])
   local buff_last_line = fn.line('$')
   local window_last_line = fn.line('w$')
@@ -27,12 +27,10 @@ local set_cursor_position = function()
   end
 end
 
-local lastplace_buf = function()
-  local get_opt = function(type)
-    return api.nvim_buf_get_option(0, type)
-  end
+local function lastplace_buf()
+  local get_opt = api.nvim_get_option_value
 
-  if vim.tbl_contains(lp.bt, get_opt('buftype')) or vim.tbl_contains(lp.ft, get_opt('filetype')) then
+  if vim.tbl_contains(lp.bt, get_opt('buftype', {})) or vim.tbl_contains(lp.ft, get_opt('filetype', {})) then
     return
   end
 
@@ -43,14 +41,5 @@ local lastplace_buf = function()
   set_cursor_position()
 end
 
-api.nvim_create_augroup('lastplace', { clear = true })
-
-api.nvim_create_autocmd('BufWinEnter', {
-  callback = lastplace_buf,
-  group = 'lastplace',
-})
-
-api.nvim_create_autocmd('FileType', {
-  callback = lastplace_buf,
-  group = 'lastplace',
-})
+autocmd('BufWinEnter', { callback = lastplace_buf })
+autocmd('FileType', { callback = lastplace_buf })
