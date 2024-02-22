@@ -1,6 +1,7 @@
 local cmd = vim.cmd
 local fn = vim.fn
 local key = vim.keymap
+local hl = vim.api.nvim_set_hl
 
 local colors = {
   { color = '#ff7272', use = false },
@@ -17,19 +18,20 @@ local maps = {
   -- { word, idx }
 }
 
-function unhl_word(i)
+local function unhl_word(i)
   colors[maps[i].idx].use = false
-  cmd(string.format('highlight clear %s', 'hl_words_' .. maps[i].word))
+  hl(0, 'hl_words_' .. maps[i].word, {})
+
   table.remove(maps, i)
 end
 
-function unhl_all()
+local function unhl_all()
   while #maps ~= 0 do
     unhl_word(1)
   end
 end
 
-function get_idx()
+local function get_idx()
   if #maps == #colors then
     local idx = maps[1].idx
     unhl_word(1)
@@ -44,7 +46,7 @@ function get_idx()
   end
 end
 
-function hl_word()
+local function hl_word()
   local idx = 0
   local word = fn.expand('<cword>')
   local hl_group = 'hl_words_' .. word
@@ -59,7 +61,7 @@ function hl_word()
 
   idx = get_idx()
 
-  cmd(string.format('highlight %s guibg=%s guifg=Black', hl_group, colors[idx].color))
+  hl(0, hl_group, { bg = colors[idx].color, fg = 'Black' })
 
   for i = 1, fn.winnr('$') do
     fn.matchadd(hl_group, string.format([[\<%s\>]], word), 11, -1, { window = fn.win_getid(i) })
