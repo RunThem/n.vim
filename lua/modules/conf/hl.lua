@@ -44,6 +44,7 @@ return function()
 
   -- stylua: ignore start
   hl(0, 'LineNr',                   { fg = '#61afaf' })
+  hl(0, 'CursorWord',               { bg = 'NONE', underline = true })
   hl(0, 'CursorLine',               { bg = 'NONE', underline = true })
   hl(0, 'CursorLineNr',             { fg = '#f8ab17', italic = true })
   hl(0, 'VertSplit',                { fg = '#c98afa' })

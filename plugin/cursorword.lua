@@ -1,20 +1,5 @@
 local api, fn, w = vim.api, vim.fn, vim.w
 
-local function highlight_cursorword()
-  if vim.g.cursorword_highlight ~= false then
-    vim.cmd('highlight CursorWord term=underline cterm=underline gui=underline guibg=NONE')
-  end
-end
-
-local function disable_cursorword()
-  if w.cursorword_id ~= 0 and w.cursorword_id and w.cursorword_match ~= 0 then
-    fn.matchdelete(w.cursorword_id)
-    w.cursorword_id = nil
-    w.cursorword_match = nil
-    w.cursorword = nil
-  end
-end
-
 local function matchadd()
   local bufname = api.nvim_buf_get_name(0)
   if vim.bo.buftype == 'prompt' or #bufname == 0 then
@@ -55,14 +40,21 @@ local function cursor_moved()
   end
 end
 
-highlight_cursorword()
+local function disable_cursorword()
+  if w.cursorword_id ~= 0 and w.cursorword_id and w.cursorword_match ~= 0 then
+    fn.matchdelete(w.cursorword_id)
+    w.cursorword_id = nil
+    w.cursorword_match = nil
+    w.cursorword = nil
+  end
+end
 
-api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+autocmd({ 'CursorMoved', 'CursorMovedI' }, {
   pattern = '*',
   callback = cursor_moved,
 })
 
-api.nvim_create_autocmd({ 'InsertEnter', 'BufWinEnter' }, {
+autocmd({ 'InsertEnter', 'BufWinEnter' }, {
   pattern = '*',
   callback = disable_cursorword,
 })
