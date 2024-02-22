@@ -24,20 +24,6 @@ function util.data_path()
   return data
 end
 
---- Debug
-function util.info(b)
-  local msg
-  if type(b) == 'table' then
-    msg = vim.inspect(b)
-  elseif type(b) == 'string' then
-    msg = "'" .. b .. "'"
-  else
-    msg = tostring(b)
-  end
-
-  print(msg)
-end
-
 --- Api
 function util.col()
   return vim.api.nvim_win_get_cursor(0)[2]

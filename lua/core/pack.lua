@@ -32,13 +32,4 @@ function pack.pkg(repo)
   table.insert(pack.repos, repo)
 end
 
-function pack.setup(mod)
-  return function()
-    local ok, m = pcall(require, mod)
-    if ok then
-      m.setup({})
-    end
-  end
-end
-
 return pack

@@ -3,7 +3,6 @@
 -- License: MIT
 
 local pkg = require('core.pack').pkg
-local setup = require('core.pack').setup
 
 --- ui
 pkg({
@@ -25,12 +24,12 @@ pkg({
 
 pkg({
   'mvllow/modes.nvim',
-  config = setup('modes'),
+  config = true,
 })
 
 pkg({
   'RunThem/whiskyline.nvim',
-  config = setup('whiskyline'),
+  config = true,
   dependencies = { 'glepnir/porcelain.nvim', 'kyazdani42/nvim-web-devicons' },
 })
 
@@ -80,12 +79,12 @@ pkg({
 
 pkg({
   'nvimdev/hlsearch.nvim',
-  config = setup('hlsearch'),
+  config = true,
 })
 
 pkg({
   'nvimdev/flybuf.nvim',
-  config = setup('flybuf'),
+  config = true,
 })
 
 pkg({
@@ -99,5 +98,5 @@ pkg({
 
 pkg({
   'utilyre/sentiment.nvim',
-  config = setup('sentiment'),
+  config = true,
 })
