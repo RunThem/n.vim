@@ -56,6 +56,8 @@ return function()
 
   hl('AdCustomFold',             { fg = '#bf8040' })
 
+  hl('DiagnosticUnnecessary',    { fg = '#6A8AD9' })
+
   hl('CmpItemAbbrDeprecated',    { fg = '#7E8294', bg = 'NONE', strikethrough = true })
   hl('CmpItemAbbrMatch',         { fg = '#82AAFF', bg = 'NONE', bold = true })
   hl('CmpItemAbbrMatchFuzzy',    { fg = '#82AAFF', bg = 'NONE', bold = true })
