@@ -84,7 +84,7 @@ local function lsp_capabilities(lsp)
   }
 
   if lsp == 'clangd' then
-    capabilities.textDocument.completion.completionItem.snippetSupport = false
+    -- capabilities.textDocument.completion.completionItem.snippetSupport = false
   end
 
   return capabilities
@@ -92,9 +92,9 @@ end
 
 local function lsp_attach(lsp)
   return function(client, bufnr)
-    -- if client.name ~= 'clangd' then
-    --   client.server_capabilities.semanticTokensProvider = nil
-    -- end
+    if lsp ~= 'clangd' then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
   end
 end
 
