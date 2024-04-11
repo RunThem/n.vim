@@ -1,4 +1,8 @@
 local lsp_conf = {
+  v_analyzer = {
+    cmd = { 'v-analyzer' },
+  },
+
   gopls = {
     cmd = { 'gopls', '--remote=auto' },
     analyses = { unusedparams = true },
