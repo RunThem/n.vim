@@ -7,12 +7,14 @@ local pkg = require('core.pack').pkg
 --- ui
 pkg({
   -- 'glepnir/zephyr-nvim',
-  -- 'glepnir/porcelain.nvim',
-  'folke/tokyonight.nvim',
+  'glepnir/porcelain.nvim',
+  -- 'folke/tokyonight.nvim',
+  -- 'rebelot/kanagawa.nvim',
   config = function()
     -- vim.cmd('colorscheme zephyr')
-    -- vim.cmd('colorscheme porcelain')
-    vim.cmd('colorscheme tokyonight')
+    vim.cmd('colorscheme porcelain')
+    -- vim.cmd('colorscheme tokyonight')
+    -- vim.cmd('colorscheme kanagawa')
 
     require('modules.conf.hl')()
   end,
