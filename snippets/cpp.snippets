@@ -8,7 +8,7 @@ snippet Inc
 	#include "${1}"
 
 # ifndef...endif
-snippet ndef
+snippet ifndef
 	#ifndef ${1}
 
 	${0}
@@ -33,8 +33,6 @@ snippet #if
 
 # header include guard
 snippet once
-  #pragma once
-
 	#ifndef ${1}
 	#define ${1}
 
