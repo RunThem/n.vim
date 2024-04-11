@@ -5,7 +5,6 @@ return function()
     auto_install = true,
     highlight = {
       enable = true,
-      disable = { 'c', 'cpp' },
     },
   })
 end
