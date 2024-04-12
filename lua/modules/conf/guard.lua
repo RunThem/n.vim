@@ -12,7 +12,7 @@ return function()
 
   ft('go'):fmt({
     cmd = 'golines',
-    args = { '-m', '120' },
+    args = { '-m', '120', '-t', '2' },
   })
 
   ft('lua'):fmt({
