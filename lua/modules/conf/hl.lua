@@ -26,6 +26,7 @@ return function()
   -- stylua: ignore start
   hl('@lsp.type.parameter',      { fg = '#c45a65', italic = true })
   hl('@lsp.type.macro',          { fg = '#957fb8' })
+  hl('@lsp.type.label',          { fg = '#c45a65' })
 
   hl('@keyword',                 { fg = '#bc84a8', italic = true })
 
