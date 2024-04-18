@@ -32,13 +32,6 @@ opt.redrawtime = 1500
 opt.ignorecase = true
 opt.smartcase = true
 opt.infercase = true
-
--- use rg in vim grep
-if vim.fn.executable('rg') == 1 then
-  opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
-  opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
-end
-
 opt.completeopt = 'menu,menuone,noselect'
 opt.showmode = false
 opt.shortmess = 'aoOTIcF'
@@ -57,7 +50,6 @@ opt.listchars = 'tab: ·,nbsp: ,trail: ,extends: ,precedes: '
 opt.pumblend = 10
 opt.winblend = 0
 opt.undofile = true
-
 opt.smarttab = true
 opt.expandtab = true
 opt.autoindent = true
@@ -82,6 +74,12 @@ opt.concealcursor = 'niv'
 opt.cursorline = true
 opt.fillchars:append({ eob = ' ' })
 
+-- use rg in vim grep
+if vim.fn.executable('rg') == 1 then
+  opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
+  opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
+end
+
 if vim.loop.os_uname().sysname == 'Darwin' then
   vim.g.clipboard = {
     name = 'macOS-clipboard',
@@ -95,6 +93,7 @@ if vim.loop.os_uname().sysname == 'Darwin' then
     },
     cache_enabled = 0,
   }
+
   vim.g.python_host_prog = '/usr/bin/python'
   vim.g.python3_host_prog = '/usr/local/bin/python3'
 end

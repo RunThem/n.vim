@@ -4,15 +4,6 @@
 
 local g, api = vim.g, vim.api
 
-author = io.popen('git config user.name'):read('*l')
-email = io.popen('git config user.email'):read('*l')
-
-group = vim.api.nvim_create_augroup('n.vim', {})
-autocmd = function(event, opt)
-  opt = vim.tbl_deep_extend('force', { group = group }, opt)
-  vim.api.nvim_create_autocmd(event, opt)
-end
-
 -- disable_distribution_plugins
 g.loaded_gzip = 1
 g.loaded_tar = 1
@@ -36,7 +27,14 @@ g.loaded_netrwFileHandlers = 1
 -- Use space as leader key
 g.mapleader = ' '
 
-vim.fn.setreg('f', ']]za')
+author = io.popen('git config user.name'):read('*l')
+email = io.popen('git config user.email'):read('*l')
+
+group = vim.api.nvim_create_augroup('n.vim', {})
+autocmd = function(event, opt)
+  opt = vim.tbl_deep_extend('force', { group = group }, opt)
+  vim.api.nvim_create_autocmd(event, opt)
+end
 
 -- leaderkey
 api.nvim_set_keymap('n', ' ', '', { noremap = true, nowait = true, silent = true })
