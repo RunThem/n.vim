@@ -7,6 +7,14 @@ local lsp_conf = {
     cmd = { 'gopls', '--remote=auto' },
     analyses = { unusedparams = true },
     staticcheck = true,
+    settings = {
+      gopls = {
+        buildFlags = { '-tags', 'goexperiment.rangefunc' },
+        env = {
+          GOEXPERIMENT = 'rangefunc',
+        },
+      },
+    },
   },
 
   --- lua
