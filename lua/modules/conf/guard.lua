@@ -7,10 +7,6 @@ return function()
 
   ft('rust'):fmt('rustfmt')
 
-  ft('json'):fmt({
-    cmd = 'json-fmt',
-  })
-
   ft('go'):fmt({
     cmd = 'golines',
     args = { '-m', '120', '-t', '2' },
