@@ -104,9 +104,9 @@ end
 
 local function lsp_attach(lsp)
   return function(client, bufnr)
-    if lsp ~= 'clangd' then
-      client.server_capabilities.semanticTokensProvider = nil
-    end
+    -- if lsp ~= 'clangd' then
+    --   client.server_capabilities.semanticTokensProvider = nil
+    -- end
   end
 end
 
