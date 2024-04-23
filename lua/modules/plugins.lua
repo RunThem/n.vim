@@ -24,7 +24,7 @@ pkg({
 })
 
 pkg({
-  'kevinhwang91/nvim-treesitter',
+  'nvim-treesitter/nvim-treesitter',
   event = { 'BufReadPost', 'BufNewFile' },
   build = ':TSUpdate',
   config = require('modules.conf.ts'),
