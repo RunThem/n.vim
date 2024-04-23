@@ -6,41 +6,34 @@ local pkg = require('core.pack').pkg
 
 --- ui
 pkg({
-  -- 'glepnir/zephyr-nvim',
-  'glepnir/porcelain.nvim',
-  -- 'folke/tokyonight.nvim',
-  -- 'rebelot/kanagawa.nvim',
-  config = function()
-    -- vim.cmd('colorscheme zephyr')
-    vim.cmd('colorscheme porcelain')
-    -- vim.cmd('colorscheme tokyonight')
-    -- vim.cmd('colorscheme kanagawa')
+  'RunThem/whiskyline.nvim',
+  config = true,
+  dependencies = {
+    { 'kyazdani42/nvim-web-devicons' },
+    {
+      'glepnir/porcelain.nvim',
+      -- 'folke/tokyonight.nvim',
+      config = function()
+        vim.cmd('colorscheme porcelain')
+        -- vim.cmd('colorscheme tokyonight')
 
-    require('modules.conf.hl')()
-  end,
+        require('modules.conf.hl')()
+      end,
+    },
+  },
 })
 
 pkg({
   'kevinhwang91/nvim-treesitter',
+  event = { 'BufReadPost', 'BufNewFile' },
   build = ':TSUpdate',
   config = require('modules.conf.ts'),
 })
 
 pkg({
-  'mvllow/modes.nvim',
+  'utilyre/sentiment.nvim',
+  event = { 'VeryLazy' },
   config = true,
-})
-
-pkg({
-  'RunThem/whiskyline.nvim',
-  config = true,
-  dependencies = { 'glepnir/porcelain.nvim', 'kyazdani42/nvim-web-devicons' },
-})
-
-pkg({
-  'kevinhwang91/nvim-ufo',
-  config = require('modules.conf.ufo'),
-  dependencies = { 'kevinhwang91/promise-async' },
 })
 
 --- lsp
@@ -50,57 +43,62 @@ pkg({
 })
 
 pkg({
-  'hrsh7th/nvim-cmp',
-  config = require('modules.conf.cmp'),
-  dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-nvim-lua',
-    'hrsh7th/cmp-path',
-    'dcampos/cmp-snippy',
-    'RunThem/cmp-xmake',
-
-    'dcampos/nvim-snippy',
-    'onsails/lspkind-nvim',
-  },
-})
-
-pkg({
   'nvimdev/lspsaga.nvim',
   config = require('modules.conf.saga'),
 })
 
 pkg({
   'nvimdev/guard.nvim',
+  event = { 'VeryLazy' },
   ft = { 'c', 'cpp', 'rust', 'lua', 'go', 'json' },
   config = require('modules.conf.guard'),
-  dependencies = { 'nvimdev/guard-collection' },
+  dependencies = {
+    { 'nvimdev/guard-collection' },
+  },
+})
+
+pkg({
+  'hrsh7th/nvim-cmp',
+  event = 'InsertEnter',
+  config = require('modules.conf.cmp'),
+  dependencies = {
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/cmp-nvim-lua' },
+    { 'hrsh7th/cmp-path' },
+    { 'dcampos/cmp-snippy' },
+    { 'RunThem/cmp-xmake' },
+
+    { 'dcampos/nvim-snippy' },
+    { 'onsails/lspkind-nvim' },
+  },
 })
 
 --- tool
 pkg({
   'nvimdev/coman.nvim',
-})
-
-pkg({
-  'nvimdev/hlsearch.nvim',
-  config = true,
+  event = { 'VeryLazy' },
 })
 
 pkg({
   'nvimdev/flybuf.nvim',
+  event = { 'VeryLazy' },
   config = true,
 })
 
 pkg({
   'RunThem/fzy.nvim',
+  event = { 'VeryLazy' },
 })
 
 pkg({
   'windwp/nvim-autopairs',
+  event = 'InsertEnter',
   config = require('modules.conf.pairs'),
 })
 
 pkg({
-  'utilyre/sentiment.nvim',
-  config = true,
+  'kevinhwang91/nvim-ufo',
+  event = { 'BufReadPost', 'BufNewFile' },
+  config = require('modules.conf.ufo'),
+  dependencies = { 'kevinhwang91/promise-async' },
 })
