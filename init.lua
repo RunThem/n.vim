@@ -5,10 +5,12 @@
   ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
   ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
   ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
-Neovim init file
-Version: 1.3.0 - 2024/04/23
-Maintainer: RunThem
-Website: https://github.com/RunThem/n.vim.git
+
+  Neovim init file
+  Version: 1.3.1 - 2024/04/24
+  Maintainer: RunThem
+  Website: https://github.com/RunThem/n.vim.git
+
 --]]
 
 require('core')
