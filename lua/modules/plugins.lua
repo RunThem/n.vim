@@ -1,7 +1,3 @@
--- author: RunThem https://github.com/RunThem
--- date: 2023-10-03
--- License: MIT
-
 local pkg = require('core.pack').pkg
 
 --- ui
