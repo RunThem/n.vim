@@ -3,82 +3,72 @@
 -- License: MIT
 
 local opt = vim.opt
+
+-- directory
 local cache_dir = vim.env.HOME .. '/.cache/nvim/'
-
-opt.fileencodings = 'utf-8,euc-cn,gb2312,gb18030,gbk,ucs-bom,cp936,latin1'
-opt.viewoptions = 'folds,cursor,curdir,slash,unix'
-opt.sessionoptions = 'curdir,help,tabpages,winsize'
-
-opt.termguicolors = true
-opt.hidden = true
-opt.magic = true
-opt.virtualedit = 'all'
-opt.guicursor = 'a:ver1'
-opt.clipboard = 'unnamedplus'
-opt.wildignorecase = true
 opt.swapfile = false
+opt.undofile = true
 opt.directory = cache_dir .. 'swap/'
 opt.undodir = cache_dir .. 'undo/'
 opt.backupdir = cache_dir .. 'backup/'
 opt.viewdir = cache_dir .. 'view/'
 opt.spellfile = cache_dir .. 'spell/en.uft-8.add'
-opt.history = 2000
-opt.timeout = true
-opt.ttimeout = true
-opt.timeoutlen = 500
-opt.ttimeoutlen = 10
-opt.updatetime = 100
-opt.redrawtime = 1500
+
+-- encode
+opt.fileencodings = 'utf-8,euc-cn,gb2312,gb18030,gbk,ucs-bom,cp936,latin1'
+
+-- option
+opt.viewoptions = 'folds,cursor,curdir,slash,unix'
+opt.sessionoptions = 'curdir,help,tabpages,winsize'
+opt.spelloptions = 'camel'
+opt.virtualedit = 'all'
+opt.clipboard = 'unnamedplus'
 opt.ignorecase = true
 opt.smartcase = true
 opt.infercase = true
+opt.timeoutlen = 500
+opt.ttimeoutlen = 10
+opt.updatetime = 100
+opt.linebreak = true
+
+opt.fillchars:append({ eob = ' ' })
+
+-- ui
+opt.termguicolors = true
+opt.guicursor = 'a:ver1'
 opt.completeopt = 'menu,menuone,noselect'
-opt.showmode = false
 opt.shortmess = 'aoOTIcF'
-opt.scrolloff = 10
+opt.scrolloff = 7
 opt.sidescrolloff = 5
-opt.ruler = false
 opt.showtabline = 0
 opt.winwidth = 30
-opt.pumheight = 15
-opt.showcmd = false
-opt.cmdheight = 1
+opt.pumheight = 10
 opt.laststatus = 3
+opt.showmode = false
 opt.list = true
 -- opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
 opt.listchars = 'tab: ·,nbsp: ,trail: ,extends: ,precedes: '
-opt.pumblend = 10
-opt.winblend = 0
-opt.undofile = true
-opt.smarttab = true
-opt.expandtab = true
-opt.autoindent = true
-opt.tabstop = 2
-opt.shiftwidth = 2
-
--- wrap
-opt.linebreak = true
 opt.breakindentopt = 'shift:2,min:20'
 opt.showbreak = '↳  '
 opt.foldlevelstart = 99
 opt.foldmethod = 'expr'
-
 opt.number = true
+opt.statuscolumn = ' %l%= │ '
 opt.signcolumn = 'yes'
-opt.spelloptions = 'camel'
-
 opt.textwidth = 100
 opt.colorcolumn = '100'
-opt.conceallevel = 0
 opt.concealcursor = 'niv'
 opt.cursorline = true
-opt.fillchars:append({ eob = ' ' })
+-- opt.cursorcolumn = true
+
+opt.smarttab = true
+opt.expandtab = true
+opt.tabstop = 2
+opt.shiftwidth = 2
 
 -- use rg in vim grep
-if vim.fn.executable('rg') == 1 then
-  opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
-  opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
-end
+opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
+opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
 
 if vim.loop.os_uname().sysname == 'Darwin' then
   vim.g.clipboard = {
