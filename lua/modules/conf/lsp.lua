@@ -1,62 +1,61 @@
-local lsp_conf = {
-  v_analyzer = {
-    cmd = { 'v-analyzer' },
-  },
+local lsp_conf = {}
 
-  gopls = {
-    cmd = { 'gopls', '--remote=auto' },
-    analyses = { unusedparams = true },
-    staticcheck = true,
-    settings = {
-      gopls = {
-        buildFlags = { '-tags', 'goexperiment.rangefunc' },
-        env = {
-          GOEXPERIMENT = 'rangefunc',
-        },
+lsp_conf['v_analyzer'] = {
+  cmd = { 'v-analyzer' },
+}
+
+lsp_conf['lua_ls'] = {
+  settings = {
+    Lua = {
+      diagnostics = {
+        enable = false,
+        globals = { 'vim', 'packer_plugins' },
+      },
+      runtime = { version = 'Lua 5.4' },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file('', true),
+        checkThirdParty = false,
+      },
+      completion = { keywordSnippet = 'Disable', callSnippet = 'Replace' },
+    },
+  },
+}
+
+lsp_conf['gopls'] = {
+  cmd = { 'gopls', '--remote=auto' },
+  analyses = { unusedparams = true },
+  staticcheck = true,
+  settings = {
+    gopls = {
+      buildFlags = { '-tags', 'goexperiment.rangefunc' },
+      env = {
+        GOEXPERIMENT = 'rangefunc',
       },
     },
   },
+}
 
-  --- lua
-  lua_ls = {
-    settings = {
-      Lua = {
-        diagnostics = {
-          enable = false,
-          globals = { 'vim', 'packer_plugins' },
-        },
-        runtime = { version = 'Lua 5.4' },
-        workspace = {
-          library = vim.api.nvim_get_runtime_file('', true),
-          checkThirdParty = false,
-        },
-        completion = { keywordSnippet = 'Disable', callSnippet = 'Replace' },
-      },
-    },
+lsp_conf['clangd'] = {
+  cmd = {
+    'clangd',
+    '--background-index',
+    '--suggest-missing-includes',
+    '--clang-tidy',
+    '--header-insertion=never',
+    '--compile-commands-dir=build',
   },
+}
 
-  clangd = {
-    cmd = {
-      'clangd',
-      '--background-index',
-      '--suggest-missing-includes',
-      '--clang-tidy',
-      '--header-insertion=never',
-      '--compile-commands-dir=build',
+lsp_conf['rust_analyzer'] = {
+  settings = {
+    imports = {
+      granularity = { group = 'module' },
+      prefix = 'self',
     },
-  },
-
-  rust_analyzer = {
-    settings = {
-      imports = {
-        granularity = { group = 'module' },
-        prefix = 'self',
-      },
-      cargo = {
-        buildScripts = { enable = true },
-      },
-      procMacro = { enable = true },
+    cargo = {
+      buildScripts = { enable = true },
     },
+    procMacro = { enable = true },
   },
 }
 
