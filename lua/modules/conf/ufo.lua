@@ -1,6 +1,7 @@
 return function()
   local ufo = require('ufo')
   local promise = require('promise')
+  local util = require('core.util')
 
   -- vim.o.foldcolumn = '1' -- '0' is not bad
   -- vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
@@ -9,7 +10,7 @@ return function()
 
   local handler = function(virtText, lnum, endLnum, width, truncate)
     local newVirtText = {}
-    local suffix = ('     %d'):format(endLnum - lnum)
+    local suffix = ('%s %d'):format(string.rep(' ', 99 - util.line(lnum):len()), endLnum - lnum)
     local sufWidth = vim.fn.strdisplaywidth(suffix)
     local targetWidth = width - sufWidth
     local curWidth = 0
