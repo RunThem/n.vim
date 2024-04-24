@@ -40,6 +40,7 @@ pkg({
 
 pkg({
   'nvimdev/lspsaga.nvim',
+  event = { 'LspAttach' },
   config = require('modules.conf.saga'),
 })
 
@@ -55,7 +56,7 @@ pkg({
 
 pkg({
   'hrsh7th/nvim-cmp',
-  event = 'InsertEnter',
+  event = { 'InsertEnter' },
   config = require('modules.conf.cmp'),
   dependencies = {
     { 'hrsh7th/cmp-nvim-lsp' },
@@ -88,7 +89,7 @@ pkg({
 
 pkg({
   'windwp/nvim-autopairs',
-  event = 'InsertEnter',
+  event = { 'InsertEnter' },
   config = require('modules.conf.pairs'),
 })
 
