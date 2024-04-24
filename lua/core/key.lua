@@ -1,7 +1,3 @@
--- author: RunThem https://github.com/RunThem
--- date: 2023-10-03
--- License: MIT
-
 local util = require('core.util')
 local map = util.map
 local cmd = map.cmd

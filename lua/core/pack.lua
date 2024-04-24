@@ -1,14 +1,10 @@
--- author: glepnr https://github.com/glepnir
--- date: 2023-01-04
--- License: MIT
-
 local uv, api = vim.loop, vim.api
 local util = require('core.util')
 
-local pack = {}
-pack.__index = pack
+local M = {}
+M.__index = M
 
-function pack:init()
+function M:init()
   local lazy_path = string.format('%s/lazy/lazy.nvim', util.data_path())
   local state = uv.fs_stat(lazy_path)
   if not state then
@@ -25,11 +21,11 @@ function pack:init()
   require('modules.keymaps')
 end
 
-function pack.pkg(repo)
-  if not pack.repos then
-    pack.repos = {}
+function M.pkg(repo)
+  if not M.repos then
+    M.repos = {}
   end
-  table.insert(pack.repos, repo)
+  table.insert(M.repos, repo)
 end
 
-return pack
+return M

@@ -1,10 +1,6 @@
--- author: glepnr https://github.com/glepnir
--- date: 2023-01-04
--- License: MIT
-
 local opt = vim.opt
 
--- directory
+--- directory
 local cache_dir = vim.env.HOME .. '/.cache/nvim/'
 opt.swapfile = false
 opt.undofile = true
@@ -14,10 +10,10 @@ opt.backupdir = cache_dir .. 'backup/'
 opt.viewdir = cache_dir .. 'view/'
 opt.spellfile = cache_dir .. 'spell/en.uft-8.add'
 
--- encode
+--- encode
 opt.fileencodings = 'utf-8,euc-cn,gb2312,gb18030,gbk,ucs-bom,cp936,latin1'
 
--- option
+--- option
 opt.viewoptions = 'folds,cursor,curdir,slash,unix'
 opt.sessionoptions = 'curdir,help,tabpages,winsize'
 opt.spelloptions = 'camel'
@@ -33,7 +29,7 @@ opt.linebreak = true
 
 opt.fillchars:append({ eob = ' ' })
 
--- ui
+--- ui
 opt.termguicolors = true
 opt.guicursor = 'a:ver1'
 opt.completeopt = 'menu,menuone,noselect'
@@ -66,7 +62,7 @@ opt.expandtab = true
 opt.tabstop = 2
 opt.shiftwidth = 2
 
--- use rg in vim grep
+--- use rg in vim grep
 opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
 
