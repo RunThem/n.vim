@@ -34,26 +34,6 @@ return function()
   local cmp = require('cmp')
   local lspkind = require('lspkind')
   local snippy = require('snippy')
-  local pairs = require('nvim-autopairs.completion.cmp')
-  local handlers = require('nvim-autopairs.completion.handlers')
-
-  cmp.event:on(
-    'confirm_done',
-    pairs.on_confirm_done({
-      filetypes = {
-        ['c'] = {
-          ['('] = {
-            kind = {
-              cmp.lsp.CompletionItemKind.Function,
-              cmp.lsp.CompletionItemKind.Method,
-              cmp.lsp.CompletionItemKind.Text,
-            },
-            handler = handlers['*'],
-          },
-        },
-      },
-    })
-  )
 
   lspkind.init({
     symbol_map = {

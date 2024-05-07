@@ -92,12 +92,6 @@ pkg({
 })
 
 pkg({
-  'windwp/nvim-autopairs',
-  event = { 'InsertEnter' },
-  config = require('modules.conf.pairs'),
-})
-
-pkg({
   'kevinhwang91/nvim-ufo',
   event = { 'BufReadPost', 'BufNewFile' },
   config = require('modules.conf.ufo'),
