@@ -1,8 +1,3 @@
-local util = require('core.util')
-local map = util.map
-local cmd = map.cmd
-local api = vim.api
-
 --- noremap remap
 map.n('<C-j>', '3j')
 map.n('<C-k>', '3k')
@@ -40,12 +35,12 @@ end)
 
 --- script
 local path = util.conf_path() .. '/lua/script.lua'
-map.n('<Leader>S', cmd('e ' .. path))
+map.n('<Leader>S', map.cmd('e ' .. path))
 map.n('<Leader>s', function()
-  local cmd = io.popen(path)
-  local out = cmd:read('*l')
+  local exec = io.popen(path)
+  local out = exec:read('*l')
 
-  cmd:close()
+  exec:close()
 
   util.cwrite(out)
 end)

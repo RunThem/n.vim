@@ -1,56 +1,76 @@
-local M = {}
+---[[ info ]]
+author = io.popen('git config user.name'):read('*l')
+email = io.popen('git config user.email'):read('*l')
 
---- Path
-local home_path = os.getenv('HOME')
-M.path_sep = package.config:sub(1, 1) == '\\' and '\\' or '/'
+---[[ group ]]
+group = vim.api.nvim_create_augroup('n.vim', {})
+autocmd = function(event, opt)
+  opt = vim.tbl_deep_extend('force', { group = group }, opt)
+  return vim.api.nvim_create_autocmd(event, opt)
+end
 
-function M.conf_path()
+---[[ utils function ]]
+util = {}
+
+---@return string
+function util.conf_path()
   local config = os.getenv('XDG_CONFIG_DIR')
   if not config then
-    return home_path .. '/.config/nvim'
+    return os.getenv('HOME') .. '/.config/nvim'
   end
   return config
 end
 
-function M.data_path()
+---@return string
+function util.data_path()
   local data = os.getenv('XDG_DATA_DIR')
   if not data then
-    return home_path .. '/.local/share/nvim'
+    return os.getenv('HOME') .. '/.local/share/nvim'
   end
+
   return data
 end
 
---- Api
-function M.col()
+---@return integer
+function util.col()
   return vim.api.nvim_win_get_cursor(0)[2]
 end
 
-function M.row()
+---@return integer
+function util.row()
   return vim.api.nvim_win_get_cursor(0)[1]
 end
 
-function M.height()
+---@return integer
+function util.height()
   return vim.api.nvim_win_get_height(0)
 end
 
-function M.width()
+---@return integer
+function util.width()
   return vim.api.nvim_win_get_width(0)
 end
 
-function M.line(line)
+---@param line integer
+---@return integer
+function util.line(line)
   return vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
 end
 
-function M.cline()
+---@return integer
+function util.cline()
   return vim.api.nvim_get_current_line()
 end
 
-function M.bufnr()
+---@return integer
+function util.bufnr()
   return vim.api.nvim_get_current_buf()
 end
 
-function M.write(coord, msg)
-  local bufnr = M.bufnr()
+---@param coord table
+---@param msg string|table
+function util.write(coord, msg)
+  local bufnr = util.bufnr()
 
   if type(coord) ~= 'table' then
     return
@@ -70,10 +90,11 @@ function M.write(coord, msg)
   vim.api.nvim_buf_set_text(bufnr, s_row, s_col, e_row, e_col, msg)
 end
 
-function M.cwrite(msg)
-  local bufnr = M.bufnr()
-  local row = M.row() - 1
-  local col = M.col()
+---@param msg string|table
+function util.cwrite(msg)
+  local bufnr = util.bufnr()
+  local row = util.row() - 1
+  local col = util.col()
 
   if type(msg) == 'string' then
     msg = { msg }
@@ -82,14 +103,18 @@ function M.cwrite(msg)
   vim.api.nvim_buf_set_text(bufnr, row, col, row, col, msg)
 end
 
---- Keymap
-local map = {}
+---[[ keymap function ]]
+map = {}
 
+---@param c string
+---@return string
 function map.cmd(c)
   return '<cmd>' .. c .. '<Cr>'
 end
 
 for _, m in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
+  ---@param key string
+  ---@param expr string|function
   map[m] = function(key, expr)
     local opt = {}
     if type(expr) == 'string' then
@@ -101,7 +126,3 @@ for _, m in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
     vim.keymap.set(m, key, expr, opt)
   end
 end
-
-M.map = map
-
-return M

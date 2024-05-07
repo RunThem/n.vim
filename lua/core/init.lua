@@ -1,4 +1,4 @@
-local g, api = vim.g, vim.api
+local g = vim.g
 
 --- disable_distribution_plugins
 g.loaded_gzip = 1
@@ -23,18 +23,10 @@ g.loaded_netrwFileHandlers = 1
 --- Use space as leader key
 g.mapleader = ' '
 
-author = io.popen('git config user.name'):read('*l')
-email = io.popen('git config user.email'):read('*l')
+require('core.util')
 
-group = vim.api.nvim_create_augroup('n.vim', {})
-autocmd = function(event, opt)
-  opt = vim.tbl_deep_extend('force', { group = group }, opt)
-  return vim.api.nvim_create_autocmd(event, opt)
-end
-
---- leaderkey
-api.nvim_set_keymap('n', ' ', '', { noremap = true, nowait = true, silent = true })
-api.nvim_set_keymap('x', ' ', '', { noremap = true, nowait = true, silent = true })
+map.n(' ', ' ')
+map.x(' ', ' ')
 
 require('core.opt')
 require('core.key')

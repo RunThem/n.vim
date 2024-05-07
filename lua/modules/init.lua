@@ -1,6 +1,5 @@
 local uv = vim.loop
 local api = vim.api
-local util = require('core.util')
 
 local lazy_path = string.format('%s/lazy/lazy.nvim', util.data_path())
 if not uv.fs_stat(lazy_path) then

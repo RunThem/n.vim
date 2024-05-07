@@ -1,5 +1,3 @@
-local util = require('core.util')
-local map = util.map
 local cmd = map.cmd
 
 --- lspsaga
