@@ -43,7 +43,7 @@ return function()
 
   hl('DiagnosticUnnecessary',    { fg = '#6a8ad9' })
 
---[[
+  --[[
   hl('CmpItemAbbrDeprecated',    { fg = '#7e8294', bg = 'NONE', strikethrough = true })
   hl('CmpItemAbbrMatch',         { fg = '#82aaff', bg = 'NONE', bold = true })
   hl('CmpItemAbbrMatchFuzzy',    { fg = '#82aaff', bg = 'NONE', bold = true })
@@ -73,6 +73,6 @@ return function()
   hl('CmpItemKindInterface',     { fg = '#d8eeeb', bg = '#58b5a8' })
   hl('CmpItemKindColor',         { fg = '#d8eeeb', bg = '#58b5a8' })
   hl('CmpItemKindTypeParameter', { fg = '#d8eeeb', bg = '#58b5a8' })
---]]
+  --]]
   -- stylua: ignore end
 end
