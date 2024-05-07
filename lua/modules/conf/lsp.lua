@@ -87,7 +87,28 @@ local function lsp_diagnostic()
 end
 
 local function lsp_capabilities(lsp)
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local capabilities = {
+    textDocument = {
+      completion = {
+        completionItem = {
+          snippetSupport = vim.snippet and true or false,
+          resolveSupport = {
+            properties = { 'edit', 'documentation', 'detail', 'additionalTextEdits' },
+          },
+        },
+        completionList = {
+          itemDefaults = {
+            'editRange',
+            'insertTextFormat',
+            'insertTextMode',
+            'data',
+          },
+        },
+      },
+    },
+  }
+
+  capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), capabilities)
 
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
