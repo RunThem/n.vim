@@ -1,4 +1,8 @@
-local pkg = require('core.pack').pkg
+local M = {}
+
+local pkg = function(repo)
+  table.insert(M, repo)
+end
 
 --- ui
 pkg({
@@ -99,3 +103,5 @@ pkg({
   config = require('modules.conf.ufo'),
   dependencies = { 'kevinhwang91/promise-async' },
 })
+
+return M

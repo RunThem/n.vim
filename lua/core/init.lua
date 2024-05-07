@@ -38,5 +38,3 @@ api.nvim_set_keymap('x', ' ', '', { noremap = true, nowait = true, silent = true
 
 require('core.opt')
 require('core.key')
-
-require('core.pack'):init()
