@@ -90,11 +90,12 @@ function map.cmd(c)
 end
 
 for _, m in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
-  map[m] = function(key, expr, opt)
-    if opt == nil then
+  map[m] = function(key, expr)
+    local opt = {}
+    if type(expr) == 'string' then
       opt = { noremap = true, nowait = true, silent = true }
     else
-      vim.validate({ opt = { opt, 'table' } })
+      opt = { noremap = true, nowait = true, silent = true, expr = true }
     end
 
     vim.keymap.set(m, key, expr, opt)

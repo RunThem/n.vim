@@ -9,7 +9,7 @@ map.n('<C-k>', '3k')
 map.n('0', function()
   local head = (util.cline():find('[^%s]') or 1) - 1
   return util.col() == head and '0' or '^'
-end, { expr = true })
+end)
 
 --- insertmode remap
 map.i('**', function()
@@ -19,7 +19,7 @@ map.i('**', function()
   end
 
   return '**'
-end, { expr = true })
+end)
 
 map.i(';;', function()
   local ft = vim.bo.filetype
@@ -28,7 +28,7 @@ map.i(';;', function()
   end
 
   return ';;'
-end, { expr = true })
+end)
 
 --- terminal remap
 map.t('<Esc>', [[<C-\><C-n>]])
