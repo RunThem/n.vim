@@ -20,19 +20,11 @@ require('modules')
 
 --[[ mini debug config
 
-vim.opt.rtp:append('~/.local/share/nvim/lazy/porcelain.nvim')
-vim.opt.rtp:append('~/.local/share/nvim/lazy/nvim-lspconfig')
-vim.opt.rtp:append('~/.local/share/nvim/lazy/nvim-web-devicons')
--- vim.opt.rtp:append('~/.local/share/nvim/whiskyline.nvim')
+local function loadpkg(pkg_name, pkg_req)
+  vim.opt.rtp:append(('%s/lazy/%s'):format(util.data_path(), pkg_name))
+  return require(pkg_req)
+end
 
-vim.opt.rtp:append('~/.config/nvim/whiskyline.nvim')
-
-local whiskyline = require('whiskyline')
-local lspconfig = require('lspconfig')
-
-vim.cmd('colorscheme porcelain')
-
-lspconfig['lua_ls'].setup({})
-whiskyline.setup()
+local lsp = loadpkg('nvim-lspconfig', 'lspconfig')
 
 --]]
