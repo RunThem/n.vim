@@ -30,3 +30,5 @@ map.x(' ', ' ')
 
 require('core.opt')
 require('core.key')
+
+require('core.colors')

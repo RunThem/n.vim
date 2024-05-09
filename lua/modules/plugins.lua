@@ -10,16 +10,6 @@ pkg({
   config = true,
   dependencies = {
     { 'kyazdani42/nvim-web-devicons' },
-    {
-      'glepnir/porcelain.nvim',
-      -- 'folke/tokyonight.nvim',
-      config = function()
-        vim.cmd('colorscheme porcelain')
-        -- vim.cmd('colorscheme tokyonight')
-
-        require('modules.conf.hl')()
-      end,
-    },
   },
 })
 
