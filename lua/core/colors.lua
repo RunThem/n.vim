@@ -161,6 +161,7 @@ hl('Identifier',                          { fg = colors.yslan })
 hl('@variable',                           { fg = colors.yslan })
 --built-in variable names (e.g. `this`)
 hl('@variable.builtin',                   { fg = colors.red })
+hl('@variable.parameter',                 { link = '@lsp.type.parameter' })
 hl('Constant',                            { fg = colors.orange })
 hl('@constant.builtin',                   { link = 'Constant' })
 -- constants defined by the preprocessor
