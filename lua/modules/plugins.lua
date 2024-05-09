@@ -69,11 +69,6 @@ pkg({
 })
 
 pkg({
-  'RunThem/fzy.nvim',
-  event = { 'VeryLazy' },
-})
-
-pkg({
   'kevinhwang91/nvim-ufo',
   event = { 'BufReadPost', 'BufNewFile' },
   config = require('modules.conf.ufo'),

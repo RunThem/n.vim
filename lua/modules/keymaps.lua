@@ -24,14 +24,3 @@ map.n('gb', cmd('FlyBuf'))
 
 --- guard
 map.n('==', cmd('GuardFmt'))
-
---- fzy
-map.n('<leader>ff', function()
-  local fzy = require('fzy')
-  fzy.execute('fd', fzy.sinks.edit_file)
-end, { expr = false })
-
-map.n('<leader>fa', function()
-  local fzy = require('fzy')
-  fzy.execute('rg --no-heading --trim -nH .', fzy.sinks.edit_live_grep)
-end)
