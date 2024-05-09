@@ -1,6 +1,5 @@
 local cmd = vim.cmd
 local fn = vim.fn
-local key = vim.keymap
 local hl = vim.api.nvim_set_hl
 
 local colors = {
@@ -71,5 +70,5 @@ local function hl_word()
   table.insert(maps, { word = word, idx = idx })
 end
 
-key.set('n', '<Leader>m', hl_word, { desc = 'highlight/unhighlight word' })
-key.set('n', '<Leader>c', unhl_all, { desc = 'unhighlight all word' })
+map.n('<Leader>m', hl_word, { expr = false })
+map.n('<Leader>c', unhl_all, { expr = false })
