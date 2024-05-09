@@ -1,7 +1,7 @@
 local lsp_conf = {}
 
 local clangd = true
-if true then
+if clangd then
   lsp_conf['clangd'] = {
     cmd = {
       'clangd',
