@@ -1,5 +1,21 @@
 local lsp_conf = {}
 
+local clangd = true
+if true then
+  lsp_conf['clangd'] = {
+    cmd = {
+      'clangd',
+      '--background-index',
+      '--suggest-missing-includes',
+      '--clang-tidy',
+      '--header-insertion=never',
+      '--compile-commands-dir=build',
+    },
+  }
+else
+  lsp_conf['ccls'] = {}
+end
+
 lsp_conf['v_analyzer'] = {
   cmd = { 'v-analyzer' },
 }
@@ -34,28 +50,6 @@ lsp_conf['gopls'] = {
     },
   },
 }
-
-if 1 then
-  lsp_conf['clangd'] = {
-    cmd = {
-      'clangd',
-      '--background-index',
-      '--suggest-missing-includes',
-      '--clang-tidy',
-      '--header-insertion=never',
-      '--compile-commands-dir=build',
-    },
-  }
-else
-  lsp_conf['ccls'] = {
-    init_options = {
-      compilationDatabaseDirectory = 'build',
-      index = {
-        threads = 0,
-      },
-    },
-  }
-end
 
 lsp_conf['rust_analyzer'] = {
   settings = {
@@ -138,6 +132,14 @@ end
 
 return function()
   local lspconfig = require('lspconfig')
+  local ts = require('nvim-treesitter.configs')
+  local ts_conf = { auto_install = true, highlight = { enable = true } }
+
+  if clangd then
+    ts_conf.highlight.disable = { 'c', 'cpp' }
+  end
+
+  ts.setup(ts_conf)
 
   for lsp, conf in pairs(lsp_conf) do
     local defconf = {

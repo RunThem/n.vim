@@ -4,24 +4,21 @@ local pkg = function(repo)
   table.insert(M, repo)
 end
 
---- ui
 pkg({
   'nvim-treesitter/nvim-treesitter',
   event = { 'BufReadPost', 'BufNewFile' },
   build = ':TSUpdate',
-  config = require('modules.conf.ts'),
+})
+
+pkg({
+  'neovim/nvim-lspconfig',
+  config = require('modules.conf.lsp'),
 })
 
 pkg({
   'utilyre/sentiment.nvim',
   event = { 'VeryLazy' },
   config = true,
-})
-
---- lsp
-pkg({
-  'neovim/nvim-lspconfig',
-  config = require('modules.conf.lsp'),
 })
 
 pkg({
@@ -56,7 +53,6 @@ pkg({
   },
 })
 
---- tool
 pkg({
   'nvimdev/coman.nvim',
   event = { 'VeryLazy' },
