@@ -6,14 +6,6 @@ end
 
 --- ui
 pkg({
-  'RunThem/whiskyline.nvim',
-  config = true,
-  dependencies = {
-    { 'kyazdani42/nvim-web-devicons' },
-  },
-})
-
-pkg({
   'nvim-treesitter/nvim-treesitter',
   event = { 'BufReadPost', 'BufNewFile' },
   build = ':TSUpdate',
