@@ -50,7 +50,7 @@ local colors = {
   notify_yellow         = '#f4bc34',
   notify_blue           = '#1C95FC',
   notify_aqua           = '#46D9F2',
-  bluelnum              = '#294161',
+  bluelnum              = '#497161',
   non                   = 'NONE',
 }
 
@@ -91,7 +91,7 @@ hl('StatusLine',                          { })
 hl('StatusLineNC',                        { })
 
 --- Buffer
-hl('LineNr',                              { fg = colors.bluelnum })
+hl('LineNr',                              { fg = colors.bluelnum, bold = true })
 hl('Search',                              { bg = colors.base04, fg = colors.base06 })
 hl('Visual',                              { bg = colors.base03 })
 hl('ColorColumn',                         { bg = colors.base06 })
@@ -106,7 +106,7 @@ hl('CursorWord',                          { bg = colors.base02 })
 
 --- Cursorline
 hl('Cursorline',                          { bg = colors.non, undercurl = true })
-hl('CursorLineNr',                        { fg = colors.qblue })
+hl('CursorLineNr',                        { fg = colors.yslan, italic = true, bold = true })
 
 --- Pmenu
 hl('Pmenu',                               { bg = colors.base03, fg = colors.manaohui })
