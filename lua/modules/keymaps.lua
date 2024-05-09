@@ -29,7 +29,7 @@ map.n('==', cmd('GuardFmt'))
 map.n('<leader>ff', function()
   local fzy = require('fzy')
   fzy.execute('fd', fzy.sinks.edit_file)
-end)
+end, { expr = false })
 
 map.n('<leader>fa', function()
   local fzy = require('fzy')

@@ -115,13 +115,15 @@ end
 for _, m in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
   ---@param key string
   ---@param expr string|function
-  map[m] = function(key, expr)
-    local opt = {}
+  map[m] = function(key, expr, opt)
+    local def_opt
     if type(expr) == 'string' then
-      opt = { noremap = true, nowait = true, silent = true }
+      def_opt = { noremap = true, nowait = true, silent = true }
     else
-      opt = { noremap = true, nowait = true, silent = true, expr = true }
+      def_opt = { noremap = true, nowait = true, silent = true, expr = true }
     end
+
+    opt = vim.tbl_deep_extend('force', def_opt, opt or {})
 
     vim.keymap.set(m, key, expr, opt)
   end
