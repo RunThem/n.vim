@@ -31,7 +31,7 @@ map.t('<Esc>', [[<C-\><C-n>]])
 --- dev
 map.n('<Leader>d', function()
   require('dev').setup()
-end)
+end, { expr = false })
 
 --- script
 local path = util.conf_path() .. '/lua/script.lua'
