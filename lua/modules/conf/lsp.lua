@@ -35,16 +35,27 @@ lsp_conf['gopls'] = {
   },
 }
 
-lsp_conf['clangd'] = {
-  cmd = {
-    'clangd',
-    '--background-index',
-    '--suggest-missing-includes',
-    '--clang-tidy',
-    '--header-insertion=never',
-    '--compile-commands-dir=build',
-  },
-}
+if 1 then
+  lsp_conf['clangd'] = {
+    cmd = {
+      'clangd',
+      '--background-index',
+      '--suggest-missing-includes',
+      '--clang-tidy',
+      '--header-insertion=never',
+      '--compile-commands-dir=build',
+    },
+  }
+else
+  lsp_conf['ccls'] = {
+    init_options = {
+      compilationDatabaseDirectory = 'build',
+      index = {
+        threads = 0,
+      },
+    },
+  }
+end
 
 lsp_conf['rust_analyzer'] = {
   settings = {
@@ -59,7 +70,7 @@ lsp_conf['rust_analyzer'] = {
   },
 }
 
-local function lsp_diagnostic()
+local function diagnostic()
   local signs = {
     -- Error = '',
     -- Warn = '',
@@ -86,7 +97,7 @@ local function lsp_diagnostic()
   })
 end
 
-local function lsp_capabilities(lsp)
+local function make_capabilities(lsp)
   local capabilities = {
     textDocument = {
       completion = {
@@ -105,24 +116,19 @@ local function lsp_capabilities(lsp)
           },
         },
       },
+      foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      },
     },
   }
 
   capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), capabilities)
 
-  capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-  }
-
-  if lsp == 'clangd' then
-    -- capabilities.textDocument.completion.completionItem.snippetSupport = false
-  end
-
   return capabilities
 end
 
-local function lsp_attach(lsp)
+local function make_attach(lsp)
   return function(client, bufnr)
     -- if lsp ~= 'clangd' then
     --   client.server_capabilities.semanticTokensProvider = nil
@@ -135,8 +141,8 @@ return function()
 
   for lsp, conf in pairs(lsp_conf) do
     local defconf = {
-      capabilities = lsp_capabilities(lsp),
-      on_attach = lsp_attach(lsp),
+      capabilities = make_capabilities(lsp),
+      on_attach = make_attach(lsp),
       init_options = {
         usePlaceholders = true,
         completeUnimported = true,
@@ -146,5 +152,5 @@ return function()
     lspconfig[lsp].setup(vim.tbl_deep_extend('force', defconf, conf))
   end
 
-  lsp_diagnostic()
+  diagnostic()
 end
