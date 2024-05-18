@@ -200,7 +200,7 @@ function pd.diag()
   end
 
   local function diag_stl()
-    if vim.diagnostic.is_disabled(0) then
+    if not vim.diagnostic.is_enabled() then
       return '  '
     end
 
@@ -211,7 +211,7 @@ function pd.diag()
   end
 
   local function diag_attr()
-    if vim.diagnostic.is_disabled(0) then
+    if not vim.diagnostic.is_enabled() then
       return '  '
     end
 
