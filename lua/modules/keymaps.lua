@@ -14,11 +14,6 @@ map.n('go', cmd('Lspsaga outline'))
 map.n('--', cmd('Lspsaga term_toggle'))
 map.t('--', cmd('Lspsaga term_toggle'))
 
---- coman
-map.n('gcc', cmd('ComComment'))
-map.n('gcj', cmd('ComAnnotation'))
-map.x('gcc', ':ComComment<Cr>')
-
 --- flybuf
 map.n('gb', cmd('FlyBuf'))
 

@@ -54,11 +54,6 @@ pkg({
 })
 
 pkg({
-  'nvimdev/coman.nvim',
-  event = { 'VeryLazy' },
-})
-
-pkg({
   'nvimdev/flybuf.nvim',
   event = { 'VeryLazy' },
   config = true,
