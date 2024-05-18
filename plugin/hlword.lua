@@ -66,6 +66,6 @@ local function hl_word(word)
   table.insert(maps, { word = word, idx = idx })
 end
 
-map.n('<Leader>m', hl_word, { expr = false })
+map.n('<Leader>m', hl_word)
 
-map.n('<Leader>c', undo_hl_all_word, { expr = false })
+map.n('<Leader>c', undo_hl_all_word)

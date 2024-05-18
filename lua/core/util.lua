@@ -13,22 +13,23 @@ end
 util = {}
 
 ---@return string
-function util.conf_path()
-  local config = os.getenv('XDG_CONFIG_DIR')
-  if not config then
-    return os.getenv('HOME') .. '/.config/nvim'
+function util.confpath(file)
+  local path = os.getenv('XDG_CONFIG_DIR')
+  if not path then
+    path = os.getenv('HOME') .. '/.config/nvim'
   end
-  return config
+
+  return path .. (file and '/' .. file or '')
 end
 
 ---@return string
-function util.data_path()
-  local data = os.getenv('XDG_DATA_DIR')
-  if not data then
-    return os.getenv('HOME') .. '/.local/share/nvim'
+function util.datapath(file)
+  local path = os.getenv('XDG_DATA_DIR')
+  if not path then
+    path = os.getenv('HOME') .. '/.local/share/nvim'
   end
 
-  return data
+  return path .. (file and '/' .. file or '')
 end
 
 ---@return integer
@@ -116,14 +117,7 @@ for _, m in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
   ---@param key string
   ---@param expr string|function
   map[m] = function(key, expr, opt)
-    local def_opt
-    if type(expr) == 'string' then
-      def_opt = { noremap = true, nowait = true, silent = true }
-    else
-      def_opt = { noremap = true, nowait = true, silent = true, expr = true }
-    end
-
-    opt = vim.tbl_deep_extend('force', def_opt, opt or {})
+    opt = vim.tbl_deep_extend('force', { noremap = true, nowait = true, silent = true }, opt or {})
 
     vim.keymap.set(m, key, expr, opt)
   end

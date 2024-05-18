@@ -4,7 +4,7 @@ map.n('<C-k>', '3k')
 map.n('0', function()
   local head = (util.cline():find('[^%s]') or 1) - 1
   return util.col() == head and '0' or '^'
-end)
+end, { expr = true })
 
 --- insertmode remap
 map.i('**', function()
@@ -14,7 +14,7 @@ map.i('**', function()
   end
 
   return '**'
-end)
+end, { expr = true })
 
 map.i(';;', function()
   local ft = vim.bo.filetype
@@ -23,7 +23,7 @@ map.i(';;', function()
   end
 
   return ';;'
-end)
+end, { expr = true })
 
 --- terminal remap
 map.t('<Esc>', [[<C-\><C-n>]])
@@ -31,10 +31,10 @@ map.t('<Esc>', [[<C-\><C-n>]])
 --- dev
 map.n('<Leader>d', function()
   require('dev').setup()
-end, { expr = false })
+end)
 
 --- script
-local path = util.conf_path() .. '/lua/script.lua'
+local path = util.confpath('lua/script.lua')
 map.n('<Leader>S', map.cmd('e ' .. path))
 map.n('<Leader>s', function()
   local exec = io.popen(path)
