@@ -36,10 +36,14 @@ local function is_pair(pair)
 end
 
 local function handler(key, info)
-  local line = '_' .. util.cline()
-  local col = util.col() + 1
+  local line = '_' .. vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2] + 1
 
   local pair = line:sub(col, col + 1)
+
+  if key ~= '<Bs>' and pair:sub(2, 2):find('[%w_]') then
+    return key
+  end
 
   if (key == '<Bs>' or key == '<C-h>' or key == '<C-w>') and is_pair(pair) then
     return '<Bs><Del>'

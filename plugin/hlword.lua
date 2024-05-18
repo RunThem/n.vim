@@ -1,7 +1,3 @@
-local cmd = vim.cmd
-local fn = vim.fn
-local hl = vim.api.nvim_set_hl
-
 local colors = {
   { color = '#ff7272', use = false },
   { color = '#10fea1', use = false },
@@ -17,23 +13,10 @@ local maps = {
   -- { word, idx }
 }
 
-local function unhl_word(i)
-  colors[maps[i].idx].use = false
-  hl(0, 'hl_words_' .. maps[i].word, {})
-
-  table.remove(maps, i)
-end
-
-local function unhl_all()
-  while #maps ~= 0 do
-    unhl_word(1)
-  end
-end
-
 local function get_idx()
   if #maps == #colors then
     local idx = maps[1].idx
-    unhl_word(1)
+    undo_hl_word(1)
 
     return idx
   else
@@ -45,14 +28,27 @@ local function get_idx()
   end
 end
 
-local function hl_word()
+local function undo_hl_word(i)
+  colors[maps[i].idx].use = false
+  vim.api.nvim_set_hl(0, 'hl_word_' .. maps[i].word, {})
+
+  table.remove(maps, i)
+end
+
+local function undo_hl_all_word()
+  while #maps ~= 0 do
+    undo_hl_word(1)
+  end
+end
+
+local function hl_word(word)
   local idx = 0
-  local word = fn.expand('<cword>')
-  local hl_group = 'hl_words_' .. word
+  local word = word or vim.fn.expand('<cword>')
+  local hl_group = 'hl_word_' .. word
 
   for i = 1, #maps do
     if maps[i].word == word then
-      unhl_word(i)
+      undo_hl_word(i)
 
       return
     end
@@ -60,10 +56,10 @@ local function hl_word()
 
   idx = get_idx()
 
-  hl(0, hl_group, { bg = colors[idx].color, fg = 'Black' })
+  vim.api.nvim_set_hl(0, hl_group, { bg = colors[idx].color, fg = 'Black' })
 
-  for i = 1, fn.winnr('$') do
-    fn.matchadd(hl_group, string.format([[\<%s\>]], word), 11, -1, { window = fn.win_getid(i) })
+  for i = 1, vim.fn.winnr('$') do
+    vim.fn.matchadd(hl_group, string.format([[\<%s\>]], word), 11, -1, { window = vim.fn.win_getid(i) })
   end
 
   colors[idx].use = true
@@ -71,4 +67,5 @@ local function hl_word()
 end
 
 map.n('<Leader>m', hl_word, { expr = false })
-map.n('<Leader>c', unhl_all, { expr = false })
+
+map.n('<Leader>c', undo_hl_all_word, { expr = false })

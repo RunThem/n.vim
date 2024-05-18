@@ -1,5 +1,3 @@
-local api = vim.api
-
 autocmd({ 'BufWritePre' }, {
   pattern = { '/tmp/*', 'COMMIT_EDITMSG', 'MERGE_MSG', '*.tmp', '*.bak' },
   callback = function()
@@ -10,21 +8,21 @@ autocmd({ 'BufWritePre' }, {
 autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.conf',
   callback = function()
-    api.nvim_buf_set_option(0, 'filetype', 'conf')
+    vim.api.nvim_buf_set_option(0, 'filetype', 'conf')
   end,
 })
 
 autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.v',
   callback = function()
-    api.nvim_buf_set_option(0, 'filetype', 'v')
+    vim.api.nvim_buf_set_option(0, 'filetype', 'v')
   end,
 })
 
 autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.li',
   callback = function()
-    api.nvim_buf_set_option(0, 'filetype', 'little')
+    vim.api.nvim_buf_set_option(0, 'filetype', 'little')
   end,
 })
 

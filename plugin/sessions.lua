@@ -1,4 +1,4 @@
-local sessions_path = util.data_path() .. '/sessions'
+local sessions_path = util.datapath('sessions')
 
 local function session_file()
   local path = vim.fn.getcwd(0)
@@ -9,14 +9,14 @@ if not vim.uv.fs_stat(sessions_path) then
   vim.uv.fs_mkdir(sessions_path, 493)
 end
 
-autocmd('VimLeavePre', {
+autocmd({ 'VimLeavePre' }, {
   callback = function()
     local file = session_file()
     vim.cmd(string.format('mksession! %s', file))
   end,
 })
 
-autocmd('VimEnter', {
+autocmd({ 'VimEnter' }, {
   callback = function(opt)
     if opt.file == '' then
       vim.defer_fn(function()

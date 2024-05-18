@@ -1,15 +1,29 @@
-local api = vim.api
-local uv = vim.uv
 local co = coroutine
 local pd = {}
 local whk = { bg = '#202328' }
 
 local function stl_attr(group)
-  local color = api.nvim_get_hl_by_name(group, true)
+  local color = vim.api.nvim_get_hl_by_name(group, true)
   return { fg = color.foreground }
 end
 
-function pd.sk()
+local function stl_fmt(name, val)
+  return '%#Whisky' .. name .. '#' .. val .. '%*'
+end
+
+local function stl_hl(name, attr)
+  if attr.fn then
+    attr = attr.fn()
+  end
+
+  if name ~= 'sk' then
+    attr.bg = whk.bg
+  end
+
+  vim.api.nvim_set_hl(0, 'Whisky' .. name, attr)
+end
+
+pd.sk = function()
   return {
     stl = ' ',
     name = 'sk',
@@ -20,7 +34,7 @@ function pd.sk()
   }
 end
 
-function pd.sep()
+pd.sep = function()
   return {
     stl = ' ',
     name = 'sep',
@@ -31,7 +45,7 @@ function pd.sep()
   }
 end
 
-function pd.mode()
+pd.mode = function()
   return {
     stl = '',
     name = 'mode',
@@ -47,7 +61,7 @@ function pd.mode()
           ['\x16'] = '#51afef',
         }
 
-        local mode = api.nvim_get_mode().mode
+        local mode = vim.api.nvim_get_mode().mode
 
         return {
           fg = colors[mode] or colors[1],
@@ -57,13 +71,9 @@ function pd.mode()
   }
 end
 
-local function path_sep()
-  return uv.os_uname().sysname == 'Windows_NT' and '\\' or '/'
-end
-
-function pd.filesize()
+pd.filesize = function()
   local stl_size = function()
-    local size = vim.fn.getfsize(api.nvim_buf_get_name(0))
+    local size = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
 
     if size == 0 or size == -1 or size == -2 then
       return ''
@@ -89,10 +99,10 @@ function pd.filesize()
   }
 end
 
-function pd.fileinfo()
+pd.fileinfo = function()
   local function stl_file()
-    local fname = api.nvim_buf_get_name(0)
-    local sep = path_sep()
+    local fname = vim.api.nvim_buf_get_name(0)
+    local sep = '/'
     local parts = vim.split(fname, sep, { trimempty = true })
     local index = #parts - 1 <= 0 and 1 or #parts - 1
     fname = table.concat({ unpack(parts, index) }, sep)
@@ -110,7 +120,7 @@ function pd.fileinfo()
   }
 end
 
-function pd.lsp()
+pd.lsp = function()
   local function lsp_stl(args)
     local msg = ''
     if args.event == 'LspProgress' then
@@ -145,7 +155,7 @@ function pd.lsp()
   }
 end
 
-function pd.pad()
+pd.pad = function()
   return {
     stl = '%=',
     name = 'pad',
@@ -156,7 +166,7 @@ function pd.pad()
   }
 end
 
-function pd.lnumcol()
+pd.lnumcol = function()
   return {
     stl = '%-4.(%l:%c%) %P',
     name = 'linecol',
@@ -165,7 +175,7 @@ function pd.lnumcol()
   }
 end
 
-function pd.encoding()
+pd.encoding = function()
   return {
     stl = '%{&fileencoding?&fileencoding:&encoding} %{&fileformat}',
     name = 'filencode',
@@ -174,16 +184,7 @@ function pd.encoding()
   }
 end
 
-local function get_diag_sign(type)
-  local prefix = 'DiagnosticSign'
-  for _, item in ipairs(vim.fn.sign_getdefined()) do
-    if item.name == prefix .. type then
-      return item.text
-    end
-  end
-end
-
-function pd.diag()
+pd.diag = function()
   local i
   local count
   local tbl = { 'Error', 'Warn', 'Info', 'Hint' }
@@ -197,6 +198,15 @@ function pd.diag()
     end
 
     return 0
+  end
+
+  local function get_diag_sign(type)
+    local prefix = 'DiagnosticSign'
+    for _, item in ipairs(vim.fn.sign_getdefined()) do
+      if item.name == prefix .. type then
+        return item.text
+      end
+    end
   end
 
   local function diag_stl()
@@ -269,22 +279,6 @@ local funs = {
   pd.sk,
 }
 
-local function stl_format(name, val)
-  return '%#Whisky' .. name .. '#' .. val .. '%*'
-end
-
-local function stl_hl(name, attr)
-  if attr.fn then
-    attr = attr.fn()
-  end
-
-  if name ~= 'sk' then
-    attr.bg = whk.bg
-  end
-
-  api.nvim_set_hl(0, 'Whisky' .. name, attr)
-end
-
 local function default()
   local comps, events, pieces = {}, {}, {}
 
@@ -292,7 +286,7 @@ local function default()
     local item = fun()
 
     comps[idx] = item
-    pieces[idx] = type(item.stl) == 'string' and stl_format(item.name, item.stl) or ''
+    pieces[idx] = type(item.stl) == 'string' and stl_fmt(item.name, item.stl) or ''
 
     if type(item.stl) == 'function' or item.attr['fn'] then
       for _, event in ipairs(item.event or {}) do
@@ -317,7 +311,7 @@ local function render(comps, events, pieces)
 
       for _, idx in ipairs(events[event]) do
         if type(comps[idx].stl) == 'function' then
-          pieces[idx] = stl_format(comps[idx].name, comps[idx].stl(args))
+          pieces[idx] = stl_fmt(comps[idx].name, comps[idx].stl(args))
         end
 
         if comps[idx].attr['fn'] then
@@ -335,7 +329,7 @@ local comps, events, pieces = default()
 local stl_render = render(comps, events, pieces)
 
 for _, event in ipairs(vim.tbl_keys(events)) do
-  api.nvim_create_autocmd(event, {
+  vim.api.nvim_create_autocmd(event, {
     callback = function(args)
       vim.schedule(function()
         local ok, res = co.resume(stl_render, args)

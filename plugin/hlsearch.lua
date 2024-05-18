@@ -1,13 +1,12 @@
-local fn = vim.fn
-local api = vim.api
+local buffers = {}
 
 local function stop_hl()
   if vim.v.hlsearch == 0 then
     return
   end
 
-  local keycode = api.nvim_replace_termcodes('<Cmd>nohl<Cr>', true, false, true)
-  api.nvim_feedkeys(keycode, 'n', false)
+  local keycode = vim.api.nvim_replace_termcodes('<Cmd>nohl<Cr>', true, false, true)
+  vim.api.nvim_feedkeys(keycode, 'n', false)
 end
 
 local function start_hl()
@@ -15,36 +14,34 @@ local function start_hl()
     return
   end
 
-  local res = fn.getreg('/')
+  local res = vim.fn.getreg('/')
 
   if res:find([[%#]], 1, true) then
     stop_hl()
     return
   end
 
-  ok, res = pcall(fn.search, [[\%#\zs]] .. res, 'cnW')
+  ok, res = pcall(vim.fn.search, [[\%#\zs]] .. res, 'cnW')
   if ok and res == 0 then
     stop_hl()
     return
   end
 end
 
-local buffers = {}
-
-local function hlsearch(bufnr)
+local function hl_search(bufnr)
   if buffers[bufnr] then
     return
   end
   buffers[bufnr] = true
 
-  local cm_id = autocmd({ 'CursorMoved' }, {
+  local start_cmd_id = autocmd({ 'CursorMoved' }, {
     buffer = bufnr,
     callback = function()
       start_hl()
     end,
   })
 
-  local cm_id = autocmd({ 'InsertEnter' }, {
+  local stop_cmd_id = autocmd({ 'InsertEnter' }, {
     buffer = bufnr,
     callback = function()
       stop_hl()
@@ -55,15 +52,15 @@ local function hlsearch(bufnr)
     buffer = bufnr,
     callback = function(opt)
       buffers[bufnr] = nil
-      pcall(api.nvim_del_autocmd, cm_id)
-      pcall(api.nvim_del_autocmd, ie_id)
-      pcall(api.nvim_del_autocmd, opt.id)
+      pcall(vim.api.nvim_del_autocmd, start_cmd_id)
+      pcall(vim.api.nvim_del_autocmd, stop_cmd_id)
+      pcall(vim.api.nvim_del_autocmd, opt.id)
     end,
   })
 end
 
 autocmd({ 'BufWinEnter' }, {
   callback = function(opt)
-    hlsearch(opt.buf)
+    hl_search(opt.buf)
   end,
 })
