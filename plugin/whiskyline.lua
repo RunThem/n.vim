@@ -122,7 +122,7 @@ end
 
 pd.lsp = function()
   local function lsp_stl(args)
-    local msg = ''
+    local msg = '    '
     if args.event == 'LspProgress' then
       local val = args.data.params.value
 
@@ -140,8 +140,6 @@ pd.lsp = function()
       if val.kind == 'end' then
         msg = '   '
       end
-    elseif args.event == 'LspDetach' then
-      msg = '    '
     end
 
     return '%.40{"' .. msg .. '"}'
@@ -184,65 +182,6 @@ pd.encoding = function()
   }
 end
 
-pd.diag = function()
-  local i
-  local count
-  local tbl = { 'Error', 'Warn', 'Info', 'Hint' }
-
-  local function diag_has()
-    for i = 1, 4 do
-      local count = #vim.diagnostic.get(0, { severity = i })
-      if count ~= 0 then
-        return i
-      end
-    end
-
-    return 0
-  end
-
-  local function get_diag_sign(type)
-    local prefix = 'DiagnosticSign'
-    for _, item in ipairs(vim.fn.sign_getdefined()) do
-      if item.name == prefix .. type then
-        return item.text
-      end
-    end
-  end
-
-  local function diag_stl()
-    if not vim.diagnostic.is_enabled() then
-      return '  '
-    end
-
-    local tbl = { 'Error', 'Warn', 'Info', 'Hint' }
-    local idx = diag_has()
-
-    return idx == 0 and '  ' or get_diag_sign(tbl[idx])
-  end
-
-  local function diag_attr()
-    if not vim.diagnostic.is_enabled() then
-      return '  '
-    end
-
-    local tbl = { 'DiagnosticError', 'DiagnosticWarn', 'DiagnosticInfo', 'DiagnosticHint' }
-    local idx = diag_has()
-
-    if idx == 0 then
-      return { fg = 'NONE' }
-    end
-
-    return stl_attr(tbl[idx])
-  end
-
-  return {
-    stl = diag_stl,
-    name = 'diag',
-    event = { 'DiagnosticChanged', 'BufEnter' },
-    attr = { fn = diag_attr },
-  }
-end
-
 local S = pd.sep
 local funs = {
   pd.sk,
@@ -254,10 +193,6 @@ local funs = {
 
   S,
   pd.lsp,
-  S,
-
-  S,
-  pd.diag,
   S,
 
   S,
