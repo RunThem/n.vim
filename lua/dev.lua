@@ -1,9 +1,10 @@
 local M = {}
 
 local api, fn, ts, lpeg = vim.api, vim.fn, vim.treesitter, vim.lpeg
+local inf = vim.print
 
-local inf = util.info
-
-function M.setup() end
+function M.setup()
+  inf('Hello Neovim!!!')
+end
 
 return M
