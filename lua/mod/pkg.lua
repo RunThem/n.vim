@@ -19,26 +19,26 @@ pkg({
 pkg({
   'kevinhwang91/nvim-ufo',
   event = { 'BufReadPost', 'BufNewFile' },
-  config = require('modules.conf.ufo'),
+  config = require('mod.conf.ufo'),
   dependencies = { 'kevinhwang91/promise-async' },
 })
 
 pkg({
   'neovim/nvim-lspconfig',
-  config = require('modules.conf.lsp'),
+  config = require('mod.conf.lsp'),
 })
 
 pkg({
   'nvimdev/lspsaga.nvim',
   event = { 'LspAttach' },
-  config = require('modules.conf.saga'),
+  config = require('mod.conf.saga'),
 })
 
 pkg({
   'nvimdev/guard.nvim',
   event = { 'VeryLazy' },
   ft = { 'c', 'cpp', 'rust', 'lua', 'go', 'json' },
-  config = require('modules.conf.guard'),
+  config = require('mod.conf.guard'),
   dependencies = {
     { 'nvimdev/guard-collection' },
   },
@@ -47,7 +47,7 @@ pkg({
 pkg({
   'hrsh7th/nvim-cmp',
   event = { 'InsertEnter' },
-  config = require('modules.conf.cmp'),
+  config = require('mod.conf.cmp'),
   dependencies = {
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-nvim-lua' },

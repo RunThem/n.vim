@@ -10,10 +10,10 @@ end
 vim.opt.runtimepath:prepend(lazy_path)
 
 local lazy = require('lazy')
-local repos = require('modules.plugins')
+local repos = require('mod.pkg')
 
 lazy.setup(repos, {
   lockfile = util.datapath('lazy-lock.json'),
 })
 
-require('modules.keymaps')
+require('mod.key')

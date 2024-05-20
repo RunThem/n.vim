@@ -16,7 +16,7 @@
 
 require('core')
 
-require('modules')
+require('mod')
 
 --[[ mini debug config
 
