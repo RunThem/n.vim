@@ -11,14 +11,21 @@ pkg({
 })
 
 pkg({
-  'neovim/nvim-lspconfig',
-  config = require('modules.conf.lsp'),
-})
-
-pkg({
   'utilyre/sentiment.nvim',
   event = { 'VeryLazy' },
   config = true,
+})
+
+pkg({
+  'kevinhwang91/nvim-ufo',
+  event = { 'BufReadPost', 'BufNewFile' },
+  config = require('modules.conf.ufo'),
+  dependencies = { 'kevinhwang91/promise-async' },
+})
+
+pkg({
+  'neovim/nvim-lspconfig',
+  config = require('modules.conf.lsp'),
 })
 
 pkg({
@@ -51,19 +58,6 @@ pkg({
     { 'dcampos/nvim-snippy' },
     { 'onsails/lspkind-nvim' },
   },
-})
-
-pkg({
-  'nvimdev/flybuf.nvim',
-  event = { 'VeryLazy' },
-  config = true,
-})
-
-pkg({
-  'kevinhwang91/nvim-ufo',
-  event = { 'BufReadPost', 'BufNewFile' },
-  config = require('modules.conf.ufo'),
-  dependencies = { 'kevinhwang91/promise-async' },
 })
 
 return M

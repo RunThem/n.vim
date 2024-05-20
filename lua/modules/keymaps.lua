@@ -14,8 +14,5 @@ map.n('go', cmd('Lspsaga outline'))
 map.n('--', cmd('Lspsaga term_toggle'))
 map.t('--', cmd('Lspsaga term_toggle'))
 
---- flybuf
-map.n('gb', cmd('FlyBuf'))
-
 --- guard
 map.n('==', cmd('GuardFmt'))
