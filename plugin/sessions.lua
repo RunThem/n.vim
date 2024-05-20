@@ -1,20 +1,19 @@
 local sessions_path = util.datapath('sessions')
 
+---init
+if not vim.uv.fs_stat(sessions_path) then
+  vim.uv.fs_mkdir(sessions_path, 493)
+end
+
 local function session_file()
   local path = vim.fn.getcwd(0)
   return string.format('%s/%s.session', sessions_path, vim.base64.encode(path))
 end
 
-if not vim.uv.fs_stat(sessions_path) then
-  vim.uv.fs_mkdir(sessions_path, 493)
-end
-
-autocmd({ 'VimLeavePre' }, {
-  callback = function()
-    local file = session_file()
-    vim.cmd(string.format('mksession! %s', file))
-  end,
-})
+map.n('<Leader>X', function()
+  local file = session_file()
+  vim.cmd(string.format('mksession! %s', file))
+end)
 
 autocmd({ 'VimEnter' }, {
   callback = function(opt)

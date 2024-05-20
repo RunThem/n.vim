@@ -27,6 +27,9 @@ require('core.util')
 
 map.n(' ', ' ')
 map.x(' ', ' ')
+map.c('q', function()
+  print('Use `xa` to exit nvim')
+end)
 
 require('core.opt')
 require('core.key')
