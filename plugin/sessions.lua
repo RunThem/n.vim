@@ -13,6 +13,7 @@ end
 map.n('<Leader>X', function()
   local file = session_file()
   vim.cmd(string.format('mksession! %s', file))
+  vim.notify('Save session!!!')
 end)
 
 autocmd({ 'VimEnter' }, {
