@@ -2,6 +2,14 @@
 map.n('<C-j>', '3j')
 map.n('<C-k>', '3k')
 
+map.n('j', function()
+  return vim.v.count == 0 and 'gj' or 'j'
+end, { expr = true })
+
+map.n('k', function()
+  return vim.v.count == 0 and 'gk' or 'k'
+end, { expr = true })
+
 map.n('0', function()
   local head = (util.cline():find('[^%s]') or 1) - 1
   return util.col() == head and '0' or '^'
