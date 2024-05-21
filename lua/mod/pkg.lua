@@ -11,12 +11,6 @@ pkg({
 })
 
 pkg({
-  'utilyre/sentiment.nvim',
-  event = { 'VeryLazy' },
-  config = true,
-})
-
-pkg({
   'kevinhwang91/nvim-ufo',
   event = { 'BufReadPost', 'BufNewFile' },
   config = require('mod.conf.ufo'),
