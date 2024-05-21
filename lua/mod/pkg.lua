@@ -5,37 +5,34 @@ local pkg = function(repo)
 end
 
 pkg({
+  'neovim/nvim-lspconfig',
+  config = require('mod.conf.lsp'),
+})
+
+pkg({
   'nvim-treesitter/nvim-treesitter',
   event = { 'BufReadPost', 'BufNewFile' },
   build = ':TSUpdate',
 })
 
 pkg({
+  'nvimdev/lspsaga.nvim',
+  event = { 'VeryLazy' },
+  config = require('mod.conf.saga'),
+})
+
+pkg({
   'kevinhwang91/nvim-ufo',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = { 'VeryLazy' },
   config = require('mod.conf.ufo'),
   dependencies = { 'kevinhwang91/promise-async' },
 })
 
 pkg({
-  'neovim/nvim-lspconfig',
-  config = require('mod.conf.lsp'),
-})
-
-pkg({
-  'nvimdev/lspsaga.nvim',
-  event = { 'LspAttach' },
-  config = require('mod.conf.saga'),
-})
-
-pkg({
   'nvimdev/guard.nvim',
   event = { 'VeryLazy' },
-  ft = { 'c', 'cpp', 'rust', 'lua', 'go', 'json' },
   config = require('mod.conf.guard'),
-  dependencies = {
-    { 'nvimdev/guard-collection' },
-  },
+  dependencies = { 'nvimdev/guard-collection' },
 })
 
 pkg({

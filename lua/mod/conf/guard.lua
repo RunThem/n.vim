@@ -20,4 +20,7 @@ return function()
   guard.setup({
     fmt_on_save = false,
   })
+
+  ---@keymap
+  map.n('==', map.cmd('GuardFmt'))
 end

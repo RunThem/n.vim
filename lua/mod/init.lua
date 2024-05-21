@@ -1,19 +1,10 @@
-local uv = vim.loop
-local api = vim.api
-
-local lazy_path = string.format('%s/lazy/lazy.nvim', util.datapath())
-if not uv.fs_stat(lazy_path) then
-  local cmd = '!git clone https://github.com/folke/lazy.nvim ' .. lazy_path
-  api.nvim_command(cmd)
+local lazypath = string.format('%s/lazy/lazy.nvim', util.datapath())
+if not vim.uv.fs_stat(lazypath) then
+  vim.cmd('!git clone https://github.com/folke/lazy.nvim ' .. lazypath)
 end
 
-vim.opt.runtimepath:prepend(lazy_path)
+vim.opt.runtimepath:prepend(lazypath)
 
-local lazy = require('lazy')
-local repos = require('mod.pkg')
-
-lazy.setup(repos, {
+require('lazy').setup(require('mod.pkg'), {
   lockfile = util.datapath('lazy-lock.json'),
 })
-
-require('mod.key')
