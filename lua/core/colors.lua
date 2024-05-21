@@ -240,6 +240,10 @@ hl('@tag.typescript',                     { link = '@tag.html' })
 hl('@tag.attribute.typescript',           { link = '@tag.attribute.html' })
 hl('@tag.delimiter.typescript',           { link = '@tag.delimiter.html' })
 
+---Comment
+hl('@comment.todo.comment',               { fg = colors.green })
+hl('@lsp.type.comment',                   { link = 'Normal' })
+
 --- Markdown
 hl('@text.reference.markdown_inline',             { fg = colors.blue })
 

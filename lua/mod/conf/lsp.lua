@@ -131,15 +131,9 @@ local function make_attach(lsp)
 end
 
 return function()
+  require('nvim-treesitter.configs').setup({})
+
   local lspconfig = require('lspconfig')
-  local ts = require('nvim-treesitter.configs')
-  local ts_conf = { auto_install = true, highlight = { enable = true } }
-
-  if clangd then
-    ts_conf.highlight.disable = { 'c', 'cpp' }
-  end
-
-  ts.setup(ts_conf)
 
   for lsp, conf in pairs(lsp_conf) do
     local defconf = {
