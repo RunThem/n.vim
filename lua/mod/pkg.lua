@@ -13,6 +13,7 @@ pkg({
   'nvim-treesitter/nvim-treesitter',
   event = { 'BufReadPost', 'BufNewFile' },
   build = ':TSUpdate',
+  config = require('mod.conf.ts'),
 })
 
 pkg({

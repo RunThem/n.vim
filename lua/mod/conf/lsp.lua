@@ -132,14 +132,6 @@ end
 
 return function()
   local lspconfig = require('lspconfig')
-  local ts = require('nvim-treesitter.configs')
-
-  ts.setup({
-    auto_install = true,
-    highlight = {
-      enable = true,
-    },
-  })
 
   for lsp, conf in pairs(lsp_conf) do
     local defconf = {
