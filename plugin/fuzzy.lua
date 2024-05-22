@@ -29,9 +29,10 @@ local function execute(choices_cmd, on_selection)
   local shellcmdflag = vim.api.nvim_get_option('shellcmdflag')
   local popup_win, buf = popup()
   local height = vim.api.nvim_win_get_height(popup_win)
-  local fzy
+  local fzy = ''
 
-  fzy = string.format('%s | fzy -l %d -p "_> " > "%s"', choices_cmd, height, tmpfile)
+  fzy = string.format('%s -p "_> " -l %d  > "%s"', choices_cmd, height, tmpfile)
+
   vim.api.nvim_create_autocmd({ 'TermOpen', 'BufEnter' }, {
     buffer = buf,
     command = 'startinsert!',
@@ -72,7 +73,7 @@ local function execute(choices_cmd, on_selection)
 end
 
 map.n('<Leader>ff', function()
-  execute('fd', function(selection)
+  execute([[fd | fzy]], function(selection)
     if selection and vim.trim(selection) ~= '' then
       vim.cmd('e ' .. selection)
     end
@@ -80,7 +81,7 @@ map.n('<Leader>ff', function()
 end, { expr = false })
 
 map.n('<Leader>fa', function()
-  execute('rg --no-heading --trim -nH .', function(selection)
+  execute([[rg --no-heading --trim -nH . | fzy -S 50 -f "^(\w\.?\/?)+:[0-9]+:"]], function(selection)
     -- fzy returns search input if zero results found. This case is mapped to nil as well.
     selection = string.match(selection, '.+:%d+:')
     if selection then
