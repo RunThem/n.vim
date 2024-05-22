@@ -49,7 +49,6 @@ opt.showbreak = '↳  '
 opt.foldlevelstart = 99
 opt.foldmethod = 'expr'
 opt.number = true
-opt.statuscolumn = ' %l%= │ '
 opt.signcolumn = 'yes'
 opt.textwidth = 100
 opt.colorcolumn = '100'
@@ -66,7 +65,15 @@ opt.shiftwidth = 2
 opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
 
-if vim.loop.os_uname().sysname == 'Darwin' then
+--- statuscolumn
+_G.statuscol = function()
+  return util.row() == vim.v.lnum and '' or '  '
+end
+
+vim.opt.statuscolumn = '%#Function#%{%v:lua.statuscol()%}%## %l%= │ '
+
+--- Darwin option
+if vim.uv.os_uname().sysname == 'Darwin' then
   vim.g.clipboard = {
     name = 'macOS-clipboard',
     copy = {
