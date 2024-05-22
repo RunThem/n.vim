@@ -40,6 +40,8 @@ map.t('<Esc>', [[<C-\><C-n>]])
 --- dev
 map.n('<Leader>d', function()
   vim.cmd('w')
+  vim.cmd('messages clear')
+  vim.notify('Neovim Dev Output:')
 
   if package.loaded['dev'] ~= nil then
     package.loaded['dev'] = nil
