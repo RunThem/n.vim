@@ -5,6 +5,6 @@ end
 
 vim.opt.runtimepath:prepend(lazypath)
 
-require('lazy').setup(require('mod.pkg'), {
+require('lazy').setup(require('mod.mods'), {
   lockfile = util.datapath('lazy-lock.json'),
 })

@@ -1,42 +1,42 @@
 local M = {}
 
-local pkg = function(repo)
+local mod = function(repo)
   table.insert(M, repo)
 end
 
-pkg({
+mod({
   'neovim/nvim-lspconfig',
   config = require('mod.conf.lsp'),
 })
 
-pkg({
+mod({
   'nvim-treesitter/nvim-treesitter',
   event = { 'BufReadPost', 'BufNewFile' },
   build = ':TSUpdate',
   config = require('mod.conf.ts'),
 })
 
-pkg({
+mod({
   'nvimdev/lspsaga.nvim',
   event = { 'VeryLazy' },
   config = require('mod.conf.saga'),
 })
 
-pkg({
+mod({
   'kevinhwang91/nvim-ufo',
   event = { 'VeryLazy' },
   config = require('mod.conf.ufo'),
   dependencies = { 'kevinhwang91/promise-async' },
 })
 
-pkg({
+mod({
   'nvimdev/guard.nvim',
   event = { 'VeryLazy' },
   config = require('mod.conf.guard'),
   dependencies = { 'nvimdev/guard-collection' },
 })
 
-pkg({
+mod({
   'hrsh7th/nvim-cmp',
   event = { 'InsertEnter' },
   config = require('mod.conf.cmp'),

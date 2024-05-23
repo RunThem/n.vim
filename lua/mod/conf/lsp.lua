@@ -1,7 +1,6 @@
 local lsp_conf = {}
 
-local clangd = true
-if clangd then
+if vim.rt.clangd then
   lsp_conf['clangd'] = {
     cmd = {
       'clangd',

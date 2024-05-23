@@ -14,9 +14,13 @@
 
 --]]
 
-require('core')
+vim.rt = {
+  pkgs = true,
+  clangd = true,
+  epo = false,
+}
 
-require('mod')
+require('core')
 
 --[[ mini debug config
 

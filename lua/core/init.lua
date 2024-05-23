@@ -32,3 +32,7 @@ require('core.opt')
 require('core.key')
 
 require('core.colors')
+
+if vim.rt.pkgs then
+  require('mod')
+end
