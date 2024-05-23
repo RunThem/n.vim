@@ -8,7 +8,7 @@
   ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
 
   Neovim init file
-  Version: 1.6.1 - 2024/05/23
+  Version: 1.6.2 - 2024/05/23
   Maintainer: RunThem
   Website: https://github.com/RunThem/n.vim.git
 
