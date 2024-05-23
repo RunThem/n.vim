@@ -1,4 +1,4 @@
-autocmd({ 'BufRead', 'BufNewFile' }, {
+util.autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = vim.env.HOME .. '/.config/nvim/*.lua',
   callback = function()
     local cmp = require('cmp')
@@ -14,7 +14,7 @@ autocmd({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 
-autocmd({ 'BufRead', 'BufNewFile' }, {
+util.autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = 'xmake.lua',
   callback = function()
     local cmp = require('cmp')

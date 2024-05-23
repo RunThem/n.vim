@@ -14,7 +14,7 @@
 
 --]]
 
-vim.rt = {
+vim.n = {
   pkgs = true,
   clangd = true,
   epo = false,

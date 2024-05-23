@@ -1,17 +1,19 @@
----[[ info ]]
-author = io.popen('git config user.name'):read('*l')
-email = io.popen('git config user.email'):read('*l')
+---[[ utils function ]]
+util = {
+  ---@type string
+  author = io.popen('git config user.name'):read('*l'),
+  ---@type string
+  email = io.popen('git config user.email'):read('*l'),
+}
 
----[[ group ]]
-group = vim.api.nvim_create_augroup('n.vim', {})
-autocmd = function(event, opt)
-  opt = vim.tbl_deep_extend('force', { group = group }, opt)
+---@param event string|table<string>
+---@param opt table<any>
+---@return integer
+function util.autocmd(event, opt)
   return vim.api.nvim_create_autocmd(event, opt)
 end
 
----[[ utils function ]]
-util = {}
-
+---@param file string
 ---@return string
 function util.confpath(file)
   local path = os.getenv('XDG_CONFIG_DIR')
@@ -22,6 +24,7 @@ function util.confpath(file)
   return path .. (file and '/' .. file or '')
 end
 
+---@param file string
 ---@return string
 function util.datapath(file)
   local path = os.getenv('XDG_DATA_DIR')
@@ -68,8 +71,8 @@ function util.bufnr()
   return vim.api.nvim_get_current_buf()
 end
 
----@param coord table
----@param msg string|table
+---@param coord table<integer>
+---@param msg string|table<string>
 function util.write(coord, msg)
   local bufnr = util.bufnr()
 
@@ -91,7 +94,7 @@ function util.write(coord, msg)
   vim.api.nvim_buf_set_text(bufnr, s_row, s_col, e_row, e_col, msg)
 end
 
----@param msg string|table
+---@param msg string|table<string>
 function util.cwrite(msg)
   local bufnr = util.bufnr()
   local row = util.row() - 1
@@ -116,6 +119,7 @@ end
 for _, m in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
   ---@param key string
   ---@param expr string|function
+  ---@param opt table
   map[m] = function(key, expr, opt)
     opt = vim.tbl_deep_extend('force', { noremap = true, nowait = true, silent = true }, opt or {})
 

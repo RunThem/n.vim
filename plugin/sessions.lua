@@ -16,7 +16,7 @@ map.n('<Leader>X', function()
   vim.notify('Save session!!!')
 end)
 
-autocmd({ 'VimEnter' }, {
+util.autocmd({ 'VimEnter' }, {
   callback = function(opt)
     if opt.file == '' then
       vim.defer_fn(function()

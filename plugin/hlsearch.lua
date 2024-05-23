@@ -34,21 +34,21 @@ local function hl_search(bufnr)
   end
   buffers[bufnr] = true
 
-  local start_cmd_id = autocmd({ 'CursorMoved' }, {
+  local start_cmd_id = util.autocmd({ 'CursorMoved' }, {
     buffer = bufnr,
     callback = function()
       start_hl()
     end,
   })
 
-  local stop_cmd_id = autocmd({ 'InsertEnter' }, {
+  local stop_cmd_id = util.autocmd({ 'InsertEnter' }, {
     buffer = bufnr,
     callback = function()
       stop_hl()
     end,
   })
 
-  autocmd({ 'BufDelete' }, {
+  util.autocmd({ 'BufDelete' }, {
     buffer = bufnr,
     callback = function(opt)
       buffers[bufnr] = nil
@@ -59,7 +59,7 @@ local function hl_search(bufnr)
   })
 end
 
-autocmd({ 'BufWinEnter' }, {
+util.autocmd({ 'BufWinEnter' }, {
   callback = function(opt)
     hl_search(opt.buf)
   end,

@@ -41,12 +41,12 @@ local function undo_hl_cursor_word()
   end
 end
 
-autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+util.autocmd({ 'CursorMoved', 'CursorMovedI' }, {
   pattern = '*',
   callback = hl_cursor_word,
 })
 
-autocmd({ 'InsertEnter', 'BufWinEnter' }, {
+util.autocmd({ 'InsertEnter', 'BufWinEnter' }, {
   pattern = '*',
   callback = undo_hl_cursor_word,
 })

@@ -1,4 +1,4 @@
-local lp = {
+local ignore = {
   ['bt'] = { 'quickfix', 'nofile', 'help' },
   ['ft'] = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
 }
@@ -19,25 +19,23 @@ local function set_cursor_position()
     end
   end
 
-  if vim.fn.foldclosed('.') ~= -1 and lp.lastplace_open_folds == 1 then
+  if vim.fn.foldclosed('.') ~= -1 and ignore.lastplace_open_folds == 1 then
     vim.api.nvim_command([[normal! zvzz]])
   end
 end
 
-local function lastplace_buf()
-  local get_opt = vim.api.nvim_get_option_value
+util.autocmd({ 'BufWinEnter', 'FileType' }, {
+  callback = function()
+    local get_opt = vim.api.nvim_get_option_value
 
-  if vim.tbl_contains(lp.bt, get_opt('buftype', {})) or vim.tbl_contains(lp.ft, get_opt('filetype', {})) then
-    return
-  end
+    if vim.tbl_contains(ignore.bt, get_opt('buftype', {})) or vim.tbl_contains(ignore.ft, get_opt('filetype', {})) then
+      return
+    end
 
-  if vim.fn.line('.') > 1 then
-    return
-  end
+    if vim.fn.line('.') > 1 then
+      return
+    end
 
-  set_cursor_position()
-end
-
-autocmd({ 'BufWinEnter' }, { callback = lastplace_buf })
-
-autocmd({ 'FileType' }, { callback = lastplace_buf })
+    set_cursor_position()
+  end,
+})
