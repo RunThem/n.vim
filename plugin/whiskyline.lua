@@ -264,7 +264,7 @@ local comps, events, pieces = default()
 local stl_render = render(comps, events, pieces)
 
 for _, event in ipairs(vim.tbl_keys(events)) do
-  vim.api.nvim_create_autocmd(event, {
+  util.autocmd(event, {
     callback = function(args)
       vim.schedule(function()
         local ok, res = co.resume(stl_render, args)

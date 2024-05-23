@@ -56,13 +56,13 @@ function util.width()
 end
 
 ---@param line integer
----@return integer
+---@return string[]
 function util.line(line)
   return vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
 end
 
----@return integer
-function util.cline()
+---@return string
+function util.cur_line()
   return vim.api.nvim_get_current_line()
 end
 
@@ -95,7 +95,7 @@ function util.write(coord, msg)
 end
 
 ---@param msg string|table<string>
-function util.cwrite(msg)
+function util.cur_write(msg)
   local bufnr = util.bufnr()
   local row = util.row() - 1
   local col = util.col()
@@ -110,18 +110,18 @@ end
 ---[[ keymap function ]]
 map = {}
 
----@param c string
----@return string
-function map.cmd(c)
-  return '<cmd>' .. c .. '<Cr>'
-end
-
 for _, m in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
   ---@param key string
   ---@param expr string|function
   ---@param opt table
   map[m] = function(key, expr, opt)
     opt = vim.tbl_deep_extend('force', { noremap = true, nowait = true, silent = true }, opt or {})
+
+    if type(expr) == 'string' then
+      if expr:sub(1, 1) == ':' then
+        expr = '<Cmd>' .. expr:sub(2) .. '<Cr>'
+      end
+    end
 
     vim.keymap.set(m, key, expr, opt)
   end

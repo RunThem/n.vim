@@ -11,7 +11,7 @@ map.n('k', function()
 end, { expr = true })
 
 map.n('0', function()
-  local head = (util.cline():find('[^%s]') or 1) - 1
+  local head = (util.cur_line():find('[^%s]') or 1) - 1
   return util.col() == head and '0' or '^'
 end, { expr = true })
 
@@ -51,12 +51,12 @@ map.n('<Leader>d', function()
 end)
 
 --- script
-map.n('<Leader>S', map.cmd('e ' .. util.confpath('lua/script.lua')))
+map.n('<Leader>S', ':e ' .. util.confpath('lua/script.lua'))
 map.n('<Leader>s', function()
   local exec = io.popen(util.confpath('lua/script.lua'))
   local out = exec:read('*l')
 
   exec:close()
 
-  util.cwrite(out)
+  util.cur_write(out)
 end)

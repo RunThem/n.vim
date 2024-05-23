@@ -22,5 +22,5 @@ return function()
   })
 
   ---@keymap
-  map.n('==', map.cmd('GuardFmt'))
+  map.n('==', ':GuardFmt')
 end
