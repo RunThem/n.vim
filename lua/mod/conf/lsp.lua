@@ -1,19 +1,15 @@
 local lsp_conf = {}
 
-if vim.n.clangd then
-  lsp_conf['clangd'] = {
-    cmd = {
-      'clangd',
-      '--background-index',
-      '--suggest-missing-includes',
-      '--clang-tidy',
-      '--header-insertion=never',
-      '--compile-commands-dir=build',
-    },
-  }
-else
-  lsp_conf['ccls'] = {}
-end
+lsp_conf['clangd'] = {
+  cmd = {
+    'clangd',
+    '--background-index',
+    '--suggest-missing-includes',
+    '--clang-tidy',
+    '--header-insertion=never',
+    '--compile-commands-dir=build',
+  },
+}
 
 lsp_conf['v_analyzer'] = {
   cmd = { 'v-analyzer' },

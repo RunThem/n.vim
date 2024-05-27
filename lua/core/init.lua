@@ -26,13 +26,12 @@ g.mapleader = ' '
 vim.cmd('colorscheme porcelain')
 
 require('core.util')
+require('core.opt')
+require('core.key')
 
 map.n(' ', ' ')
 map.x(' ', ' ')
 
-require('core.opt')
-require('core.key')
-
-if vim.n.pkgs then
+if vim.g.mod then
   require('mod')
 end

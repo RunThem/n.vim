@@ -66,11 +66,11 @@ opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
 
 --- statuscolumn
-vim.n.statuscol = function()
+vim.g.statuscol = function()
   return util.row() == vim.v.lnum and '' or '  '
 end
 
-vim.opt.statuscolumn = '%#Function#%{%v:lua.vim.n.statuscol()%}%## %l%= │ '
+vim.opt.statuscolumn = '%#Function#%{%v:lua.vim.g.statuscol()%}%## %l%= │ '
 
 --- Darwin option
 if vim.uv.os_uname().sysname == 'Darwin' then

@@ -14,11 +14,7 @@
 
 --]]
 
-vim.n = {
-  pkgs = true,
-  clangd = true,
-  epo = false,
-}
+vim.g.mod = true
 
 require('core')
 
