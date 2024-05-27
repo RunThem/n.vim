@@ -245,7 +245,7 @@ hl('@comment.todo.comment',               { fg = colors.green })
 hl('@lsp.type.comment',                   { link = 'Normal' })
 
 --- Markdown
-hl('@text.reference.markdown_inline',             { fg = colors.blue })
+hl('@text.reference.markdown_inline',     { fg = colors.blue })
 
 --- Diff
 hl('DiffAdd',                             { fg = colors.green })

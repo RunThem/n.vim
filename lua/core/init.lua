@@ -23,6 +23,8 @@ g.loaded_netrwFileHandlers = 1
 --- Use space as leader key
 g.mapleader = ' '
 
+vim.cmd('colorscheme porcelain')
+
 require('core.util')
 
 map.n(' ', ' ')
@@ -30,8 +32,6 @@ map.x(' ', ' ')
 
 require('core.opt')
 require('core.key')
-
-require('core.colors')
 
 if vim.n.pkgs then
   require('mod')
