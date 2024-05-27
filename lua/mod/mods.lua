@@ -30,6 +30,11 @@ mod({
 })
 
 mod({
+  'chrisgrieser/nvim-origami',
+  config = true,
+})
+
+mod({
   'nvimdev/guard.nvim',
   event = { 'VeryLazy' },
   config = require('mod.conf.guard'),
