@@ -1,5 +1,5 @@
 local rootpath = util.datapath('sessions')
-local options = { 'buffers', 'curdir', 'tabpages', 'winsize', 'skiprtp' } -- sessionoptions used for saving
+local options = { 'buffers', 'curdir', 'folds', 'tabpages', 'winsize', 'skiprtp' } -- sessionoptions used for saving
 
 ---init
 if not vim.uv.fs_stat(rootpath) then
@@ -11,15 +11,17 @@ local function session()
   return vim.fn.fnameescape(path)
 end
 
-map.n('<Leader>x', function()
+map.n('<Leader>ls', function()
   vim.cmd('silent! source ' .. session())
+
+  vim.notify('Load session!!!')
 end)
 
-util.autocmd({ 'VimLeavePre' }, {
-  callback = function()
-    local tmp = vim.o.sessionoptions
-    vim.o.sessionoptions = table.concat(options, ',')
-    vim.cmd('mksession! ' .. session())
-    vim.o.sessionoptions = tmp
-  end,
-})
+map.n('<Leader>ss', function()
+  local tmp = vim.o.sessionoptions
+  vim.o.sessionoptions = table.concat(options, ',')
+  vim.cmd('mksession! ' .. session())
+  vim.o.sessionoptions = tmp
+
+  vim.notify('Save session!!!')
+end)
