@@ -59,26 +59,16 @@ lsp_conf['rust_analyzer'] = {
   },
 }
 
-local function diagnostic()
-  local signs = {
-    -- Error = '',
-    -- Warn = '',
-    -- Info = '',
-    -- Hint = '',
-
-    Error = 'e',
-    Warn = 'w',
-    Info = 'i',
-    Hint = 'h',
-  }
-
-  for type, icon in pairs(signs) do
-    local hl = 'DiagnosticSign' .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  end
-
+local function make_diagnostic()
   vim.diagnostic.config({
-    signs = true,
+    signs = {
+      numhl = {
+        [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+        [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+        [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+        [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+      },
+    },
     update_in_insert = false,
     underline = true,
     severity_sort = true,
@@ -128,7 +118,9 @@ end
 return function()
   local lspconfig = require('lspconfig')
 
-  for lsp, conf in pairs(lsp_conf) do
+  make_diagnostic()
+
+  vim.iter(lsp_conf):each(function(lsp, conf)
     local defconf = {
       capabilities = make_capabilities(lsp),
       on_attach = make_attach(lsp),
@@ -139,7 +131,5 @@ return function()
     }
 
     lspconfig[lsp].setup(vim.tbl_deep_extend('force', defconf, conf))
-  end
-
-  diagnostic()
+  end)
 end
