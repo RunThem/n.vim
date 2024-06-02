@@ -44,6 +44,10 @@ end
 local function hl_word(word)
   local idx = 0
   local word = word or vim.fn.expand('<cword>')
+  if word:find('[%w]') == nil then
+    return
+  end
+
   local hl_group = 'hl_word_' .. word
 
   for i = 1, #maps do
