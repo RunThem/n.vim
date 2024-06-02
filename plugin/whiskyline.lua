@@ -153,6 +153,60 @@ pd.lsp = function()
   }
 end
 
+pd.diag = function()
+  local function diag_get()
+    local sign = { 'Error', 'Warn', 'Info', 'Hint' }
+    local idx = 0
+    local count = 0
+    for i = 1, 4 do
+      count = #vim.diagnostic.get(0, { severity = i })
+      if count ~= 0 then
+        idx = i
+        break
+      end
+    end
+
+    if idx == 0 then
+      return 0, '', count
+    end
+
+    return idx, 'DiagnosticSign' .. sign[idx], count
+  end
+
+  local function diag_stl()
+    if not vim.diagnostic.is_enabled() then
+      return '  '
+    end
+
+    local idx, sign, count = diag_get()
+    if idx == 0 then
+      return '  '
+    end
+
+    return string.format('%2d', count)
+  end
+
+  local function diag_attr()
+    if not vim.diagnostic.is_enabled() then
+      return '  '
+    end
+
+    local idx, sign = diag_get()
+    if idx == 0 then
+      return { fg = 'NONE' }
+    end
+
+    return stl_attr(sign)
+  end
+
+  return {
+    stl = diag_stl,
+    name = 'diag',
+    event = { 'DiagnosticChanged', 'BufEnter' },
+    attr = { fn = diag_attr },
+  }
+end
+
 pd.pad = function()
   return {
     stl = '%=',
@@ -193,6 +247,10 @@ local funs = {
 
   S,
   pd.lsp,
+  S,
+
+  S,
+  pd.diag,
   S,
 
   S,
