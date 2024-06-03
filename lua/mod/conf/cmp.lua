@@ -145,6 +145,7 @@ return function()
       },
       { name = 'path' },
       { name = 'snippy' },
+      { name = 'lazydev' },
     },
     comparators = {
       cmp.config.compare.locality,

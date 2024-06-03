@@ -57,4 +57,13 @@ mod({
   },
 })
 
+mod({
+  'folke/lazydev.nvim',
+  ft = { 'lua' },
+  opts = { library = { 'luvit-meta/library' } },
+  dependencies = {
+    'Bilal2453/luvit-meta',
+  },
+})
+
 return M
