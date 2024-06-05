@@ -17,6 +17,11 @@ return function()
     args = { '--search-parent-directories', '-' },
   })
 
+  ft('sh'):fmt({
+    cmd = 'shfmt',
+    args = { '-i', '2' },
+  })
+
   guard.setup({
     fmt_on_save = false,
   })
