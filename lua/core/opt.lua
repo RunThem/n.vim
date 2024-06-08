@@ -52,7 +52,7 @@ opt.number = true
 opt.signcolumn = 'yes'
 opt.textwidth = 100
 opt.colorcolumn = '100'
-opt.concealcursor = 'niv'
+opt.concealcursor = 'nv'
 opt.cursorline = true
 -- opt.cursorcolumn = true
 
