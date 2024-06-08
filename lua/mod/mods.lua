@@ -6,6 +6,7 @@ end
 
 mod({
   'neovim/nvim-lspconfig',
+  event = { 'BufReadPost', 'BufNewFile' },
   config = require('mod.conf.lsp'),
 })
 
@@ -18,44 +19,44 @@ mod({
 
 mod({
   'nvimdev/lspsaga.nvim',
-  event = { 'VeryLazy' },
+  event = { 'BufReadPost', 'BufNewFile' },
   config = require('mod.conf.saga'),
 })
 
 mod({
   'kevinhwang91/nvim-ufo',
-  event = { 'VeryLazy' },
+  event = { 'BufReadPost', 'BufNewFile' },
   config = require('mod.conf.ufo'),
   dependencies = { 'kevinhwang91/promise-async' },
 })
 
 mod({
   'nvimdev/guard.nvim',
-  event = { 'VeryLazy' },
+  event = { 'BufReadPost', 'BufNewFile' },
   config = require('mod.conf.guard'),
   dependencies = { 'nvimdev/guard-collection' },
 })
 
--- mod({
---   'nvimdev/epo.nvim',
---   config = require('mod.conf.epo'),
--- })
-
 mod({
-  'hrsh7th/nvim-cmp',
-  event = { 'InsertEnter' },
-  config = require('mod.conf.cmp'),
-  dependencies = {
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/cmp-nvim-lua' },
-    { 'hrsh7th/cmp-path' },
-    { 'dcampos/cmp-snippy' },
-    { 'RunThem/cmp-xmake' },
-
-    { 'dcampos/nvim-snippy' },
-    { 'onsails/lspkind-nvim' },
-  },
+  'nvimdev/epo.nvim',
+  config = require('mod.conf.epo'),
 })
+
+-- mod({
+--   'hrsh7th/nvim-cmp',
+--   event = { 'InsertEnter' },
+--   config = require('mod.conf.cmp'),
+--   dependencies = {
+--     { 'hrsh7th/cmp-nvim-lsp' },
+--     { 'hrsh7th/cmp-nvim-lua' },
+--     { 'hrsh7th/cmp-path' },
+--     { 'dcampos/cmp-snippy' },
+--     { 'RunThem/cmp-xmake' },
+--
+--     { 'dcampos/nvim-snippy' },
+--     { 'onsails/lspkind-nvim' },
+--   },
+-- })
 
 mod({
   'folke/lazydev.nvim',

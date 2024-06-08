@@ -43,16 +43,27 @@ util.autocmd({ 'Filetype' }, {
   end,
 })
 
-if vim.fn.executable('fcitx-remote') == 1 then
-  util.autocmd({ 'InsertLeave' }, {
-    callback = function()
-      os.execute('fcitx-remote -c')
-    end,
-  })
+util.autocmd({ 'CmdlineEnter' }, {
+  once = true,
+  callback = function()
+    local shada = vim.fn.stdpath('state') .. '/shada/main.shada'
+    vim.o.shadafile = shada
+    vim.cmd('rshada! ' .. shada)
+  end,
+})
 
-  util.autocmd({ 'InsertEnter' }, {
-    callback = function()
-      os.execute('fcitx-remote -c')
-    end,
-  })
-end
+vim.defer_fn(function()
+  if vim.fn.executable('fcitx-remote') == 1 then
+    util.autocmd({ 'InsertLeave' }, {
+      callback = function()
+        os.execute('fcitx-remote -c')
+      end,
+    })
+
+    util.autocmd({ 'InsertEnter' }, {
+      callback = function()
+        os.execute('fcitx-remote -c')
+      end,
+    })
+  end
+end, 1000)

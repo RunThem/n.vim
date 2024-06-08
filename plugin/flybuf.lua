@@ -282,7 +282,7 @@ local function create_menu(opt)
     end,
   })
 
-  vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
+  util.autocmd({ 'CursorMoved' }, {
     buffer = bufnr,
     callback = function()
       local pos = vim.api.nvim_win_get_cursor(winid)
@@ -290,7 +290,7 @@ local function create_menu(opt)
     end,
   })
 
-  vim.api.nvim_create_autocmd({ 'BufDelete' }, {
+  util.autocmd({ 'BufDelete' }, {
     buffer = bufnr,
     callback = function()
       vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)

@@ -33,7 +33,7 @@ local function execute(choices_cmd, on_selection)
 
   fzy = string.format('%s -p "_> " -l %d  > "%s"', choices_cmd, height, tmpfile)
 
-  vim.api.nvim_create_autocmd({ 'TermOpen', 'BufEnter' }, {
+  util.autocmd({ 'TermOpen', 'BufEnter' }, {
     buffer = buf,
     command = 'startinsert!',
     once = true,
