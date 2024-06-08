@@ -30,16 +30,16 @@ mod({
 })
 
 mod({
-  'chrisgrieser/nvim-origami',
-  config = true,
-})
-
-mod({
   'nvimdev/guard.nvim',
   event = { 'VeryLazy' },
   config = require('mod.conf.guard'),
   dependencies = { 'nvimdev/guard-collection' },
 })
+
+-- mod({
+--   'nvimdev/epo.nvim',
+--   config = require('mod.conf.epo'),
+-- })
 
 mod({
   'hrsh7th/nvim-cmp',
