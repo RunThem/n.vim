@@ -2,10 +2,15 @@ return function()
   local guard = require('guard')
   local ft = require('guard.filetype')
 
-  ft('c'):fmt('clang-format') -- :lint('clang-tidy')
-  ft('cpp'):fmt('clang-format') -- :lint('clang-tidy')
+  ft('c'):fmt('clang-format'):lint({
+    cmd = 'clang-tidy',
+    args = { '--quiet', '-p', 'build' },
+  })
 
-  ft('rust'):fmt('rustfmt')
+  ft('cpp'):fmt('clang-format'):lint({
+    cmd = 'clang-tidy',
+    args = { '--quiet', '-p', 'build' },
+  })
 
   ft('go'):fmt({
     cmd = 'golines',
@@ -21,6 +26,8 @@ return function()
     cmd = 'shfmt',
     args = { '-i', '2' },
   })
+
+  ft('rust'):fmt('rustfmt')
 
   guard.setup({
     fmt_on_save = false,
