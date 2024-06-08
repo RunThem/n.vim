@@ -11,7 +11,7 @@ map.n('k', function()
 end, { expr = true })
 
 map.n('0', function()
-  local head = (util.cur_line():find('[^%s]') or 1) - 1
+  local head = (util.cline():find('[^%s]') or 1) - 1
   return util.col() == head and '0' or '^'
 end, { expr = true })
 
@@ -58,5 +58,5 @@ map.n('<Leader>x', function()
 
   exec:close()
 
-  util.cur_write(out)
+  util.cwrite(out)
 end)

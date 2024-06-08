@@ -24,7 +24,7 @@ local function get_buffers()
     return vim.fn.getbufinfo(a)[1].lastused > vim.fn.getbufinfo(b)[1].lastused
   end)
 
-  local buffers = {}
+  local bufs = {}
 
   for _, bufnr in ipairs(bufnrs) do
     local flag = bufnr == vim.fn.bufnr('') and '%' or (bufnr == vim.fn.bufnr('#') and '#' or ' ')
@@ -36,30 +36,30 @@ local function get_buffers()
     }
 
     if flag == '#' or flag == '%' then
-      local idx = ((buffers[1] ~= nil and buffers[1].flag == '%') and 2 or 1)
-      table.insert(buffers, idx, element)
+      local idx = ((bufs[1] ~= nil and bufs[1].flag == '%') and 2 or 1)
+      table.insert(bufs, idx, element)
     else
-      table.insert(buffers, element)
+      table.insert(bufs, element)
     end
   end
 
-  return buffers
+  return bufs
 end
 
 local function align_element(content)
   local max = {}
-  vim.tbl_map(function(item)
+  for _, item in ipairs(content) do
     max[#max + 1] = #item
-  end, content)
+  end
 
   table.sort(max)
   max = max[#max]
 
   local res = {}
-  vim.tbl_map(function(item)
+  for _, item in ipairs(content) do
     local fill = (' '):rep(max - #item)
     res[#res + 1] = item .. fill
-  end, content)
+  end
 
   return res
 end
@@ -83,9 +83,9 @@ end
 
 local function max_content_width(content)
   local max = {}
-  vim.tbl_map(function(item)
+  for _, item in ipairs(content) do
     max[#max + 1] = #item
-  end, content)
+  end
 
   table.sort(max)
 
@@ -103,23 +103,23 @@ local function create_ns()
   return all[name]
 end
 
-local function max_buf_len(buffers)
+local function max_buf_len(bufs)
   local max = {}
 
-  vim.tbl_map(function(item)
+  for _, item in pairs(bufs) do
     max[#max + 1] = #tostring(item.bufnr)
-  end, buffers)
+  end
 
   table.sort(max)
 
   return max[#max]
 end
 
-local function flattern_tbl(tbl, indexs)
+local function flattern_tbl(tbl, idxs)
   local tmp = {}
 
   for k, v in ipairs(tbl) do
-    if not vim.tbl_contains(indexs, k) then
+    if not vim.tbl_contains(idxs, k) then
       tmp[#tmp + 1] = v
     end
   end
@@ -128,8 +128,8 @@ local function flattern_tbl(tbl, indexs)
 end
 
 local function create_menu(opt)
-  local buffers = get_buffers()
-  if #buffers == 0 then
+  local bufs = get_buffers()
+  if #bufs == 0 then
     return
   end
 
@@ -138,9 +138,9 @@ local function create_menu(opt)
   local shortcut = hotkey(opt.hotkey)
   local keys = {}
   local ns = create_ns()
-  local max_len = max_buf_len(buffers)
+  local max_len = max_buf_len(bufs)
 
-  for i, item in ipairs(buffers) do
+  for i, item in ipairs(bufs) do
     local key = shortcut()
     if #item.name ~= 0 then
       lines[#lines + 1] = ' [' .. key .. '] ' .. item.name
@@ -205,7 +205,7 @@ local function create_menu(opt)
       noremap = true,
       nowait = true,
       callback = function()
-        local buf = buffers[item[2]].bufnr
+        local buf = bufs[item[2]].bufnr
         vim.api.nvim_win_close(winid, true)
         vim.api.nvim_win_set_buf(0, buf)
       end,
@@ -249,15 +249,15 @@ local function create_menu(opt)
       end
 
       for index, _ in pairs(wipes or {}) do
-        vim.api.nvim_buf_call(buffers[index].bufnr, function()
-          vim.api.nvim_buf_delete(buffers[index].bufnr, { force = true })
+        vim.api.nvim_buf_call(bufs[index].bufnr, function()
+          vim.api.nvim_buf_delete(bufs[index].bufnr, { force = true })
         end)
         table.remove(content, index)
         table.remove(hi, index)
       end
 
       local indexs = vim.tbl_keys(wipes)
-      buffers = flattern_tbl(buffers, indexs)
+      bufs = flattern_tbl(bufs, indexs)
       content = flattern_tbl(content, indexs)
       hi = flattern_tbl(hi, indexs)
 

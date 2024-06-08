@@ -1,16 +1,17 @@
----[[ utils function ]]
+--- [[ utils ]]
 util = {
   ---@type string
   author = io.popen('git config user.name'):read('*l'),
+
   ---@type string
   email = io.popen('git config user.email'):read('*l'),
 }
 
 ---@param event string|table<string>
----@param opt table<any>
+---@param opts vim.api.keyset.create_autocmd
 ---@return integer
-function util.autocmd(event, opt)
-  return vim.api.nvim_create_autocmd(event, opt)
+function util.autocmd(event, opts)
+  return vim.api.nvim_create_autocmd(event, opts)
 end
 
 ---@param file string
@@ -62,7 +63,7 @@ function util.line(line)
 end
 
 ---@return string
-function util.cur_line()
+function util.cline()
   return vim.api.nvim_get_current_line()
 end
 
@@ -95,7 +96,7 @@ function util.write(coord, msg)
 end
 
 ---@param msg string|table<string>
-function util.cur_write(msg)
+function util.cwrite(msg)
   local bufnr = util.bufnr()
   local row = util.row() - 1
   local col = util.col()
@@ -107,14 +108,14 @@ function util.cur_write(msg)
   vim.api.nvim_buf_set_text(bufnr, row, col, row, col, msg)
 end
 
----[[ keymap function ]]
+--- [[ keymap function ]]
 map = {}
 
-for _, m in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
+for _, mode in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
   ---@param key string
   ---@param expr string|function
-  ---@param opt table
-  map[m] = function(key, expr, opt)
+  ---@param opt table|nil
+  map[mode] = function(key, expr, opt)
     opt = vim.tbl_deep_extend('force', { noremap = true, nowait = true, silent = true }, opt or {})
 
     if type(expr) == 'string' then
@@ -123,6 +124,6 @@ for _, m in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
       end
     end
 
-    vim.keymap.set(m, key, expr, opt)
+    vim.keymap.set(mode, key, expr, opt)
   end
 end
