@@ -37,26 +37,26 @@ mod({
   dependencies = { 'nvimdev/guard-collection' },
 })
 
-mod({
-  'nvimdev/epo.nvim',
-  config = require('mod.conf.epo'),
-})
-
 -- mod({
---   'hrsh7th/nvim-cmp',
---   event = { 'InsertEnter' },
---   config = require('mod.conf.cmp'),
---   dependencies = {
---     { 'hrsh7th/cmp-nvim-lsp' },
---     { 'hrsh7th/cmp-nvim-lua' },
---     { 'hrsh7th/cmp-path' },
---     { 'dcampos/cmp-snippy' },
---     { 'RunThem/cmp-xmake' },
---
---     { 'dcampos/nvim-snippy' },
---     { 'onsails/lspkind-nvim' },
---   },
+--   'nvimdev/epo.nvim',
+--   config = require('mod.conf.epo'),
 -- })
+
+mod({
+  'hrsh7th/nvim-cmp',
+  event = { 'InsertEnter' },
+  config = require('mod.conf.cmp'),
+  dependencies = {
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'hrsh7th/cmp-nvim-lua' },
+    { 'hrsh7th/cmp-path' },
+    { 'dcampos/cmp-snippy' },
+    { 'RunThem/cmp-xmake' },
+
+    { 'dcampos/nvim-snippy' },
+    { 'onsails/lspkind-nvim' },
+  },
+})
 
 mod({
   'folke/lazydev.nvim',
