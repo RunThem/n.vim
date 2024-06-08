@@ -43,15 +43,6 @@ util.autocmd({ 'Filetype' }, {
   end,
 })
 
-util.autocmd({ 'CmdlineEnter' }, {
-  once = true,
-  callback = function()
-    local shada = vim.fn.stdpath('state') .. '/shada/main.shada'
-    vim.o.shadafile = shada
-    vim.cmd('rshada! ' .. shada)
-  end,
-})
-
 vim.defer_fn(function()
   if vim.fn.executable('fcitx-remote') == 1 then
     util.autocmd({ 'InsertLeave' }, {
