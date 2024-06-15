@@ -13,6 +13,19 @@ local maps = {
   -- { word, idx }
 }
 
+local function undo_hl_word(i)
+  colors[maps[i].idx].use = false
+  vim.api.nvim_set_hl(0, 'hl_word_' .. maps[i].word, {})
+
+  table.remove(maps, i)
+end
+
+local function undo_hl_all_word()
+  while #maps ~= 0 do
+    undo_hl_word(1)
+  end
+end
+
 local function get_idx()
   if #maps == #colors then
     local idx = maps[1].idx
@@ -25,19 +38,6 @@ local function get_idx()
         return i
       end
     end
-  end
-end
-
-local function undo_hl_word(i)
-  colors[maps[i].idx].use = false
-  vim.api.nvim_set_hl(0, 'hl_word_' .. maps[i].word, {})
-
-  table.remove(maps, i)
-end
-
-local function undo_hl_all_word()
-  while #maps ~= 0 do
-    undo_hl_word(1)
   end
 end
 
