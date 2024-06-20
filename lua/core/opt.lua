@@ -43,7 +43,7 @@ opt.laststatus = 3
 opt.showmode = false
 opt.list = true
 -- opt.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
-opt.listchars = 'tab: ·,nbsp: ,trail: ,extends: ,precedes: '
+opt.listchars:append('tab: ·,nbsp: ,trail: ,extends: ,precedes: ,eol: ')
 opt.breakindentopt = 'shift:2,min:20'
 opt.showbreak = '↳  '
 opt.foldlevelstart = 99
