@@ -108,11 +108,7 @@ local function make_capabilities(lsp)
 end
 
 local function make_attach(lsp)
-  return function(client, bufnr)
-    -- if lsp ~= 'clangd' then
-    --   client.server_capabilities.semanticTokensProvider = nil
-    -- end
-  end
+  return function(client, bufnr) end
 end
 
 return function()
