@@ -17,11 +17,11 @@ map.n('<Leader>ls', function()
   vim.notify('Load session!!!')
 end)
 
-map.n('<Leader>ss', function()
+vim.api.nvim_create_user_command('SaveSession', function(opts)
   local tmp = vim.o.sessionoptions
   vim.o.sessionoptions = table.concat(options, ',')
   vim.cmd('mksession! ' .. session())
   vim.o.sessionoptions = tmp
 
   vim.notify('Save session!!!')
-end)
+end, {})

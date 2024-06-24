@@ -154,4 +154,7 @@ return function()
       cmp.config.compare.offset,
     },
   })
+
+  vim.api.nvim_del_user_command('SnippyReload')
+  vim.api.nvim_del_user_command('SnippyEdit')
 end
