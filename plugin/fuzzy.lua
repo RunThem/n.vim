@@ -78,7 +78,7 @@ map.n('<Leader>ff', function()
       vim.cmd('e ' .. selection)
     end
   end)
-end, { expr = false })
+end)
 
 map.n('<Leader>fa', function()
   execute([[rg --no-heading --trim -nH . | fzy -S 50 -f "^(\w\.?\/?)+:[0-9]+:"]], function(selection)
@@ -90,4 +90,4 @@ map.n('<Leader>fa', function()
       vim.cmd(string.format('e +%d %s', parts[2], parts[1]))
     end
   end)
-end, { expr = false })
+end)

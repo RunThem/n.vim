@@ -22,7 +22,7 @@ return function()
     else
       return '<Tab>'
     end
-  end, { expr = true })
+  end, true)
 
   map.i('<S-Tab>', function()
     if vim.fn.pumvisible() == 1 then
@@ -32,7 +32,7 @@ return function()
     else
       return '<S-Tab>'
     end
-  end, { expr = true })
+  end, true)
 
   map.i('<Cr>', function()
     if vim.fn.pumvisible() == 1 then
@@ -40,5 +40,5 @@ return function()
     end
 
     return '<Cr>'
-  end, { expr = true })
+  end, true)
 end

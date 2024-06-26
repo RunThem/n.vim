@@ -66,5 +66,5 @@ end
 for key, info in pairs(keys) do
   map.i(key, function()
     return (key == ' ' and '<C-]>' or '') .. handler(key, info)
-  end, { expr = true })
+  end, true)
 end

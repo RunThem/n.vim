@@ -114,9 +114,9 @@ map = {}
 for _, mode in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
   ---@param key string
   ---@param expr string|function
-  ---@param opt table|nil
-  map[mode] = function(key, expr, opt)
-    opt = vim.tbl_deep_extend('force', { noremap = true, nowait = true, silent = true }, opt or {})
+  ---@param is_expr boolean|nil
+  map[mode] = function(key, expr, is_expr)
+    local opt = { noremap = true, nowait = true, silent = true, expr = is_expr or false }
 
     if type(expr) == 'string' then
       if expr:sub(1, 1) == ':' then
