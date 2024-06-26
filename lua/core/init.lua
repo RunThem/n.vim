@@ -32,6 +32,4 @@ require('core.key')
 map.n(' ', ' ')
 map.x(' ', ' ')
 
-if vim.g.mod then
-  require('mod')
-end
+require('mod')
