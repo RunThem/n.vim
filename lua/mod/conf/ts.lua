@@ -9,6 +9,9 @@ return function()
       enable = true,
       disable = { 'c', 'cpp' },
     },
+    indent = {
+      enable = true,
+    },
   })
 
   ---@keymap
