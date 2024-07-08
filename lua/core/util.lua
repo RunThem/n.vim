@@ -57,7 +57,7 @@ function util.width()
 end
 
 ---@param line integer
----@return string[]
+---@return string
 function util.line(line)
   return vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
 end
