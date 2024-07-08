@@ -67,10 +67,10 @@ opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
 
 --- statuscolumn
 vim.g.statuscol = function()
-  return util.row() == vim.v.lnum and '' or '  '
+  return util.row() == vim.v.lnum and '   ' or '    '
 end
 
-vim.opt.statuscolumn = '%#Function#%{%v:lua.vim.g.statuscol()%}%## %l%= │ '
+vim.opt.statuscolumn = '%l%#Function#%{%v:lua.vim.g.statuscol()%}%#'
 
 --- Darwin option
 if vim.uv.os_uname().sysname == 'Darwin' then

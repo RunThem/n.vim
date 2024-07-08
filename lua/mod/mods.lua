@@ -37,6 +37,11 @@ mod({
   dependencies = { 'nvimdev/guard-collection' },
 })
 
+mod({
+  'mvllow/modes.nvim',
+  config = require('mod.conf.modes'),
+})
+
 -- mod({
 --   'nvimdev/epo.nvim',
 --   config = require('mod.conf.epo'),
