@@ -1,13 +1,9 @@
 return function()
   local epo = require('epo')
 
-  vim.opt.completeopt = 'menu,menuone,noselect,popup'
-
   epo.setup({
-    fuzzy = false,
+    fuzzy = true,
     debounce = 50,
-    signature = false,
-    signature_border = 'rounded',
     kind_format = function(k)
       return k:lower():sub(1, 1)
     end,
@@ -15,7 +11,7 @@ return function()
 
   ---@keymap
   map.i('<Tab>', function()
-    if vim.fn.primitives() == 1 then
+    if vim.fn.pumvisible() == 1 then
       return '<C-n>'
     elseif vim.snippet.active({ direction = 1 }) then
       return '<Cmd>lua vim.snippet.jump(1)<Cr>'

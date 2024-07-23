@@ -39,6 +39,7 @@ mod({
 
 mod({
   'mvllow/modes.nvim',
+  event = { 'BufReadPost', 'BufNewFile' },
   config = require('mod.conf.modes'),
 })
 
