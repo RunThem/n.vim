@@ -27,12 +27,14 @@ return function()
     args = { '-i', '2' },
   })
 
-  ft('rust'):fmt('rustfmt')
+  ft('rust'):fmt({
+    cmd = 'rustfmt',
+  })
 
   guard.setup({
     fmt_on_save = false,
   })
 
   ---@keymap
-  map.n('==', ':GuardFmt')
+  map.n('ff', ':GuardFmt')
 end

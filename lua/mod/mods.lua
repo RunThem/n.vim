@@ -32,6 +32,7 @@ mod({
 
 mod({
   'nvimdev/guard.nvim',
+  commit = 'b066152fe06122b047a6b3ce427a19d8b6e628ce',
   event = { 'BufReadPost', 'BufNewFile' },
   config = require('mod.conf.guard'),
   dependencies = { 'nvimdev/guard-collection' },
