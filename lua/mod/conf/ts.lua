@@ -15,13 +15,13 @@ return function()
   })
 
   ---@keymap
-  local bufnr = nil ---@type nil|integer
-  local node = nil ---@type TSNode|nil
-  local coord = nil ---@type table<integer>
+  local bufnr = 0
+  local node = nil
+  local coord = nil
   local is_pair = false
 
   local function selection()
-    ---@return nil|table
+    ---@return nil|table<integer>
     local function get_coord()
       if node == nil then
         node = ts_utils.get_node_at_cursor()
@@ -52,6 +52,7 @@ return function()
 
     while
       coord
+      and lcoord
       and coord[1] == lcoord[1]
       and coord[2] == lcoord[2]
       and coord[3] == lcoord[3]
