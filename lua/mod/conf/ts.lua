@@ -15,72 +15,68 @@ return function()
   })
 
   ---@keymap
-  local curr_node = nil
-  local prev_node = nil
-  local function selection(node, bufnr)
-    if node == nil then
-      return
-    end
+  local bufnr = nil
+  local node = nil
+  local coord = nil
+  local is_pair = false
 
-    local coord
-    if
-      vim.bo.filetype == 'c'
-      and prev_node ~= nil
-      and prev_node:type() ~= 'compound_statement'
-      and node:type() == 'for_statement'
-    then
-      local start = { ts.get_node_range(node:child(1)) }
-      local _end = { ts.get_node_range(node:child(5)) }
+  local function selection()
+    ---@return table
+    local function get_coord()
+      if node == nil then
+        node = ts_utils.get_node_at_cursor()
+      elseif not is_pair then
+        node = node:parent()
+        if node == nil then
+          return nil
+        end
+      end
 
-      coord = { start[1] + 1, start[2] + 1, _end[3] + 1, _end[4] - 1 }
-
-      curr_node = prev_node
-      prev_node = nil
-    else
-      coord = { ts.get_node_range(node) }
-
+      local coord = { ts.get_node_range(node) }
       local text = ts.get_node_text(node, bufnr)
-      if text:find('^[%(%[{]') ~= nil and text:find('[%)%]}]$') ~= nil then
+      if not is_pair and text:find('^[%(%[{\'"]') ~= nil and text:find('[%)%]}\'"]$') ~= nil then
+        is_pair = true
         coord = { coord[1] + 1, coord[2] + 1, coord[3] + 1, coord[4] - 2 }
       else
+        is_pair = false
         coord = { coord[1] + 1, coord[2], coord[3] + 1, coord[4] - 1 }
       end
+
+      return coord[4] == -1 and nil or coord
     end
 
-    if coord[4] == -1 then
+    local lcoord = get_coord()
+    if lcoord == nil then
       return
     end
 
-    vim.api.nvim_win_set_cursor(0, { coord[1], coord[2] })
+    while
+      coord
+      and coord[1] == lcoord[1]
+      and coord[2] == lcoord[2]
+      and coord[3] == lcoord[3]
+      and coord[4] == lcoord[4]
+    do
+      lcoord = get_coord()
+    end
+
+    coord = lcoord
+
+    vim.api.nvim_win_set_cursor(0, { lcoord[1], lcoord[2] })
     vim.cmd('normal! o')
-    vim.api.nvim_win_set_cursor(0, { coord[3], coord[4] })
+    vim.api.nvim_win_set_cursor(0, { lcoord[3], lcoord[4] })
   end
 
   map.n('<Cr>', function()
-    prev_node = nil
-    curr_node = ts_utils.get_node_at_cursor()
-    local bufnr = vim.api.nvim_get_current_buf()
+    node = ts_utils.get_node_at_cursor()
+    bufnr = vim.api.nvim_get_current_buf()
 
     vim.cmd({ cmd = 'normal', bang = true, args = { 'v' } }, {})
-    selection(curr_node, bufnr)
+
+    selection()
   end)
 
   map.v('<Cr>', function()
-    if curr_node == nil or curr_node:parent() == nil then
-      return
-    end
-
-    local parent = curr_node:parent()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local text = { ts.get_node_text(curr_node, bufnr), ts.get_node_text(parent, bufnr) }
-
-    text[3] = text[2]:sub(1, 1) .. text[1] .. text[2]:sub(text[2]:len())
-    if text[1] == text[2] or text[3] == text[2] then
-      parent = parent:parent()
-    end
-
-    prev_node = curr_node
-    curr_node = parent
-    selection(parent, bufnr)
+    selection()
   end)
 end
