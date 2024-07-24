@@ -42,23 +42,27 @@ return function()
         lcoord = { lcoord[1] + 1, lcoord[2], lcoord[3] + 1, lcoord[4] - 1 }
       end
 
-      return lcoord[4] == -1 and nil or lcoord
+      if lcoord[4] == -1 then
+        return nil
+      end
+
+      return lcoord
     end
 
-    local lcoord = get_coord()
-    if lcoord == nil or type(lcoord) ~= 'table' then
-      return
-    end
-
-    while
-      coord
-      and lcoord
-      and coord[1] == lcoord[1]
-      and coord[2] == lcoord[2]
-      and coord[3] == lcoord[3]
-      and coord[4] == lcoord[4]
-    do
+    local lcoord
+    repeat
       lcoord = get_coord()
+    until not (
+        coord
+        and lcoord ~= nil
+        and coord[1] == lcoord[1]
+        and coord[2] == lcoord[2]
+        and coord[3] == lcoord[3]
+        and coord[4] == lcoord[4]
+      )
+
+    if lcoord == nil then
+      return
     end
 
     coord = lcoord
