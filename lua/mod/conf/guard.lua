@@ -36,5 +36,5 @@ return function()
   })
 
   ---@keymap
-  map.n('ff', ':GuardFmt')
+  map.n('==', ':GuardFmt')
 end
