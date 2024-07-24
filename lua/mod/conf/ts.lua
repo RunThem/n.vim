@@ -15,13 +15,13 @@ return function()
   })
 
   ---@keymap
-  local bufnr = nil
-  local node = nil
-  local coord = nil
+  local bufnr = nil ---@type nil|integer
+  local node = nil ---@type TSNode|nil
+  local coord = nil ---@type table<integer>
   local is_pair = false
 
   local function selection()
-    ---@return table
+    ---@return nil|table
     local function get_coord()
       if node == nil then
         node = ts_utils.get_node_at_cursor()
@@ -32,21 +32,21 @@ return function()
         end
       end
 
-      local coord = { ts.get_node_range(node) }
+      local lcoord = { ts.get_node_range(node) }
       local text = ts.get_node_text(node, bufnr)
       if not is_pair and text:find('^[%(%[{\'"]') ~= nil and text:find('[%)%]}\'"]$') ~= nil then
         is_pair = true
-        coord = { coord[1] + 1, coord[2] + 1, coord[3] + 1, coord[4] - 2 }
+        lcoord = { lcoord[1] + 1, lcoord[2] + 1, lcoord[3] + 1, lcoord[4] - 2 }
       else
         is_pair = false
-        coord = { coord[1] + 1, coord[2], coord[3] + 1, coord[4] - 1 }
+        lcoord = { lcoord[1] + 1, lcoord[2], lcoord[3] + 1, lcoord[4] - 1 }
       end
 
-      return coord[4] == -1 and nil or coord
+      return lcoord[4] == -1 and nil or lcoord
     end
 
     local lcoord = get_coord()
-    if lcoord == nil then
+    if lcoord == nil or type(lcoord) ~= 'table' then
       return
     end
 

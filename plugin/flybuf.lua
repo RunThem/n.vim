@@ -180,11 +180,11 @@ local function create_menu(opt)
   vim.bo[bufnr].bufhidden = 'wipe'
   vim.bo[bufnr].buftype = 'nofile'
 
-  local winid = vim.api.nvim_open_win(bufnr, true, float_opt)
-  vim.api.nvim_win_set_hl_ns(winid, ns)
+  local lwinid = vim.api.nvim_open_win(bufnr, true, float_opt)
+  vim.api.nvim_win_set_hl_ns(lwinid, ns)
   vim.api.nvim_set_option_value('winhl', 'Normal:Normal,FloatBorder:Constant', {
     scope = 'local',
-    win = winid,
+    win = lwinid,
   })
 
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
@@ -206,7 +206,7 @@ local function create_menu(opt)
       nowait = true,
       callback = function()
         local buf = bufs[item[2]].bufnr
-        vim.api.nvim_win_close(winid, true)
+        vim.api.nvim_win_close(lwinid, true)
         vim.api.nvim_win_set_buf(0, buf)
       end,
     })
@@ -217,7 +217,7 @@ local function create_menu(opt)
     noremap = true,
     nowait = true,
     callback = function()
-      local index = vim.api.nvim_win_get_cursor(winid)[1]
+      local index = vim.api.nvim_win_get_cursor(lwinid)[1]
       local start, _end = unpack(hi[index][4])
       if not vim.tbl_contains(vim.tbl_keys(wipes), index) then
         local id = vim.api.nvim_buf_set_extmark(bufnr, ns, index - 1, start, {
@@ -244,7 +244,7 @@ local function create_menu(opt)
     callback = function()
       local content = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
       if not wipes or #wipes == 0 then
-        local row = vim.api.nvim_win_get_cursor(winid)[1]
+        local row = vim.api.nvim_win_get_cursor(lwinid)[1]
         wipes[row] = true
       end
 
@@ -264,12 +264,12 @@ local function create_menu(opt)
       wipes = {}
       vim.bo[bufnr].modifiable = true
       if #content == 0 then
-        vim.api.nvim_win_close(winid, true)
+        vim.api.nvim_win_close(lwinid, true)
       else
         vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, content)
         vim.bo[bufnr].modifiable = false
         gen_highlight()
-        vim.api.nvim_win_set_config(winid, { height = #content })
+        vim.api.nvim_win_set_config(lwinid, { height = #content })
       end
     end,
   })
@@ -278,15 +278,15 @@ local function create_menu(opt)
     noremap = true,
     nowait = true,
     callback = function()
-      vim.api.nvim_win_close(winid, true)
+      vim.api.nvim_win_close(lwinid, true)
     end,
   })
 
   util.autocmd({ 'CursorMoved' }, {
     buffer = bufnr,
     callback = function()
-      local pos = vim.api.nvim_win_get_cursor(winid)
-      vim.api.nvim_win_set_cursor(winid, { pos[1], 2 })
+      local pos = vim.api.nvim_win_get_cursor(lwinid)
+      vim.api.nvim_win_set_cursor(lwinid, { pos[1], 2 })
     end,
   })
 
@@ -297,7 +297,7 @@ local function create_menu(opt)
     end,
   })
 
-  return winid
+  return lwinid
 end
 
 map.n('gb', function()

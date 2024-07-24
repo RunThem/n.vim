@@ -43,7 +43,7 @@ end
 
 local function hl_word(word)
   local idx = 0
-  local word = word or vim.fn.expand('<cword>')
+  word = word or vim.fn.expand('<cword>')
   if word:find('[%w]') == nil then
     return
   end

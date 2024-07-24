@@ -19,12 +19,14 @@ vim.g.mod = true
 require('core')
 
 --[[ mini debug config
-
-local function loadpkg(pkg_name, pkg_req)
-  vim.opt.rtp:append(('%s/lazy/%s'):format(util.data_path(), pkg_name))
-  return require(pkg_req)
+---@param name string
+---@param repo? string
+---@return nil|table
+local function pkgload(name, repo)
+  vim.opt.rtp:append(('%s/lazy/%s'):format(util.datapath(), name))
+  return repo and require(repo) or nil
 end
 
-local lsp = loadpkg('nvim-lspconfig', 'lspconfig')
+local lsp = pkgload('nvim-lspconfig', 'lspconfig')
 
 --]]

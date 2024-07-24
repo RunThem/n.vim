@@ -150,7 +150,6 @@ return function()
     },
     comparators = {
       cmp.config.compare.locality,
-      cmp.config.compare.rencently_used,
       cmp.config.compare.score,
       cmp.config.compare.offset,
     },

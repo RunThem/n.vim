@@ -54,9 +54,10 @@ end)
 map.n('<Leader>X', ':e ' .. util.confpath('lua/script.lua'))
 map.n('<Leader>x', function()
   local exec = io.popen(util.confpath('lua/script.lua'))
-  local out = exec:read('*l')
+  if exec == nil then
+    return
+  end
 
+  util.cwrite(exec:read('*l'))
   exec:close()
-
-  util.cwrite(out)
 end)

@@ -1,5 +1,5 @@
 --- [[ utils ]]
-util = {
+_G.util = {
   ---@type string
   author = io.popen('git config user.name'):read('*l'),
 
@@ -14,7 +14,7 @@ function util.autocmd(event, opts)
   return vim.api.nvim_create_autocmd(event, opts)
 end
 
----@param file string
+---@param file? string
 ---@return string
 function util.confpath(file)
   local path = os.getenv('XDG_CONFIG_DIR')
@@ -25,7 +25,7 @@ function util.confpath(file)
   return path .. (file and '/' .. file or '')
 end
 
----@param file string
+---@param file? string
 ---@return string
 function util.datapath(file)
   local path = os.getenv('XDG_DATA_DIR')
@@ -109,12 +109,12 @@ function util.cwrite(msg)
 end
 
 --- [[ keymap function ]]
-map = {}
+_G.map = {}
 
 for _, mode in pairs({ 'n', 'i', 'c', 'v', 'x', 't', 's' }) do
   ---@param key string
   ---@param expr string|function
-  ---@param is_expr boolean|nil
+  ---@param is_expr? boolean
   map[mode] = function(key, expr, is_expr)
     local opt = { noremap = true, nowait = true, silent = true, expr = is_expr or false }
 

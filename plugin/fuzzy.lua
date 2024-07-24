@@ -1,10 +1,10 @@
 local function popup()
   local buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_keymap(buf, 't', '<ESC>', '<C-\\><C-c>', {})
-  vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+  vim.api.nvim_set_option_value('bufhidden', 'wipe', { buf = buf })
 
-  local lines = vim.api.nvim_get_option('lines')
-  local columns = vim.api.nvim_get_option('columns')
+  local lines = vim.api.nvim_get_option_value('lines', { scope = 'global' })
+  local columns = vim.api.nvim_get_option_value('columns', { scope = 'global' })
 
   local opts = {
     relative = 'editor',
@@ -25,8 +25,8 @@ local function execute(choices_cmd, on_selection)
     vim.cmd('stopinsert')
   end
   local tmpfile = vim.fn.tempname()
-  local shell = vim.api.nvim_get_option('shell')
-  local shellcmdflag = vim.api.nvim_get_option('shellcmdflag')
+  local shell = vim.api.nvim_get_option_value('shell', { scope = 'global' })
+  local shellcmdflag = vim.api.nvim_get_option_value('shellcmdflag', { scope = 'global' })
   local popup_win, buf = popup()
   local height = vim.api.nvim_win_get_height(popup_win)
   local fzy = ''

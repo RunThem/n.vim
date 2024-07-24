@@ -3,8 +3,8 @@ local pd = {}
 local whk = { bg = '#202328' }
 
 local function stl_attr(group)
-  local color = vim.api.nvim_get_hl_by_name(group, true)
-  return { fg = color.foreground }
+  local color = vim.api.nvim_get_hl(0, { name = group })
+  return { fg = color.fg }
 end
 
 local function stl_fmt(name, val)
@@ -79,16 +79,18 @@ pd.filesize = function()
       return ''
     end
 
+    local buf = ''
     if size < 1024 then
-      size = size .. 'b'
+      buf = string.format('%db ', size)
     elseif size < 1024 * 1024 then
-      size = string.format('%.1f', size / 1024) .. 'k'
+      buf = string.format('%.1fk ', size / 1024)
     elseif size < 1024 * 1024 * 1024 then
-      size = string.format('%.1f', size / 1024 / 1024) .. 'm'
+      buf = string.format('%.1fm ', size / 1024 / 1024)
     else
-      size = string.format('%.1f', size / 1024 / 1024 / 1024) .. 'g'
+      buf = string.format('%.1fg ', size / 1024 / 1024 / 1024)
     end
-    return size .. ' '
+
+    return buf
   end
 
   return {
@@ -178,7 +180,7 @@ pd.diag = function()
       return '  '
     end
 
-    local idx, sign, count = diag_get()
+    local idx, _, count = diag_get()
     if idx == 0 then
       return '  '
     end

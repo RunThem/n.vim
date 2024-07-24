@@ -8,21 +8,21 @@ util.autocmd({ 'BufWritePre' }, {
 util.autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.conf',
   callback = function()
-    vim.api.nvim_buf_set_option(0, 'filetype', 'conf')
+    vim.api.nvim_set_option_value('filetype', 'conf', { buf = 0 })
   end,
 })
 
 util.autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.v',
   callback = function()
-    vim.api.nvim_buf_set_option(0, 'filetype', 'v')
+    vim.api.nvim_set_option_value('filetype', 'v', { buf = 0 })
   end,
 })
 
 util.autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.li',
   callback = function()
-    vim.api.nvim_buf_set_option(0, 'filetype', 'little')
+    vim.api.nvim_set_option_value('filetype', 'little', { buf = 0 })
   end,
 })
 
