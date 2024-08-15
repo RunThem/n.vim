@@ -28,5 +28,17 @@ local function pkgload(name, repo)
 end
 
 local lsp = pkgload('nvim-lspconfig', 'lspconfig')
+local epo = pkgload('epo.nvim', 'epo')
+
+lsp['lua_ls'].setup({
+  settings = {
+    Lua = {
+      runtime = { version = 'Lua 5.4' },
+      completion = { keywordSnippet = 'Disable', callSnippet = 'Replace' },
+    },
+  },
+})
+
+epo.setup({})
 
 --]]
