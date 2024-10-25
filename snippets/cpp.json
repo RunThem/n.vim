@@ -1,0 +1,103 @@
+{
+  "return ...": {
+    "prefix": "return",
+    "body": [
+      "return ${0};"
+    ]
+  },
+  "sizeof(...)": {
+    "prefix": "sizeof",
+    "body": [
+      "sizeof(${0})"
+    ]
+  },
+  "nil": {
+    "prefix": "nil",
+    "body": [
+      "nullptr"
+    ]
+  },
+  "atomic": {
+    "prefix": "atomic",
+    "body": [
+      "_Atomic(${0})"
+    ]
+  },
+  "#include <...>": {
+    "prefix": "inc",
+    "body": [
+      "#include <${0}>"
+    ]
+  },
+  "#include \"...\"": {
+    "prefix": "Inc",
+    "body": [
+      "#include \"${0}>\""
+    ]
+  },
+  "#if ...": {
+    "prefix": "#if",
+    "body": [
+      "#if ${1}",
+      "",
+      "${0}",
+      "",
+      "#endif /* ${1} */"
+    ]
+  },
+  "#ifndef ...": {
+    "prefix": "#ifndef",
+    "body": [
+      "#ifndef ${1}",
+      "",
+      "${0}",
+      "",
+      "#endif /* !${1} */"
+    ]
+  },
+  "#ifdef ...": {
+    "prefix": "#ifdef",
+    "body": [
+      "#ifdef ${1}",
+      "",
+      "${0}",
+      "",
+      "#endif /* ${1} */"
+    ]
+  },
+  "#pragma once": {
+    "prefix": "#once",
+    "body": [
+      "#pragma once",
+      "",
+      "#ifndef ${1}",
+      "#define ${1}",
+      "",
+      "#ifdef __cplusplus",
+      "extern \"C\" {",
+      "#endif",
+      "",
+      "${0}",
+      "",
+      "#ifdef __cplusplus",
+      "} /* extern \"C\" */",
+      "#endif",
+      "",
+      "#endif /* !${1} */"
+    ]
+  },
+  "__cplusplus": {
+    "prefix": "#nocxx",
+    "body": [
+      "ifdef __cplusplus",
+      "extern \"C\" {",
+      "#endif",
+      "",
+      "${0}",
+      "",
+      "#ifdef __cplusplus",
+      "} /* extern \"C\" */",
+      "#endif"
+    ]
+  }
+}
