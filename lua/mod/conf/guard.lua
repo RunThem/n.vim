@@ -31,6 +31,11 @@ return function()
     cmd = 'rustfmt',
   })
 
+  ft('json'):fmt({
+    cmd = 'json-fmt',
+    args = { '-w' },
+  })
+
   guard.setup({
     fmt_on_save = false,
   })
