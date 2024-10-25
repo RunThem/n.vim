@@ -55,7 +55,7 @@ lsp_conf['rust_analyzer'] = {
   },
 }
 
-local function make_diagnostic()
+local function diagnostic()
   vim.diagnostic.config({
     signs = {
       numhl = {
@@ -77,7 +77,7 @@ local function make_capabilities(lsp)
     textDocument = {
       completion = {
         completionItem = {
-          snippetSupport = vim.snippet and true or false,
+          snippetSupport = false,
           resolveSupport = {
             properties = { 'edit', 'documentation', 'detail', 'additionalTextEdits' },
           },
@@ -110,7 +110,7 @@ end
 return function()
   local lspconfig = require('lspconfig')
 
-  make_diagnostic()
+  diagnostic()
 
   vim.iter(lsp_conf):each(function(lsp, conf)
     local defconf = {

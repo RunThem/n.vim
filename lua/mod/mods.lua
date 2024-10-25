@@ -44,34 +44,38 @@ mod({
   config = require('mod.conf.modes'),
 })
 
--- mod({
---   'nvimdev/epo.nvim',
---   config = require('mod.conf.epo'),
--- })
-
 mod({
-  'hrsh7th/nvim-cmp',
-  event = { 'InsertEnter' },
-  config = require('mod.conf.cmp'),
-  dependencies = {
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/cmp-nvim-lua' },
-    { 'hrsh7th/cmp-path' },
-    { 'dcampos/cmp-snippy' },
-    { 'RunThem/cmp-xmake' },
-
-    { 'dcampos/nvim-snippy' },
-    { 'onsails/lspkind-nvim' },
-  },
+  'saghen/blink.cmp',
+  event = { 'BufReadPost', 'BufNewFile' },
+  config = require('mod.conf.blink'),
 })
 
 mod({
   'folke/lazydev.nvim',
   ft = { 'lua' },
   opts = { library = { 'luvit-meta/library' } },
-  dependencies = {
-    'Bilal2453/luvit-meta',
-  },
+  dependencies = { 'Bilal2453/luvit-meta' },
 })
+
+-- mod({
+--   'nvimdev/epo.nvim',
+--   config = require('mod.conf.epo'),
+-- })
+
+-- mod({
+--   'hrsh7th/nvim-cmp',
+--   event = { 'InsertEnter' },
+--   config = require('mod.conf.cmp'),
+--   dependencies = {
+--     { 'hrsh7th/cmp-nvim-lsp' },
+--     { 'hrsh7th/cmp-nvim-lua' },
+--     { 'hrsh7th/cmp-path' },
+--     { 'dcampos/cmp-snippy' },
+--     { 'RunThem/cmp-xmake' },
+--
+--     { 'dcampos/nvim-snippy' },
+--     { 'onsails/lspkind-nvim' },
+--   },
+-- })
 
 return M
