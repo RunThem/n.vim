@@ -46,6 +46,7 @@ mod({
 
 mod({
   'saghen/blink.cmp',
+  build = 'cargo build --release',
   event = { 'BufReadPost', 'BufNewFile' },
   config = require('mod.conf.blink'),
 })
