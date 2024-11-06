@@ -1,6 +1,6 @@
 --- noremap remap
-map.n('<C-j>', '3j')
-map.n('<C-k>', '3k')
+map.n('<C-j>', '5j')
+map.n('<C-k>', '5k')
 
 map.n('j', function()
   return vim.v.count == 0 and 'gj' or 'j'
