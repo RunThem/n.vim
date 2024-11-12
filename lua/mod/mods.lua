@@ -53,6 +53,11 @@ mod({
 })
 
 mod({
+  'ibhagwan/fzf-lua',
+  config = require('mod.conf.fzf-lua'),
+})
+
+mod({
   'folke/lazydev.nvim',
   ft = { 'lua' },
   opts = { library = { 'luvit-meta/library' } },
