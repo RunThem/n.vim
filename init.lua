@@ -15,6 +15,7 @@
 --]]
 
 vim.g.mod = true
+vim.g.cmp = 'blink'
 
 require('core')
 

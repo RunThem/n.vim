@@ -45,14 +45,6 @@ mod({
 })
 
 mod({
-  'saghen/blink.cmp',
-  build = 'cargo build --release',
-  event = { 'BufReadPost', 'BufNewFile' },
-  build = 'cargo build --release',
-  config = require('mod.conf.blink'),
-})
-
-mod({
   'ibhagwan/fzf-lua',
   config = require('mod.conf.fzf-lua'),
 })
@@ -64,25 +56,29 @@ mod({
   dependencies = { 'Bilal2453/luvit-meta' },
 })
 
--- mod({
---   'nvimdev/epo.nvim',
---   config = require('mod.conf.epo'),
--- })
+if vim.g.cmp == 'blink' then
+  mod({
+    'saghen/blink.cmp',
+    event = { 'BufReadPost', 'BufNewFile' },
+    build = 'cargo build --release',
+    config = require('mod.conf.blink'),
+  })
+else
+  mod({
+    'hrsh7th/nvim-cmp',
+    event = { 'InsertEnter' },
+    config = require('mod.conf.cmp'),
+    dependencies = {
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
+      { 'hrsh7th/cmp-path' },
+      { 'dcampos/cmp-snippy' },
+      { 'RunThem/cmp-xmake' },
 
--- mod({
---   'hrsh7th/nvim-cmp',
---   event = { 'InsertEnter' },
---   config = require('mod.conf.cmp'),
---   dependencies = {
---     { 'hrsh7th/cmp-nvim-lsp' },
---     { 'hrsh7th/cmp-nvim-lua' },
---     { 'hrsh7th/cmp-path' },
---     { 'dcampos/cmp-snippy' },
---     { 'RunThem/cmp-xmake' },
---
---     { 'dcampos/nvim-snippy' },
---     { 'onsails/lspkind-nvim' },
---   },
--- })
+      { 'dcampos/nvim-snippy' },
+      { 'onsails/lspkind-nvim' },
+    },
+  })
+end
 
 return M
