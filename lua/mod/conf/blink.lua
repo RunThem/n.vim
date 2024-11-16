@@ -2,7 +2,11 @@ return function()
   local blink = require('blink.cmp')
 
   blink.setup({
-    keymap = { preset = 'enter' },
+    keymap = {
+      preset = 'enter',
+      ['<C-k>'] = { 'select_prev', 'fallback' },
+      ['<C-j>'] = { 'select_next', 'fallback' },
+    },
 
     accept = { auto_brackets = { enabled = true } },
     trigger = {
