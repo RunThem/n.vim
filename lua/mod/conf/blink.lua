@@ -21,9 +21,9 @@ return function()
     sources = {
       completion = { enabled_providers = { 'lsp', 'path', 'snippets' } },
 
-      providers = {
-        lsp = { score_offset = 4 },
-      },
+      -- providers = {
+      --   lsp = { score_offset = 4 },
+      -- },
     },
   })
 end
