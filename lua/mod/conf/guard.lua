@@ -1,5 +1,4 @@
 return function()
-  local guard = require('guard')
   local ft = require('guard.filetype')
 
   ft('c'):fmt({

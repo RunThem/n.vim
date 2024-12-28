@@ -8,22 +8,22 @@ return function()
       ['<C-j>'] = { 'select_next', 'fallback' },
     },
 
-    accept = { auto_brackets = { enabled = true } },
-    trigger = {
-      completion = {
-        keyword_range = 'full',
-        show_on_insert_on_trigger_character = false,
+    completion = {
+      accept = { auto_brackets = { enabled = true } },
+
+      trigger = {
         show_in_snippet = false,
+        show_on_insert_on_trigger_character = false,
       },
-      signature_help = { enabled = true },
+
+      menu = {
+        auto_show = true,
+      },
     },
 
     sources = {
-      completion = { enabled_providers = { 'lsp', 'path', 'snippets' } },
-
-      -- providers = {
-      --   lsp = { score_offset = 4 },
-      -- },
+      default = { 'lsp', 'path', 'snippets' },
+      cmdline = {},
     },
   })
 end
