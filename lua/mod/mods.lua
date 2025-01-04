@@ -45,7 +45,7 @@ mod({
 
 mod({
   'ibhagwan/fzf-lua',
-  config = require('mod.conf.fzf-lua'),
+  config = require('mod.conf.fzf'),
 })
 
 mod({

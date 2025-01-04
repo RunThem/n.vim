@@ -73,38 +73,44 @@ local function diagnostic()
 end
 
 local function make_capabilities(lsp)
-  local capabilities = {
-    textDocument = {
-      completion = {
-        completionItem = {
-          snippetSupport = false,
-          resolveSupport = {
-            properties = { 'edit', 'documentation', 'detail', 'additionalTextEdits' },
-          },
-        },
-        completionList = {
-          itemDefaults = {
-            'editRange',
-            'insertTextFormat',
-            'insertTextMode',
-            'data',
-          },
-        },
-      },
-      foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-      },
-    },
+  local capabilities = require('blink.cmp').get_lsp_capabilities({}, true)
+
+  local _capabilities = {
+    -- textDocument = {
+    --   completion = {
+    --     completionItem = {
+    --       snippetSupport = false,
+    --       resolveSupport = {
+    --         properties = { 'edit', 'documentation', 'detail', 'additionalTextEdits' },
+    --       },
+    --     },
+    --     completionList = {
+    --       itemDefaults = {
+    --         'editRange',
+    --         'insertTextFormat',
+    --         'insertTextMode',
+    --         'data',
+    --       },
+    --     },
+    --   },
+    --   foldingRange = {
+    --     dynamicRegistration = false,
+    --     lineFoldingOnly = true,
+    --   },
+    -- },
   }
 
-  capabilities = vim.tbl_deep_extend('force', vim.lsp.protocol.make_client_capabilities(), capabilities)
+  capabilities = vim.tbl_deep_extend('force', capabilities, _capabilities)
 
   return capabilities
 end
 
 local function make_attach(lsp)
-  return function(client, bufnr) end
+  return function(client, bufnr)
+    if client.server_capabilities.inlayHintProvider then
+      -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
+  end
 end
 
 return function()

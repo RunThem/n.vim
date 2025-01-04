@@ -12,6 +12,10 @@ return function()
       title = 'finder',
 
       preview = { hidden = 'hidden' },
+
+      on_create = function()
+        vim.api.nvim_feedkeys('i', 'n', true)
+      end,
     },
   })
 
