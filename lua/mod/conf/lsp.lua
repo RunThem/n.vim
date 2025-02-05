@@ -19,7 +19,7 @@ lsp_conf['lua_ls'] = {
   settings = {
     Lua = {
       diagnostics = {
-        enable = false,
+        -- enable = false,
         globals = { 'vim', 'packer_plugins' },
       },
       runtime = { version = 'Lua 5.4' },

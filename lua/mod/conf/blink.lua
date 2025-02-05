@@ -6,18 +6,30 @@ return function()
       preset = 'enter',
       ['<C-k>'] = { 'select_prev', 'fallback' },
       ['<C-j>'] = { 'select_next', 'fallback' },
+
+      ['<Tab>'] = {
+        function(cmp)
+          if cmp.snippet_active() then
+            return cmp.accept()
+          else
+            return cmp.select_and_accept()
+          end
+        end,
+        'snippet_forward',
+        'fallback',
+      },
+    },
+
+    appearance = {
+      use_nvim_cmp_as_default = true,
+      nerd_font_variant = 'mono',
     },
 
     completion = {
-      accept = { auto_brackets = { enabled = true } },
-
-      trigger = {
-        show_in_snippet = false,
-        show_on_insert_on_trigger_character = false,
-      },
+      trigger = { show_in_snippet = true },
 
       menu = {
-        auto_show = true,
+        draw = { treesitter = { 'lsp' } },
       },
     },
 
