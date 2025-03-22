@@ -34,6 +34,15 @@ map.i(';;', function()
   return ';;'
 end, true)
 
+map.i(',,', function()
+  local ft = vim.bo.filetype
+  if ft == 'rust' then
+    return '<Esc>A,'
+  end
+
+  return ',,'
+end, true)
+
 --- terminal remap
 map.t('<Esc>', [[<C-\><C-n>]])
 
