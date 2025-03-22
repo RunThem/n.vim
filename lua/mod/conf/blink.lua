@@ -35,7 +35,8 @@ return function()
 
     sources = {
       default = { 'lsp', 'path', 'snippets' },
-      cmdline = {},
     },
+
+    cmdline = { enabled = false },
   })
 end
