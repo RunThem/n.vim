@@ -1,6 +1,6 @@
-local lsp_conf = {}
+local langs = {}
 
-lsp_conf['clangd'] = {
+langs['clangd'] = {
   cmd = {
     'clangd',
     '--background-index',
@@ -11,11 +11,11 @@ lsp_conf['clangd'] = {
   },
 }
 
-lsp_conf['v_analyzer'] = {
+langs['v_analyzer'] = {
   cmd = { 'v-analyzer' },
 }
 
-lsp_conf['lua_ls'] = {
+langs['lua_ls'] = {
   settings = {
     Lua = {
       diagnostics = {
@@ -28,7 +28,7 @@ lsp_conf['lua_ls'] = {
   },
 }
 
-lsp_conf['gopls'] = {
+langs['gopls'] = {
   cmd = { 'gopls', '--remote=auto' },
   analyses = { unusedparams = true },
   staticcheck = true,
@@ -42,7 +42,7 @@ lsp_conf['gopls'] = {
   },
 }
 
-lsp_conf['rust_analyzer'] = {
+langs['rust_analyzer'] = {
   settings = {
     imports = {
       granularity = { group = 'module' },
@@ -55,79 +55,44 @@ lsp_conf['rust_analyzer'] = {
   },
 }
 
-local function diagnostic()
+return function()
+  local lspconfig = require('lspconfig')
+  local blink = require('blink.cmp')
+  local severity = vim.diagnostic.severity
+
   vim.diagnostic.config({
     signs = {
       numhl = {
-        [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
-        [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
-        [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
-        [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+        [severity.ERROR] = 'DiagnosticSignError',
+        [severity.WARN] = 'DiagnosticSignWarn',
+        [severity.INFO] = 'DiagnosticSignInfo',
+        [severity.HINT] = 'DiagnosticSignHint',
       },
     },
     update_in_insert = false,
     underline = true,
     severity_sort = true,
-    virtual_text = false,
+    virtual_text = true,
   })
-end
 
-local function make_capabilities(lsp)
-  local capabilities = require('blink.cmp').get_lsp_capabilities({}, true)
+  vim.iter(langs):each(function(lang, conf)
+    local capabilities = blink.get_lsp_capabilities({}, true)
 
-  local _capabilities = {
-    -- textDocument = {
-    --   completion = {
-    --     completionItem = {
-    --       snippetSupport = false,
-    --       resolveSupport = {
-    --         properties = { 'edit', 'documentation', 'detail', 'additionalTextEdits' },
-    --       },
-    --     },
-    --     completionList = {
-    --       itemDefaults = {
-    --         'editRange',
-    --         'insertTextFormat',
-    --         'insertTextMode',
-    --         'data',
-    --       },
-    --     },
-    --   },
-    --   foldingRange = {
-    --     dynamicRegistration = false,
-    --     lineFoldingOnly = true,
-    --   },
-    -- },
-  }
-
-  capabilities = vim.tbl_deep_extend('force', capabilities, _capabilities)
-
-  return capabilities
-end
-
-local function make_attach(lsp)
-  return function(client, bufnr)
-    if client.server_capabilities.inlayHintProvider then
-      -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    local attach = function(client, bufnr)
+      if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+      end
     end
-  end
-end
 
-return function()
-  local lspconfig = require('lspconfig')
-
-  diagnostic()
-
-  vim.iter(lsp_conf):each(function(lsp, conf)
     local defconf = {
-      capabilities = make_capabilities(lsp),
-      on_attach = make_attach(lsp),
+      capabilities = capabilities,
+      on_attach = attach,
       init_options = {
         usePlaceholders = true,
         completeUnimported = true,
       },
     }
 
-    lspconfig[lsp].setup(vim.tbl_deep_extend('force', defconf, conf))
+    lspconfig[lang].setup(vim.tbl_deep_extend('force', defconf, conf))
   end)
 end

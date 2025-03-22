@@ -1,14 +1,16 @@
 return function()
-  local ts = vim.treesitter
-  local tc_configs = require('nvim-treesitter.configs')
-  local ts_utils = require('nvim-treesitter.ts_utils')
+  local vts = vim.treesitter
+  local ts = require('nvim-treesitter.configs')
+  local tsutils = require('nvim-treesitter.ts_utils')
 
-  tc_configs.setup({
+  ts.setup({
     auto_install = true,
+
     highlight = {
       enable = true,
       disable = { 'c', 'cpp' },
     },
+
     indent = {
       enable = true,
       disable = { 'c', 'cpp' },
@@ -25,7 +27,7 @@ return function()
     ---@return nil|table<integer>
     local function get_coord()
       if node == nil then
-        node = ts_utils.get_node_at_cursor()
+        node = tsutils.get_node_at_cursor()
       elseif not is_pair then
         node = node:parent()
         if node == nil then
@@ -33,8 +35,8 @@ return function()
         end
       end
 
-      local lcoord = { ts.get_node_range(node) }
-      local text = ts.get_node_text(node, bufnr)
+      local lcoord = { vts.get_node_range(node) }
+      local text = vts.get_node_text(node, bufnr)
       if not is_pair and text:find('^[%(%[{\'"]') ~= nil and text:find('[%)%]}\'"]$') ~= nil then
         is_pair = true
         lcoord = { lcoord[1] + 1, lcoord[2] + 1, lcoord[3] + 1, lcoord[4] - 2 }
@@ -74,7 +76,7 @@ return function()
   end
 
   map.n('<Cr>', function()
-    node = ts_utils.get_node_at_cursor()
+    node = tsutils.get_node_at_cursor()
     bufnr = vim.api.nvim_get_current_buf()
 
     vim.cmd({ cmd = 'normal', bang = true, args = { 'v' } }, {})
