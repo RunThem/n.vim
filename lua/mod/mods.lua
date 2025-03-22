@@ -12,39 +12,40 @@ mod({
 
 mod({
   'nvim-treesitter/nvim-treesitter',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = { 'VeryLazy' },
   build = ':TSUpdate',
   config = require('mod.conf.ts'),
 })
 
 mod({
   'nvimdev/lspsaga.nvim',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = { 'VeryLazy' },
   config = require('mod.conf.saga'),
 })
 
 mod({
   'kevinhwang91/nvim-ufo',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = { 'VeryLazy' },
   config = require('mod.conf.ufo'),
   dependencies = { 'kevinhwang91/promise-async' },
 })
 
 mod({
   'nvimdev/guard.nvim',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = { 'VeryLazy' },
   config = require('mod.conf.guard'),
   dependencies = { 'nvimdev/guard-collection' },
 })
 
 mod({
   'mvllow/modes.nvim',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = { 'VeryLazy' },
   config = require('mod.conf.modes'),
 })
 
 mod({
   'ibhagwan/fzf-lua',
+  event = { 'VeryLazy' },
   config = require('mod.conf.fzf'),
 })
 
@@ -58,14 +59,14 @@ mod({
 if vim.g.cmp == 'blink' then
   mod({
     'saghen/blink.cmp',
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { 'VeryLazy' },
     build = 'cargo build --release',
     config = require('mod.conf.blink'),
   })
 else
   mod({
     'hrsh7th/nvim-cmp',
-    event = { 'InsertEnter' },
+    event = { 'VeryLazy' },
     config = require('mod.conf.cmp'),
     dependencies = {
       { 'hrsh7th/cmp-nvim-lsp' },
