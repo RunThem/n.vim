@@ -1,6 +1,6 @@
 local ignore = {
   ['bt'] = { 'quickfix', 'nofile', 'help' },
-  ['ft'] = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
+  ['ft'] = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit', 'fzf' },
 }
 
 local function set_cursor_position()
