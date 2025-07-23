@@ -79,6 +79,7 @@ return function()
     local capabilities = blink.get_lsp_capabilities({}, true)
 
     local attach = function(client, bufnr)
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
       if client.server_capabilities.inlayHintProvider then
         vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
       end
