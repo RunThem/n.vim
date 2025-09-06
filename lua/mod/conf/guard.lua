@@ -1,19 +1,9 @@
 return function()
   local ft = require('guard.filetype')
 
-  ft('c'):fmt({
+  ft('c,cpp'):fmt({
     cmd = 'clang-format',
-    args = { '-i' },
-    fname = true,
-  }):lint({
-    cmd = 'clang-tidy',
-    args = { '--quiet', '-p', 'build' },
-  })
-
-  ft('cpp'):fmt({
-    cmd = 'clang-format',
-    args = { '-i' },
-    fname = true,
+    stdin = true,
   }):lint({
     cmd = 'clang-tidy',
     args = { '--quiet', '-p', 'build' },
@@ -21,34 +11,26 @@ return function()
 
   ft('go'):fmt({
     cmd = 'golines',
-    args = { '-m', '120', '-w' },
-    fname = true,
+    args = { '-m', '120' },
+    stdin = true,
   })
 
   ft('lua'):fmt({
     cmd = 'stylua',
-    args = { '-s' },
-    fname = true,
-  })
-
-  ft('sh'):fmt({
-    cmd = 'shfmt',
-    args = { '-i', '2', '-w' },
-    fname = true,
+    args = { '-' },
+    stdin = true,
+    find = '.stylua.toml',
   })
 
   ft('rust'):fmt({
     cmd = 'rustfmt',
-    fname = true,
+    stdin = true,
   })
 
   ft('json'):fmt({
     cmd = 'json-fmt',
-    args = { '-w' },
-    fname = true,
+    stdin = true,
   })
-
-  vim.g.guard_config = { fmt_on_save = false }
 
   ---@keymap
   map.n('==', ':Guard fmt')
