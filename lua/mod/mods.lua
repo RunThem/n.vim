@@ -5,12 +5,6 @@ local mod = function(repo)
 end
 
 mod({
-  'neovim/nvim-lspconfig',
-  event = { 'BufReadPost', 'BufNewFile' },
-  config = require('mod.conf.lsp'),
-})
-
-mod({
   'nvim-treesitter/nvim-treesitter',
   event = { 'VeryLazy' },
   build = ':TSUpdate',

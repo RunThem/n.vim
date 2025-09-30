@@ -28,6 +28,7 @@ vim.cmd('colorscheme porcelain')
 require('core.util')
 require('core.opt')
 require('core.key')
+require('core.lang')
 
 map.n(' ', ' ')
 map.x(' ', ' ')
