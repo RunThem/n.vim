@@ -1,7 +1,6 @@
 return function()
   local vts = vim.treesitter
-  local ts = require('nvim-treesitter.configs')
-  local tsutils = require('nvim-treesitter.ts_utils')
+  local ts = require('nvim-treesitter')
 
   ts.setup({
     auto_install = true,
@@ -27,7 +26,7 @@ return function()
     ---@return nil|table<integer>
     local function get_coord()
       if node == nil then
-        node = tsutils.get_node_at_cursor()
+        node = vts.get_node()
       elseif not is_pair then
         node = node:parent()
         if node == nil then
@@ -76,7 +75,7 @@ return function()
   end
 
   map.n('<Cr>', function()
-    node = tsutils.get_node_at_cursor()
+    node = vts.get_node()
     bufnr = vim.api.nvim_get_current_buf()
 
     vim.cmd({ cmd = 'normal', bang = true, args = { 'v' } }, {})
