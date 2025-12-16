@@ -1,5 +1,5 @@
 return function()
   local modes = require('modes')
 
-  modes.setup()
+  modes.setup({})
 end
