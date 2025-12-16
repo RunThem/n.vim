@@ -51,12 +51,20 @@ mod({
   dependencies = { 'Bilal2453/luvit-meta' },
 })
 
+mod({
+  'saghen/blink.pairs',
+  event = { 'VeryLazy' },
+  build = 'cargo build --release',
+  config = require('mod.conf.blink').pairs,
+  dependencies = { 'saghen/blink.download' },
+})
+
 if vim.g.cmp == 'blink' then
   mod({
     'saghen/blink.cmp',
     event = { 'VeryLazy' },
     build = 'cargo build --release',
-    config = require('mod.conf.blink'),
+    config = require('mod.conf.blink').cmp,
   })
 else
   mod({
