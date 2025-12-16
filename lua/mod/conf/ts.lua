@@ -1,6 +1,6 @@
 return function()
   local vts = vim.treesitter
-  local ts = require('nvim-treesitter.configs')
+  local ts = require('nvim-treesitter')
 
   ts.setup({
     auto_install = true,
