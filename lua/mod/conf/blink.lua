@@ -47,4 +47,10 @@ return {
 
     pairs.setup({})
   end,
+
+  ['indent'] = function()
+    local indent = require('blink.indent')
+
+    indent.setup({})
+  end,
 }

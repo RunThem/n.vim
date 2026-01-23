@@ -49,6 +49,7 @@ mod({
 mod({
   'saghen/blink.indent',
   event = { 'VeryLazy' },
+  config = require('mod.conf.blink').indent,
 })
 
 mod({
