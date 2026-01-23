@@ -32,6 +32,8 @@ return function()
     stdin = true,
   })
 
+  vim.g.guard_config = { always_save = true }
+
   ---@keymap
   map.n('==', ':Guard fmt')
 end
