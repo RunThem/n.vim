@@ -45,6 +45,11 @@ mod({
 })
 
 mod({
+  'saghen/blink.indent',
+  event = { 'VeryLazy' },
+})
+
+mod({
   'saghen/blink.pairs',
   event = { 'VeryLazy' },
   build = 'cargo build --release',
