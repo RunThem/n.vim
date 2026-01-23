@@ -51,8 +51,8 @@ mod({
 
 mod({
   'saghen/blink.pairs',
+  version = '*',
   event = { 'VeryLazy' },
-  build = 'cargo build --release',
   config = require('mod.conf.blink').pairs,
   dependencies = { 'saghen/blink.download' },
 })
@@ -60,8 +60,8 @@ mod({
 if vim.g.cmp == 'blink' then
   mod({
     'saghen/blink.cmp',
+    version = '1.*',
     event = { 'VeryLazy' },
-    build = 'cargo build --release',
     config = require('mod.conf.blink').cmp,
   })
 else
