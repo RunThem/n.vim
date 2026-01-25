@@ -1,37 +1,31 @@
 return function()
   local vts = vim.treesitter
-  local ts = require('nvim-treesitter')
+  local ts = require('nvim-treesitter.configs')
 
   ts.setup({
     auto_install = true,
-
-    highlight = {
-      enable = true,
-      -- disable = { 'c', 'cpp' },
-    },
-
-    indent = {
-      enable = true,
-      disable = { 'c', 'cpp' },
-    },
+    highlight = { enable = true },
+    indent = { enable = true },
   })
 
   ---@keymap
   local bufnr = 0
-  local node = nil
-  local coord = nil
+  ---@type TSNode|nil
+  local node
+  local coord
   local is_pair = false
 
   local function selection()
-    ---@return nil|table<integer>
+    ---@return nil|integer[]
     local function get_coord()
       if node == nil then
         node = vts.get_node()
       elseif not is_pair then
         node = node:parent()
-        if node == nil then
-          return nil
-        end
+      end
+
+      if node == nil then
+        return nil
       end
 
       local lcoord = { vts.get_node_range(node) }
@@ -63,7 +57,7 @@ return function()
         and coord[4] == lcoord[4]
       )
 
-    if lcoord == nil then
+    if lcoord == nil or #lcoord ~= 4 then
       return
     end
 
@@ -78,7 +72,7 @@ return function()
     node = vts.get_node()
     bufnr = vim.api.nvim_get_current_buf()
 
-    vim.cmd({ cmd = 'normal', bang = true, args = { 'v' } }, {})
+    vim.cmd('normal! v')
 
     selection()
   end)

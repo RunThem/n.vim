@@ -8,7 +8,7 @@ mod({
   'nvim-treesitter/nvim-treesitter',
   lazy = false,
   build = ':TSUpdate',
-  -- branch = 'main',
+  branch = 'master',
   config = require('mod.conf.ts'),
 })
 
