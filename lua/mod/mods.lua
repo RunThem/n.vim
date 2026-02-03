@@ -21,10 +21,9 @@ mod({
 })
 
 mod({
-  'kevinhwang91/nvim-ufo',
+  'chrisgrieser/nvim-origami',
   event = { 'VeryLazy' },
-  config = require('mod.conf.ufo'),
-  dependencies = { 'kevinhwang91/promise-async' },
+  config = require('mod.conf.origami'),
 })
 
 mod({
