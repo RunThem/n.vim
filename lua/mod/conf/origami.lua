@@ -5,7 +5,7 @@ return function()
     pauseFoldsOnSearch = true,
     foldtext = {
       enabled = true,
-      padding = 7,
+      padding = { width = 7 },
       lineCount = {
         template = '>>> (%d)', -- `%d` is replaced with the number of folded lines
         hlgroup = 'PmenuSel',
@@ -15,6 +15,9 @@ return function()
     autoFold = {
       enabled = true,
       kinds = { 'imports' }, ---@type lsp.FoldingRangeKind[]
+    },
+    foldKeymaps = {
+      setup = false,
     },
   })
 end
