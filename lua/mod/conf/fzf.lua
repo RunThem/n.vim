@@ -8,14 +8,8 @@ return function()
       width = 1,
       row = 1,
       col = 0.5,
-
       title = 'finder',
-
       preview = { hidden = 'hidden' },
-
-      on_create = function()
-        vim.api.nvim_feedkeys('i', 'n', true)
-      end,
     },
   })
 
