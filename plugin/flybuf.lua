@@ -1,7 +1,7 @@
 local winid = nil
 
 local function fname_path(buf)
-  local sep = vim.loop.os_uname().version:match('Windows') and '\\' or '/'
+  local sep = vim.uv.os_uname().version:match('Windows') and '\\' or '/'
   if vim.fn.has('shellslash') == 1 then
     sep = '\\'
   end
@@ -193,7 +193,7 @@ local function create_menu(opt)
   local function gen_highlight()
     for i, item in ipairs(hi) do
       for _, v in ipairs(item) do
-        vim.api.nvim_buf_add_highlight(bufnr, ns, v[3], i - 1, v[1], v[2])
+        vim.api.nvim_buf_set_extmark(bufnr, ns, i - 1, v[1], { hl_group = v[3], end_col = v[2] })
       end
     end
   end

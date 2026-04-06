@@ -16,13 +16,9 @@ vim.diagnostic.config({
   -- virtual_lines = true,
 })
 
+---@type string[]
 local files = fn.glob(fn.stdpath('config') .. '/lsp/*.lua', false, true)
 
-local langs = vim
-  .iter(files)
-  :map(function(file)
-    return fn.fnamemodify(file, ':t:r')
-  end)
-  :totable()
-
-vim.lsp.enable(langs)
+for _, f in ipairs(files) do
+  vim.lsp.enable(fn.fnamemodify(f, ':t:r'))
+end

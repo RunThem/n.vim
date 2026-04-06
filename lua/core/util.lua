@@ -7,7 +7,7 @@ _G.util = {
   email = io.popen('git config user.email'):read('*l'),
 }
 
----@param event string|table<string>
+---@param event vim.api.keyset.events|vim.api.keyset.events[]
 ---@param opts vim.api.keyset.create_autocmd
 ---@return integer
 function util.autocmd(event, opts)
@@ -57,7 +57,7 @@ function util.width()
 end
 
 ---@param line integer
----@return string
+---@return string?
 function util.line(line)
   return vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
 end
@@ -72,8 +72,8 @@ function util.bufnr()
   return vim.api.nvim_get_current_buf()
 end
 
----@param coord table<integer>
----@param msg string|table<string>
+---@param coord integer[]
+---@param msg string|string[]
 function util.write(coord, msg)
   local bufnr = util.bufnr()
 
@@ -81,6 +81,7 @@ function util.write(coord, msg)
     return
   end
 
+  ---@type integer, integer, integer, integer
   local s_row, s_col, e_row, e_col
   if #coord == 2 then
     s_row, s_col, e_row, e_col = coord[1] - 1, coord[2], coord[1] - 1, coord[2]
@@ -95,7 +96,7 @@ function util.write(coord, msg)
   vim.api.nvim_buf_set_text(bufnr, s_row, s_col, e_row, e_col, msg)
 end
 
----@param msg string|table<string>
+---@param msg string|string[]
 function util.cwrite(msg)
   local bufnr = util.bufnr()
   local row = util.row() - 1
