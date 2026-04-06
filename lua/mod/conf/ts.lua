@@ -1,11 +1,41 @@
 return function()
   local vts = vim.treesitter
-  local ts = require('nvim-treesitter.configs')
+  local ts = require('nvim-treesitter')
 
-  ts.setup({
-    auto_install = true,
-    highlight = { enable = true },
-    indent = { enable = true },
+  ts.install({
+    'c',
+    'cpp',
+    'python',
+    'lua',
+    'vim',
+    'vimdoc',
+    'markdown',
+    'markdown_inline',
+    'bash',
+    'json',
+    'yaml',
+    'toml',
+    'rust',
+    'zig',
+    'javascript',
+    'typescript',
+    'regex',
+  }, { summary = false })
+
+  util.autocmd({ 'FileType' }, {
+    group = vim.api.nvim_create_augroup('TreesitterAttach', { clear = true }),
+    callback = function(args)
+      if vim.bo[args.buf].buftype ~= '' then
+        return
+      end
+
+      local lang = vts.language.get_lang(args.match)
+      if lang then
+        if pcall(vts.start, args.buf, lang) then
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end
+    end,
   })
 
   ---@keymap
