@@ -4,11 +4,17 @@ local mod = function(repo)
   table.insert(M, repo)
 end
 
+-- mod({
+--   'nvim-treesitter/nvim-treesitter',
+--   lazy = false,
+--   version = 'main',
+--   config = require('mod.conf.ts'),
+-- })
+
 mod({
-  'nvim-treesitter/nvim-treesitter',
-  lazy = false,
-  version = 'main',
-  config = require('mod.conf.ts'),
+  'arborist-ts/arborist.nvim',
+  event = { 'VeryLazy' },
+  config = require('mod.conf.arborist'),
 })
 
 mod({
