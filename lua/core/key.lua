@@ -71,6 +71,11 @@ map.n('<Leader>x', function()
   exec:close()
 end)
 
+--- inlay-hint
+map.n('<Leader>h', function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)
+
 --- tree-sitter
 local vts = vim.treesitter
 
