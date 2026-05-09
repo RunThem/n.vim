@@ -90,6 +90,7 @@ function util.write(coord, msg)
   end
 
   if type(msg) == 'string' then
+    ---@type string[]
     msg = { msg }
   end
 
@@ -103,6 +104,7 @@ function util.cwrite(msg)
   local col = util.col()
 
   if type(msg) == 'string' then
+    ---@type string[]
     msg = { msg }
   end
 
