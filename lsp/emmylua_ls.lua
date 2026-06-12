@@ -33,7 +33,7 @@ return {
   workspace_required = false,
   on_attach = function(client, _)
     if vim.fn.expand('%:t') == 'xmake.lua' then
-      client.stop()
+      client:stop()
     end
   end,
 }

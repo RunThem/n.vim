@@ -6,8 +6,13 @@ return {
   root_markers = {
     'xmake.lua',
   },
+  on_attach = function(client, _)
+    if vim.fn.expand('%:t') ~= 'xmake.lua' then
+      client.stop()
+    end
+  end,
   settings = {
     Lua = {},
   },
-  workspace_required = false,
+  workspace_required = true,
 }
