@@ -45,6 +45,7 @@ return {
   ['pairs'] = function()
     local pairs = require('blink.pairs')
 
+    pairs.build():pwait(6000)
     pairs.setup({})
   end,
 
