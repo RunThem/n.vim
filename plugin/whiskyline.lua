@@ -64,7 +64,7 @@ pd.mode = function()
         local mode = vim.api.nvim_get_mode().mode
 
         return {
-          fg = colors[mode] or colors[1],
+          fg = colors[mode] or '#ec5f67',
         }
       end,
     },
@@ -135,7 +135,6 @@ pd.lsp = function()
           msg = msg .. '  '
         elseif val.percentage < 100 then
           msg = msg .. ' '
-        else
         end
       end
 

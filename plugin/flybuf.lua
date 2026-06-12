@@ -243,7 +243,7 @@ local function create_menu(opt)
     nowait = true,
     callback = function()
       local content = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-      if not wipes or #wipes == 0 then
+      if not next(wipes) then
         local row = vim.api.nvim_win_get_cursor(lwinid)[1]
         wipes[row] = true
       end
