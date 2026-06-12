@@ -15,10 +15,13 @@ return {
   cmd = { 'emmylua_ls' },
   filetypes = { 'lua' },
   root_markers = {
+    '.luarc.jsonc',
     '.luarc.json',
     '.emmyrc.json',
     '.luacheckrc',
     '.git',
+    '.stylua.toml',
+    'stylua.toml',
   },
   settings = {
     Lua = {
