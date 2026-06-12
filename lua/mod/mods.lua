@@ -18,9 +18,7 @@ mod({
 })
 
 mod({
-  -- 'nvimdev/lspsaga.nvim',
-  'leeguooooo/lspsaga.nvim',
-  branch = 'fix-client-method-deprecations',
+  'nvimdev/lspsaga.nvim',
   event = { 'VeryLazy' },
   config = require('mod.conf.saga'),
 })
