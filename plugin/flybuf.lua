@@ -249,11 +249,7 @@ local function create_menu(opt)
       end
 
       for index, _ in pairs(wipes or {}) do
-        vim.api.nvim_buf_call(bufs[index].bufnr, function()
-          vim.api.nvim_buf_delete(bufs[index].bufnr, { force = true })
-        end)
-        table.remove(content, index)
-        table.remove(hi, index)
+        vim.api.nvim_buf_delete(bufs[index].bufnr, { force = true })
       end
 
       local indexs = vim.tbl_keys(wipes)
