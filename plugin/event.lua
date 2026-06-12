@@ -37,7 +37,7 @@ util.autocmd({ 'TextYankPost' }, {
 -- when file is larged ,load regex syntax
 -- highlight will cause very slow
 util.autocmd({ 'FileType' }, {
-  pattern = '*.c,*.cpp,*.lua,*.go,*.rs,*.py,*.ts,*.tsx',
+  pattern = { 'c', 'cpp', 'lua', 'go', 'rust', 'python', 'typescript', 'typescriptreact' },
   callback = function()
     vim.cmd('syntax off')
   end,
