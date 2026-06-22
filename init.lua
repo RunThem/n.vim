@@ -14,7 +14,14 @@
 
 --]]
 
-vim.g.mod = true
+---@diagnostic disable: inject-field
+---@diagnostic disable: need-check-nil
+---@diagnostic disable: access-invisible
+
+---@patch: neovim v0.13.0 has deprecated the function `_get_line_byte_from_position()`
+vim.lsp.util._get_line_byte_from_position = function(bufnr, pos, encoding)
+  return vim.pos.lsp(bufnr, pos, encoding)[1] + 1
+end
 
 require('core')
 
