@@ -23,6 +23,8 @@ vim.lsp.util._get_line_byte_from_position = function(bufnr, pos, encoding)
   return vim.pos.lsp(bufnr, pos, encoding)[1] + 1
 end
 
+vim.g.mod = true
+
 require('core')
 
 --[[ mini debug config

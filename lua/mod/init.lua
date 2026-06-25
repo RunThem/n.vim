@@ -1,12 +1,12 @@
 if vim.g.mod then
-  local lazypath = string.format('%s/lazy/lazy.nvim', util.datapath())
+  local lazypath = util.datapath('/lazy/lazy.nvim')
   if not vim.uv.fs_stat(lazypath) then
     vim.cmd('!git clone https://github.com/folke/lazy.nvim ' .. lazypath)
   end
 
   vim.opt.runtimepath:prepend(lazypath)
 
-  require('lazy').setup(require('mod.mods'), {
-    lockfile = util.datapath('lazy-lock.json'),
-  })
+  local plugins = require('mod.mods')
+
+  require('lazy').setup(plugins)
 end
