@@ -18,5 +18,6 @@ return function()
   map.n('<Leader>fa', ':FzfLua grep_project')
   map.n('<Leader>fw', ':FzfLua grep_cword')
   map.n('<Leader>fb', ':FzfLua grep_curbuf')
+  map.n('<Leader>fs', ':FzfLua lsp_live_workspace_symbols')
   map.n('<Leader>fl', ':FzfLua resume')
 end
