@@ -4,7 +4,7 @@
   "blink.download": { "branch": "main", "commit": "5876dd95deeb70aadbe9f1c0b7117a135061cdac" },
   "blink.indent": { "branch": "main", "commit": "8b69b9262891fe81fe728fe6a52fa2a84dd5d5e0" },
   "blink.pairs": { "branch": "main", "commit": "aad9046bc4670dc91301cd62a6948feb36c55f4a" },
-  "fzf-lua": { "branch": "main", "commit": "b9919229c84bd64d8539367e67e32811cf39a836" },
+  "fzf-lua": { "branch": "main", "commit": "39da6060d53659acf3ec118200bc48721b29b8fd" },
   "guard-collection": { "branch": "main", "commit": "edf6c86c06badc972964dadb7fd469022690cbf0" },
   "guard.nvim": { "branch": "main", "commit": "addb8d2f40662b8b62d60dd7d18f503beb2332e7" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
