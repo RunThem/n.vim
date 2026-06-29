@@ -32,6 +32,12 @@ return function()
     stdin = true,
   })
 
+  ft('toml'):fmt({
+    cmd = 'tombi',
+    args = { 'format', '--offline', '-' },
+    stdin = true,
+  })
+
   vim.g.guard_config = { always_save = true }
 
   ---@keymap
