@@ -26,6 +26,13 @@ util.autocmd({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 
+util.autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.llw',
+  callback = function()
+    vim.api.nvim_set_option_value('filetype', 'lelwel', { buf = 0 })
+  end,
+})
+
 util.autocmd({ 'TextYankPost' }, {
   pattern = '*',
   callback = function()
