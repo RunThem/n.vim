@@ -29,26 +29,23 @@ vim.g.mod = true
 require('core')
 
 --[[ mini debug config
----@param name string
----@param repo? string
----@return nil|table
-local function pkgload(name, repo)
-  vim.opt.rtp:append(('%s/lazy/%s'):format(util.datapath(), name))
-  return repo and require(repo) or nil
+
+---@param args table
+local function import(args)
+  for _, v in ipairs(args['lsp']) do
+    vim.lsp.enable(util.confpath('/lsp/' .. v .. '.lua'))
+  end
+
+  for _, v in ipairs(args['pkg']) do
+    vim.opt.rtp:append(util.datapath('/lazy/' .. v))
+  end
 end
 
-local lsp = pkgload('nvim-lspconfig', 'lspconfig')
-local epo = pkgload('epo.nvim', 'epo')
-
-lsp['lua_ls'].setup({
-  settings = {
-    Lua = {
-      runtime = { version = 'Lua 5.4' },
-      completion = { keywordSnippet = 'Disable', callSnippet = 'Replace' },
-    },
-  },
+import({
+  ['lsp'] = { 'emmylua_ls' },
+  ['pkg'] = { 'blink.cmp' },
 })
 
-epo.setup({})
+require('blink.cmp').setup({})
 
 --]]
