@@ -1,11 +1,22 @@
 --- [[ utils ]]
-_G.util = {
-  ---@type string
-  author = io.popen('git config user.name'):read('*l'),
+local gitconf = { author = 'user.name', email = 'user.email' }
 
-  ---@type string
-  email = io.popen('git config user.email'):read('*l'),
-}
+_G.util = setmetatable({}, {
+  ---@param k string
+  ---@return string?
+  __index = function(t, k)
+    local key = gitconf[k]
+    if not key then
+      return nil
+    end
+
+    local v = io.popen('git config ' .. key):read('*l')
+    if v then
+      rawset(t, k, v)
+    end
+    return v
+  end,
+})
 
 ---@param event vim.api.keyset.events|vim.api.keyset.events[]
 ---@param opts vim.api.keyset.create_autocmd
