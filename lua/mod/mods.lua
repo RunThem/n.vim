@@ -68,4 +68,9 @@ mod({
   dependencies = { 'saghen/blink.lib' },
 })
 
+mod({
+  '0x2a-42/nvim-lelwel',
+  event = { 'VeryLazy' },
+})
+
 return M
