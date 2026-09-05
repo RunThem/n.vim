@@ -2,6 +2,7 @@ return {
   ['cmp'] = function()
     local cmp = require('blink.cmp')
 
+    cmp.build():pwait()
     cmp.setup({
       keymap = {
         preset = 'enter',
@@ -45,7 +46,7 @@ return {
   ['pairs'] = function()
     local pairs = require('blink.pairs')
 
-    pairs.build():pwait(6000)
+    pairs.build():pwait()
     pairs.setup({})
   end,
 
