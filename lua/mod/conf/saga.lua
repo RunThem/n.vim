@@ -11,6 +11,16 @@ return function()
     },
   })
 
+  ---@patch: lspsaga beacon only guards width == 0, a negative width crashes nvim_open_win
+  local beacon = require('lspsaga.beacon')
+  local jump_beacon = beacon.jump_beacon
+  beacon.jump_beacon = function(pos, width)
+    if not width or width <= 0 then
+      return
+    end
+    return jump_beacon(pos, width)
+  end
+
   ---@keymap
   map.n('K', ':Lspsaga hover_doc')
   map.n('gr', ':Lspsaga rename')
