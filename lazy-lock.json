@@ -1,9 +1,9 @@
 {
   "arborist.nvim": { "branch": "main", "commit": "fdeef56c2840c6772b9f68c5774ed87e9340ec7d" },
-  "blink.cmp": { "branch": "main", "commit": "78336bc89ee5365633bcf754d93df01678b5c08f" },
-  "blink.download": { "branch": "main", "commit": "5876dd95deeb70aadbe9f1c0b7117a135061cdac" },
+  "blink.cmp": { "branch": "main", "commit": "8e5e03f1ef7991d74950c245910e6118f6d95e3b" },
   "blink.indent": { "branch": "main", "commit": "8b69b9262891fe81fe728fe6a52fa2a84dd5d5e0" },
-  "blink.pairs": { "branch": "main", "commit": "aad9046bc4670dc91301cd62a6948feb36c55f4a" },
+  "blink.lib": { "branch": "main", "commit": "f55df8a6e0a7acccf45ef0ffbb4ce46110fcf7d0" },
+  "blink.pairs": { "branch": "main", "commit": "21c2ac9164b36ae5e22f84a2dd0f02eaf107f8fe" },
   "fzf-lua": { "branch": "main", "commit": "532d463f5c83595192fe740572d8fd6902b2217a" },
   "guard-collection": { "branch": "main", "commit": "edf6c86c06badc972964dadb7fd469022690cbf0" },
   "guard.nvim": { "branch": "main", "commit": "addb8d2f40662b8b62d60dd7d18f503beb2332e7" },

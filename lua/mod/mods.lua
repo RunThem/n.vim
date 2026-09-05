@@ -56,17 +56,16 @@ mod({
 
 mod({
   'saghen/blink.pairs',
-  version = '*',
   event = { 'VeryLazy' },
   config = require('mod.conf.blink').pairs,
-  dependencies = { 'saghen/blink.download' },
+  dependencies = { 'saghen/blink.lib' },
 })
 
 mod({
   'saghen/blink.cmp',
-  version = '1.*',
   event = { 'VeryLazy' },
   config = require('mod.conf.blink').cmp,
+  dependencies = { 'saghen/blink.lib' },
 })
 
 return M
